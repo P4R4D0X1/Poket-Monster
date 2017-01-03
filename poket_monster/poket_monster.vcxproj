@@ -81,9 +81,11 @@
     <ClCompile Include="electric.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
+    <ClCompile Include="rock.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="monster.hpp" />
+    <ClInclude Include="rock.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="electric.hpp" />

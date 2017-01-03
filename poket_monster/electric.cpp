@@ -4,4 +4,5 @@ CElectric::CElectric(){
 }
 
 bool CElectric::paralyze(){
+	return true;
 }

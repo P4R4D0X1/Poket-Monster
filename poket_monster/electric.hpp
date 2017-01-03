@@ -1,5 +1,5 @@
-#ifndef ELECTRIC_H_INCLUDE
-#define ELECTRIC_H_INCLUDE
+#ifndef ELECTRIC_HPP_INCLUDE
+#define ELECTRIC_HPP_INCLUDE
 
 #include <iostream>
 #include "monster.hpp"
