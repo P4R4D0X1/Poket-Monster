@@ -4,8 +4,6 @@
 #include <iostream>
 #include <string>
 
-#include "monster.hpp"
-
 namespace Attack{
 	enum TYPE{
 		electric,
