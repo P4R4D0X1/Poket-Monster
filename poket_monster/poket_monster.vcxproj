@@ -98,6 +98,7 @@
     <ClInclude Include="monster.hpp" />
     <ClInclude Include="object.hpp" />
     <ClInclude Include="plant.hpp" />
+    <ClInclude Include="player.hpp" />
     <ClInclude Include="rock.hpp" />
     <ClInclude Include="water.hpp" />
   </ItemGroup>
