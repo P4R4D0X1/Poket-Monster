@@ -20,6 +20,8 @@ class CAttack{
 		CAttack();
 		virtual ~CAttack();
 
+
+
 	protected:
 		std::string m_name;
 		Type::TYPEP m_type;
