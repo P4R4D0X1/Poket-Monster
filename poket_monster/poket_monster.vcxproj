@@ -85,6 +85,7 @@
     <ClCompile Include="insect.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
+    <ClCompile Include="object.cpp" />
     <ClCompile Include="plant.cpp" />
     <ClCompile Include="rock.cpp" />
     <ClCompile Include="water.cpp" />
@@ -95,6 +96,7 @@
     <ClInclude Include="grass.hpp" />
     <ClInclude Include="insect.hpp" />
     <ClInclude Include="monster.hpp" />
+    <ClInclude Include="object.hpp" />
     <ClInclude Include="plant.hpp" />
     <ClInclude Include="rock.hpp" />
     <ClInclude Include="water.hpp" />
