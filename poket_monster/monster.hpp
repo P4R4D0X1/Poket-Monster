@@ -4,9 +4,7 @@
 #include <iostream>
 #include <string>
 
-namespace State{
-
-}
+#include "attack.hpp"
 
 namespace Monster{
 	enum TYPE{
@@ -14,14 +12,20 @@ namespace Monster{
 		water,
 		rock,
 		fire,
-		grass,
-		normal
+		grass
 	};
 
 	enum STATE{
 		poisoned,
 		paralized,
 		burned
+	};
+
+	enum ATTACK{
+		first,
+		second,
+		third,
+		fourth
 	};
 }
 
@@ -30,6 +34,8 @@ class CMonster{
 		CMonster();
 		virtual ~CMonster();
 
+		virtual void attack(Monster::ATTACK p_attack, CMonster& const p_enemy);
+		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
 
 	protected:
 		std::string m_name;

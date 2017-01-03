@@ -3,7 +3,22 @@
 
 #include <iostream>
 #include <string>
-#include "monster.hpp"
+
+namespace Attack{
+	enum TYPE{
+		electric,
+		water,
+		rock,
+		fire,
+		grass,
+		normal
+	};
+
+	enum STATE{
+		success,
+		fallen
+	};
+}
 
 class CAttack{
 	public:
@@ -12,7 +27,7 @@ class CAttack{
 
 	protected:
 		std::string m_name;
-		Monster::TYPE m_type;
+		Attack::TYPE m_type;
 
 		int m_nbUse;
 		int m_power;
