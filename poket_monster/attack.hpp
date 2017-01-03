@@ -3,22 +3,9 @@
 
 #include <iostream>
 #include <string>
+#include <random>
 
-namespace Attack{
-	enum TYPE{
-		electric,
-		water,
-		rock,
-		fire,
-		grass,
-		normal
-	};
-
-	enum STATE{
-		success,
-		fallen
-	};
-}
+#include "namespace.hpp"
 
 class CAttack{
 	public:
@@ -27,7 +14,7 @@ class CAttack{
 		virtual ~CAttack();
 
 		//Return la valeur de la contre attack
-		int use(CMonster& const p_attacker, CMonster& const p_enemy);
+		int use(class CMonster& p_attacker, class CMonster& p_enemy);
 		Attack::TYPE getType();
 
 	protected:

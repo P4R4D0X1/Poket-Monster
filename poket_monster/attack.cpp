@@ -1,5 +1,5 @@
-#include "attack.hpp"
 #include "monster.hpp"
+#include "attack.hpp"
 
 CAttack::CAttack(){
 
@@ -16,7 +16,7 @@ CAttack::CAttack(std::string p_name, Attack::TYPE p_type, int p_nbUse, int p_pow
 CAttack::~CAttack(){
 }
 
-int CAttack::use(CMonster& const p_attacker, CMonster& const p_enemy){
+int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
 	if (m_nbUse <= 0)
 		return 0;
 
@@ -25,6 +25,7 @@ int CAttack::use(CMonster& const p_attacker, CMonster& const p_enemy){
 	std::mt19937 l_rng;
 	l_rng.seed(std::random_device()());
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(85, 100);
+	std::uniform_int_distribution<std::mt19937::result_type> l_dist62(0, 100);
 
 	l_damage = 11 * p_attacker.getAttack() * m_power;
 	l_damage /= p_enemy.getDefense() * 25;
@@ -34,8 +35,7 @@ int CAttack::use(CMonster& const p_attacker, CMonster& const p_enemy){
 	m_nbUse--;
 
 	//On regarde si l'attaque est reussie ou non
-	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(0, 100);
-	if (l_dist6(l_rng) <= (int)(m_failProbability * 100))
+	if (l_dist62(l_rng) <= (unsigned sqint)(m_failProbability * 100))
 		return 0;
 	
 	if (p_enemy.applyDamage(m_type, l_damage) == Attack::STATE::fallen)

@@ -11,7 +11,8 @@ CFire::CFire(std::string p_name, int p_hp, int p_speed, int p_attack, int p_defe
 CFire::~CFire(){
 }
 
-void CFire::attack(Monster::ATTACK p_attack, CMonster& const p_enemy){
+void CFire::attack(Monster::ATTACK p_attack, CMonster& p_enemy){
+	m_hp -= m_attacks[p_attack].use((const CMonster)*this, p_enemy);
 }
 
 Attack::STATE CFire::applyDamage(Attack::TYPE p_attackType, int p_damage){
@@ -19,6 +20,6 @@ Attack::STATE CFire::applyDamage(Attack::TYPE p_attackType, int p_damage){
 		return Attack::STATE::success;
 }
 
-void CFire::fire(CMonster& const p_enemy){
+void CFire::fire(CMonster& p_enemy){
 	p_enemy.setState(Monster::STATE::burned);
 }

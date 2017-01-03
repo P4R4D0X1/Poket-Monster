@@ -101,6 +101,7 @@
     <ClInclude Include="grass.hpp" />
     <ClInclude Include="insect.hpp" />
     <ClInclude Include="monster.hpp" />
+    <ClInclude Include="namespace.hpp" />
     <ClInclude Include="object.hpp" />
     <ClInclude Include="parse.hpp" />
     <ClInclude Include="plant.hpp" />
