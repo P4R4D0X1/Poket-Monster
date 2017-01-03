@@ -1,0 +1,52 @@
+Object
+	Name	Potion
+	Type	Potion
+	Heal	20
+EndObject
+
+Object
+	Name	Super Potion
+	Type	Potion
+	Heal	50
+EndObject
+
+Object
+	Name	Hyper Potion
+	Type	Potion
+	Heal	200
+EndObject
+
+Object
+	Name	Max Potion
+	Type	Potion
+EndObject
+
+Object
+	Name	Full Restore
+	Type	Potion
+EndObject
+
+Object
+	Name	Burn Heal
+	Type	Drug
+EndObject
+
+Object
+	Name	Ice Heal
+	Type	Drug
+EndObject
+
+Object
+	Name	Antidote
+	Type	Drug
+EndObject
+
+Object
+	Name	Paralyze Heal
+	Type	Drug
+EndObject
+
+Object
+	Name	Awakening
+	Type	Drug
+EndObject

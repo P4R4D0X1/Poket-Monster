@@ -5,15 +5,13 @@
 #include <string>
 #include <vector>
 
-#include "potion.hpp"
-#include "drug.hpp"
+//#include "potion.hpp"
+//#include "drug.hpp"
 
 class CObject{
 public:
 	CObject();
 	virtual ~CObject();
-
-	bool used(); //indicates if object used or not
 
 protected:
 	std::string m_name;
