@@ -23,7 +23,11 @@ namespace Attack{
 class CAttack{
 	public:
 		CAttack();
+		CAttack(std::string p_name, Attack::TYPE p_type, int p_nbUse, int p_power, int p_failProbability);
 		virtual ~CAttack();
+
+		int use(CMonster& const p_attacker, CMonster& const p_enemy);
+		Attack::TYPE getType();
 
 	protected:
 		std::string m_name;
@@ -33,6 +37,5 @@ class CAttack{
 		int m_power;
 		int m_failProbability;
 };
-
 
 #endif
