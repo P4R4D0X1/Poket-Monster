@@ -78,12 +78,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="attack.cpp" />
     <ClCompile Include="electric.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="rock.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="attack.hpp" />
     <ClInclude Include="monster.hpp" />
     <ClInclude Include="rock.hpp" />
   </ItemGroup>
