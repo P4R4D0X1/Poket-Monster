@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="attack.cpp" />
+    <ClCompile Include="drug.cpp" />
     <ClCompile Include="electric.cpp" />
     <ClCompile Include="fire.cpp" />
     <ClCompile Include="grass.cpp" />
@@ -94,6 +95,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attack.hpp" />
+    <ClInclude Include="drug.hpp" />
     <ClInclude Include="fire.hpp" />
     <ClInclude Include="grass.hpp" />
     <ClInclude Include="insect.hpp" />

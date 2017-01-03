@@ -66,6 +66,9 @@
     <ClCompile Include="potion.cpp">
       <Filter>Fichiers sources\objects</Filter>
     </ClCompile>
+    <ClCompile Include="drug.cpp">
+      <Filter>Fichiers sources\objects</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attack.hpp">
@@ -102,6 +105,9 @@
       <Filter>Fichiers d%27en-tête\objects</Filter>
     </ClInclude>
     <ClInclude Include="potion.hpp">
+      <Filter>Fichiers d%27en-tête\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="drug.hpp">
       <Filter>Fichiers d%27en-tête\objects</Filter>
     </ClInclude>
   </ItemGroup>
