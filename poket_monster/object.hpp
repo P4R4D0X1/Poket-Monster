@@ -3,5 +3,15 @@
 
 
 
+class CObject{
+public:
+	CObject();
+	virtual ~CObject();
+
+protected:
+
+
+};
+
 
 #endif
