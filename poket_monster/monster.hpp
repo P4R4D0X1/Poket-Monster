@@ -5,7 +5,20 @@
 #include <string>
 
 namespace State{
+
+}
+
+namespace Monster{
 	enum TYPE{
+		electric,
+		water,
+		rock,
+		fire,
+		grass,
+		normal
+	};
+
+	enum STATE{
 		poisoned,
 		paralized,
 		burned
@@ -24,7 +37,8 @@ class CMonster{
 		int m_speed;
 		int m_attack;
 		int m_defense;
-		State::TYPE m_state;
+		Monster::TYPE m_type;
+		Monster::STATE m_state;
 };
 
 #endif

@@ -3,17 +3,7 @@
 
 #include <iostream>
 #include <string>
-
-namespace Monster{
-	enum TYPE{
-		electric,
-		water,
-		rock,
-		fire,
-		grass,
-		normal
-	};
-}
+#include "monster.hpp"
 
 class CAttack{
 	public:
@@ -25,8 +15,8 @@ class CAttack{
 		Monster::TYPE m_type;
 
 		int m_nbUse;
-		int power;
-		int m_probabilityFail;
+		int m_power;
+		int m_failProbability;
 };
 
 
