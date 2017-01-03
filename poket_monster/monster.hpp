@@ -18,7 +18,7 @@ class CMonster{
 		virtual ~CMonster();
 
 
-	private:
+	protected:
 		std::string m_name;
 		int m_hp;
 		int m_speed;

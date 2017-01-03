@@ -4,11 +4,11 @@
 #include "monster.hpp"
 
 class CRock : public CMonster{
-public:
+	public:
+		bool hide(); //hides during 3 rounds
 
-
-private:
-	bool hide(); //hides during 3 rounds
+	protected:
+		
 };
 
 

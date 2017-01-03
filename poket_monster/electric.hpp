@@ -11,8 +11,7 @@ class CElectric : public CMonster{
 
 		bool paralyze(); //indicates if enemy is paralysed or not after the attack
 
-
-	private:
+	protected:
 		float m_paralysis;
 };
 

@@ -8,7 +8,7 @@ class CPlant : public CGrass{
 		CPlant();
 		virtual ~CPlant();
 
-	private:
+	protected:
 		
 };
 

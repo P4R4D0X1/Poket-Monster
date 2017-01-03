@@ -8,7 +8,7 @@ class CFire : public CMonster{
 		CFire();
 		virtual ~CFire();
 
-	private:
+	protected:
 
 };
 

@@ -10,7 +10,7 @@ class CWater : public CMonster{
 
 		bool flood();
 
-	private:
+	protected:
 		float m_flood;
 		float m_fall;
 };

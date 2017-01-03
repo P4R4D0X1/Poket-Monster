@@ -22,7 +22,7 @@ class CAttack{
 
 
 
-	private:
+	protected:
 		std::string m_name;
 		Type::TYPEP m_type;
 

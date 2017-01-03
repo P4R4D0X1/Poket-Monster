@@ -4,11 +4,11 @@
 #include "grass.hpp"
 
 class CInsect : public CGrass{
-public:
-	CInsect();
-	virtual ~CInsect();
+	public:
+		CInsect();
+		virtual ~CInsect();
 
-private:
+	protected:
 
 };
 

@@ -8,7 +8,7 @@ class CGrass : public CMonster{
 		CGrass();
 		virtual ~CGrass();
 
-	private:
+	protected:
 
 };
 
