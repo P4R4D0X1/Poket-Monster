@@ -5,10 +5,14 @@
 
 class CRock : public CMonster{
 	public:
-		bool hide(); //hides during 3 rounds
+		CRock();
+		CRock(std::string p_name, int p_hp, int p_speed, int p_attack, int p_defense);
+		virtual ~CRock();
+
+		void hide(); //hides during 3 rounds
 
 	protected:
-		
+		int m_hiddenRound;
 };
 
 

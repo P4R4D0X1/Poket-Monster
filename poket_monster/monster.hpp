@@ -17,6 +17,7 @@ namespace Monster{
 	};
 
 	enum STATE{
+		feelgood,
 		poisoned,
 		paralized,
 		burned
@@ -33,6 +34,7 @@ namespace Monster{
 class CMonster{
 	public:
 		CMonster();
+		CMonster(std::string p_name, int p_hp, int p_speed, int p_attack, int p_defense, Monster::TYPE p_type);
 		virtual ~CMonster();
 
 		virtual void attack(Monster::ATTACK p_attack, CMonster& const p_enemy);
@@ -47,6 +49,7 @@ class CMonster{
 		int m_speed;
 		int m_attack;
 		int m_defense;
+		int m_paralyzedTour;
 		Monster::TYPE m_type;
 		Monster::STATE m_state;
 };
