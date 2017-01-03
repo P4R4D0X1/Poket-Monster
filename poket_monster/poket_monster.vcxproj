@@ -79,6 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="attack.cpp" />
+    <ClCompile Include="drug.cpp" />
     <ClCompile Include="electric.cpp" />
     <ClCompile Include="fire.cpp" />
     <ClCompile Include="grass.cpp" />
@@ -88,11 +89,13 @@
     <ClCompile Include="object.cpp" />
     <ClCompile Include="plant.cpp" />
     <ClCompile Include="player.cpp" />
+    <ClCompile Include="potion.cpp" />
     <ClCompile Include="rock.cpp" />
     <ClCompile Include="water.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attack.hpp" />
+    <ClInclude Include="drug.hpp" />
     <ClInclude Include="fire.hpp" />
     <ClInclude Include="grass.hpp" />
     <ClInclude Include="insect.hpp" />
@@ -100,6 +103,7 @@
     <ClInclude Include="object.hpp" />
     <ClInclude Include="plant.hpp" />
     <ClInclude Include="player.hpp" />
+    <ClInclude Include="potion.hpp" />
     <ClInclude Include="rock.hpp" />
     <ClInclude Include="water.hpp" />
   </ItemGroup>

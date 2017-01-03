@@ -19,6 +19,12 @@
     <Filter Include="Fichiers sources\monstersCPP">
       <UniqueIdentifier>{a8630ddf-ca8b-43e7-a7ef-029769a8121a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\objects">
+      <UniqueIdentifier>{3f22f09b-a292-4bca-b7f9-ceb3aa93b7ea}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\objects">
+      <UniqueIdentifier>{757ff52c-b4e4-404c-9a65-22bbb2ba3019}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -51,18 +57,21 @@
     <ClCompile Include="water.cpp">
       <Filter>Fichiers sources\monstersCPP</Filter>
     </ClCompile>
-    <ClCompile Include="object.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="player.cpp">
       <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
+      <Filter>Fichiers sources\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="potion.cpp">
+      <Filter>Fichiers sources\objects</Filter>
+    </ClCompile>
+    <ClCompile Include="drug.cpp">
+      <Filter>Fichiers sources\objects</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attack.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="object.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="electric.hpp">
@@ -91,6 +100,15 @@
     </ClInclude>
     <ClInclude Include="player.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="object.hpp">
+      <Filter>Fichiers d%27en-tête\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="potion.hpp">
+      <Filter>Fichiers d%27en-tête\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="drug.hpp">
+      <Filter>Fichiers d%27en-tête\objects</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
