@@ -69,6 +69,9 @@
     <ClCompile Include="drug.cpp">
       <Filter>Fichiers sources\objects</Filter>
     </ClCompile>
+    <ClCompile Include="parse.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attack.hpp">
@@ -109,6 +112,9 @@
     </ClInclude>
     <ClInclude Include="drug.hpp">
       <Filter>Fichiers d%27en-tête\objects</Filter>
+    </ClInclude>
+    <ClInclude Include="parse.hpp">
+      <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
