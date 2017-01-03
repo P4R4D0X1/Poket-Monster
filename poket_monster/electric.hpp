@@ -1,13 +1,19 @@
-#ifndef ELECTRIC_H
-#define ELECTRIC_H
+#ifndef ELECTRIC_H_INCLUDE
+#define ELECTRIC_H_INCLUDE
 
 #include <iostream>
+#include "monster.hpp"
 
-class CElectric {
-public:
+class CElectric : public CMonster{
+	public:
+		CElectric();
+		virtual ~CElectric();
 
-private:
+		bool paralyze(); //indicates if enemy is paralysed or not after the attack
 
+
+	private:
+		float m_paralysis;
 };
 
 #endif
