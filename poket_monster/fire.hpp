@@ -8,6 +8,10 @@ class CFire : public CMonster{
 		CFire();
 		virtual ~CFire();
 
+		virtual void attack(Monster::ATTACK p_attack, CMonster& const p_enemy);
+		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
+		void fire(CMonster& const p_enemy);
+
 	protected:
 
 };

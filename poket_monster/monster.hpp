@@ -2,6 +2,7 @@
 #define MONSTER_HPP_INCLUDE
 
 #include <iostream>
+#include <random>
 #include <string>
 
 #include "attack.hpp"
@@ -36,6 +37,9 @@ class CMonster{
 
 		virtual void attack(Monster::ATTACK p_attack, CMonster& const p_enemy);
 		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
+		void setState(Monster::STATE p_state);
+		//updateState va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
+		virtual void updateState();
 
 	protected:
 		std::string m_name;

@@ -8,6 +8,8 @@ class CWater : public CMonster{
 		CWater();
 		virtual ~CWater();
 
+		virtual void attack(Monster::ATTACK p_attack, CMonster& const p_enemy);
+		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
 		bool flood();
 
 	protected:
