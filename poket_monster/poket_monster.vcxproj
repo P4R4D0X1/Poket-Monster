@@ -113,8 +113,8 @@
     <ClInclude Include="electric.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Documents\COURS\3A\INFO\POO\LAB_PocketMonster\config (3)\config\attacks.pkmn" />
-    <None Include="..\..\..\..\Documents\COURS\3A\INFO\POO\LAB_PocketMonster\config (3)\config\monsters.pkmn" />
+    <None Include="attacks.pkmn" />
+    <None Include="monsters.pkmn" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
