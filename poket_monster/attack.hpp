@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
-namespace Type{
-	enum TYPEP{
+namespace Monster{
+	enum TYPE{
 		electric,
 		water,
 		rock,
@@ -20,11 +20,9 @@ class CAttack{
 		CAttack();
 		virtual ~CAttack();
 
-
-
 	protected:
 		std::string m_name;
-		Type::TYPEP m_type;
+		Monster::TYPE m_type;
 
 		int m_nbUse;
 		int power;

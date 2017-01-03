@@ -13,66 +13,78 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers d%27en-tête\monsters">
+      <UniqueIdentifier>{a7a77beb-f217-47bc-b0b8-e4651fafc78f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers sources\monstersCPP">
+      <UniqueIdentifier>{a8630ddf-ca8b-43e7-a7ef-029769a8121a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="monster.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="electric.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
     <ClCompile Include="attack.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
-    <ClCompile Include="rock.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="water.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="plant.cpp">
-      <Filter>Fichiers sources</Filter>
-    </ClCompile>
-    <ClCompile Include="insect.cpp">
-      <Filter>Fichiers sources</Filter>
+    <ClCompile Include="electric.cpp">
+      <Filter>Fichiers sources\monstersCPP</Filter>
     </ClCompile>
     <ClCompile Include="grass.cpp">
-      <Filter>Fichiers sources</Filter>
+      <Filter>Fichiers sources\monstersCPP</Filter>
+    </ClCompile>
+    <ClCompile Include="insect.cpp">
+      <Filter>Fichiers sources\monstersCPP</Filter>
+    </ClCompile>
+    <ClCompile Include="monster.cpp">
+      <Filter>Fichiers sources\monstersCPP</Filter>
+    </ClCompile>
+    <ClCompile Include="plant.cpp">
+      <Filter>Fichiers sources\monstersCPP</Filter>
+    </ClCompile>
+    <ClCompile Include="rock.cpp">
+      <Filter>Fichiers sources\monstersCPP</Filter>
     </ClCompile>
     <ClCompile Include="fire.cpp">
+      <Filter>Fichiers sources\monstersCPP</Filter>
+    </ClCompile>
+    <ClCompile Include="water.cpp">
+      <Filter>Fichiers sources\monstersCPP</Filter>
+    </ClCompile>
+    <ClCompile Include="object.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="monster.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="electric.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="attack.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="rock.hpp">
+    <ClInclude Include="object.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="electric.hpp">
+      <Filter>Fichiers d%27en-tête\monsters</Filter>
     </ClInclude>
     <ClInclude Include="fire.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\monsters</Filter>
     </ClInclude>
     <ClInclude Include="grass.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\monsters</Filter>
     </ClInclude>
     <ClInclude Include="insect.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="monster.hpp">
+      <Filter>Fichiers d%27en-tête\monsters</Filter>
     </ClInclude>
     <ClInclude Include="plant.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\monsters</Filter>
+    </ClInclude>
+    <ClInclude Include="rock.hpp">
+      <Filter>Fichiers d%27en-tête\monsters</Filter>
     </ClInclude>
     <ClInclude Include="water.hpp">
-      <Filter>Fichiers d%27en-tête</Filter>
+      <Filter>Fichiers d%27en-tête\monsters</Filter>
     </ClInclude>
     <ClInclude Include="player.hpp">
       <Filter>Fichiers d%27en-tête</Filter>
