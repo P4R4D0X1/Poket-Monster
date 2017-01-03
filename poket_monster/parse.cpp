@@ -4,7 +4,7 @@ CParse::CParse(){
 }
 
 void CParse::parseMonsters(std::string m_path){
-	std::string l_tmp1, l_tmp, l_hp, l_speed, l_attack, l_defense, l_type, l_name, l_Smin, l_Smax, m_path = "monsters.pkmn", l_Sparalysis, l_Sfall, l_Sflood, l_Sburn, l_Sprotect, l_Sheal, l_Spoison;
+	std::string l_tmp1, l_tmp, l_hp, l_speed, l_attack, l_defense, l_type, l_name, l_Smin, l_Smax, l_Sparalysis, l_Sfall, l_Sflood, l_Sburn, l_Sprotect, l_Sheal, l_Spoison;
 	int l_min, l_max;
 	float l_paralysis, l_fall, l_flood, l_burn, l_heal, l_protect, l_poison;
 
@@ -151,9 +151,9 @@ void CParse::parseMonsters(std::string m_path){
 }
 
 void CParse::parseAttack(std::string m_path){
-	std::string l_tmp1, l_tmp, l_type, l_name, m_path = "attacks.pkmn", l_sPower, l_sNbUse, l_sFail;
-	int l_min, l_max;
-	float l_paralysis, l_fall, l_flood, l_burn, l_heal, l_protect, l_poison, l_power, l_nbUse, l_fail;
+	std::string l_tmp1, l_tmp, l_type, l_name, l_sPower, l_sNbUse, l_sFail;
+	int l_min, l_max, l_power, l_nbUse;
+	float l_paralysis, l_fall, l_flood, l_burn, l_heal, l_protect, l_poison, l_fail;
 
 	std::fstream l_file(m_path.c_str(), std::ios::in);
 

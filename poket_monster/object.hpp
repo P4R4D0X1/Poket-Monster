@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 
-#include "potion.hpp"
-#include "drug.hpp"
+//#include "potion.hpp"
+//#include "drug.hpp"
 
 class CObject{
 public:
