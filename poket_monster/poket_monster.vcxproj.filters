@@ -118,10 +118,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\Documents\COURS\3A\INFO\POO\LAB_PocketMonster\config (3)\config\attacks.pkmn">
+    <None Include="attacks.pkmn">
       <Filter>Fichiers de ressources</Filter>
     </None>
-    <None Include="..\..\..\..\Documents\COURS\3A\INFO\POO\LAB_PocketMonster\config (3)\config\monsters.pkmn">
+    <None Include="monsters.pkmn">
       <Filter>Fichiers de ressources</Filter>
     </None>
   </ItemGroup>
