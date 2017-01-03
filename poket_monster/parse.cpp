@@ -149,3 +149,56 @@ void CParse::parseMonsters(std::string m_path){
 	}
 
 }
+
+void CParse::parseAttack(std::string m_path){
+	std::string l_tmp1, l_tmp, l_type, l_name, m_path = "attacks.pkmn", l_sPower, l_sNbUse, l_sFail;
+	int l_min, l_max;
+	float l_paralysis, l_fall, l_flood, l_burn, l_heal, l_protect, l_poison, l_power, l_nbUse, l_fail;
+
+	std::fstream l_file(m_path.c_str(), std::ios::in);
+
+	if (!l_file){
+		std::cerr << "Error while oppening" << std::endl;
+	}
+
+	while (!l_file.eof()){
+		std::getline(l_file, l_tmp1);
+		if (l_tmp1 == "Attack"){
+			do {
+				std::getline(l_file, l_tmp);
+
+				if (!(l_tmp.find("Name") == std::string::npos)){
+					l_name = l_tmp.erase(0, 6);
+					std::cout << l_name << std::endl;
+				}
+
+				else if (!(l_tmp.find("Type") == std::string::npos)){
+					l_type = l_tmp.erase(0, 6);
+					std::cout << l_type << std::endl;
+				}
+
+				else if (!(l_tmp.find("Power") == std::string::npos)){
+					l_sPower = l_tmp.erase(0, 7);
+					l_power = atoi(l_sPower.c_str());
+
+					std::cout << l_power << std::endl;
+				}
+
+				else if (!(l_tmp.find("NbUse") == std::string::npos)){
+					l_sNbUse = l_tmp.erase(0, 7);
+					l_nbUse = atoi(l_sNbUse.c_str());
+
+					std::cout << l_nbUse << std::endl;
+				}
+
+				else if (!(l_tmp.find("Fail") == std::string::npos)){
+					l_sFail = l_tmp.erase(0, 7);
+					l_fail = std::stof(l_sFail.c_str());
+
+					std::cout << l_fail << std::endl;
+				}
+
+			} while (l_tmp != "EndAttack" );
+		}
+	}
+}
