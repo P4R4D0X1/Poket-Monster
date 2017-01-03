@@ -18,11 +18,10 @@ CMonster::~CMonster(){
 }
 
 void CMonster::attack(Monster::ATTACK p_attack, CMonster& const p_enemy){
-
+	m_hp -= m_attacks[p_attack].use(*this, p_enemy);
 }
 
 Attack::STATE CMonster::applyDamage(Attack::TYPE p_attackType, int p_damage){
-
 }
 
 void CMonster::updateState(){

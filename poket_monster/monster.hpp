@@ -54,6 +54,8 @@ class CMonster{
 		int m_paralyzedTour;
 		Monster::TYPE m_type;
 		Monster::STATE m_state;
+
+		std::vector<CAttack&> m_attacks;
 };
 
 #endif

@@ -38,5 +38,8 @@ int CAttack::use(CMonster& const p_attacker, CMonster& const p_enemy){
 	if (l_dist6(l_rng) <= (int)(m_failProbability * 100))
 		return 0;
 	
-	return l_damage;
+	if (p_enemy.applyDamage(m_type, l_damage) == Attack::STATE::fallen)
+		return (int)(l_damage / 4);
+
+	return 0;
 }
