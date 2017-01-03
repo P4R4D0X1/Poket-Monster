@@ -117,4 +117,12 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\..\Documents\COURS\3A\INFO\POO\LAB_PocketMonster\config (3)\config\attacks.pkmn">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+    <None Include="..\..\..\..\Documents\COURS\3A\INFO\POO\LAB_PocketMonster\config (3)\config\monsters.pkmn">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
+  </ItemGroup>
 </Project>
