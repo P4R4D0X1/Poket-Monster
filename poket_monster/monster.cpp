@@ -25,10 +25,18 @@ Attack::STATE CMonster::applyDamage(Attack::TYPE p_attackType, int p_damage){
 
 }
 
-void CMonster::setState(Monster::STATE p_state){
-	m_state = p_state;
-}
-
 void CMonster::updateState(){
 	//Et la du coup si c'est inondé on lodifie l'etat du monstre en fonction de sa reaction à la flotte 
+}
+
+int CMonster::getAttack(){
+	return m_attack;
+}
+
+int CMonster::getDefense(){
+	return m_defense;
+}
+
+void CMonster::setState(Monster::STATE p_state){
+	m_state = p_state;
 }

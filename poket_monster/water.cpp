@@ -27,6 +27,10 @@ Attack::STATE CWater::applyDamage(Attack::TYPE p_attackType, int p_damage){
 		return Attack::STATE::fallen;
 	}
 	else{
+		//Si c'est un monstre de type electriqueil a l'avantage sur le type eau
+		if (p_attackType == Attack::TYPE::electric)
+			p_damage *= 2;
+
 		m_hp -= p_damage;
 		return Attack::STATE::success;
 	}

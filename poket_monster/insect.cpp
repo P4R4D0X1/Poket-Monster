@@ -1,5 +1,7 @@
 #include "insect.hpp"
 
+//Les insectes peuvent empoisonner 
+
 CInsect::CInsect(){
 }
 

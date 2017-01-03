@@ -39,9 +39,11 @@ class CMonster{
 
 		virtual void attack(Monster::ATTACK p_attack, CMonster& const p_enemy);
 		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
-		void setState(Monster::STATE p_state);
 		//updateState va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
 		virtual void updateState();
+		int getAttack();
+		int getDefense();
+		void setState(Monster::STATE p_state);
 
 	protected:
 		std::string m_name;
