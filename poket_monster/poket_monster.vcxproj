@@ -80,14 +80,24 @@
   <ItemGroup>
     <ClCompile Include="attack.cpp" />
     <ClCompile Include="electric.cpp" />
+    <ClCompile Include="fire.cpp" />
+    <ClCompile Include="grass.cpp" />
+    <ClCompile Include="insect.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="monster.cpp" />
+    <ClCompile Include="plant.cpp" />
     <ClCompile Include="rock.cpp" />
+    <ClCompile Include="water.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="attack.hpp" />
+    <ClInclude Include="fire.hpp" />
+    <ClInclude Include="grass.hpp" />
+    <ClInclude Include="insect.hpp" />
     <ClInclude Include="monster.hpp" />
+    <ClInclude Include="plant.hpp" />
     <ClInclude Include="rock.hpp" />
+    <ClInclude Include="water.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="electric.hpp" />
