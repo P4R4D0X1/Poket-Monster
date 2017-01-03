@@ -13,8 +13,6 @@ public:
 	CObject();
 	virtual ~CObject();
 
-	bool used(); //indicates if object used or not
-
 protected:
 	std::string m_name;
 
