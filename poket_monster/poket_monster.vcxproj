@@ -87,6 +87,7 @@
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="plant.cpp" />
+    <ClCompile Include="player.cpp" />
     <ClCompile Include="rock.cpp" />
     <ClCompile Include="water.cpp" />
   </ItemGroup>
