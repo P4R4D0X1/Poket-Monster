@@ -11,7 +11,7 @@ class CDrug : public CObject{
 
 		Drug::TYPE getType();
 
-		void useDrug(CMonster &p_monster);
+		void useDrug(class CMonster& p_monster);
 
 	protected:
 		Drug::TYPE m_type;

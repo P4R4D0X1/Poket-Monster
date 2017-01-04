@@ -49,3 +49,7 @@ int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
 
 	return 0;
 }
+
+Attack::TYPE CAttack::getType(){
+	return m_type;
+}

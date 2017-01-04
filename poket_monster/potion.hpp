@@ -8,13 +8,11 @@ class CPotion : public CObject{
 		CPotion();
 		CPotion(int p_heal);
 		virtual ~CPotion();
-
-		void setHeal(int p_heal);
-
+		
+		void usePotion(class CMonster& p_monster);
 		int getHeal();
 		Potion::TYPE getType();
-
-		void usePotion(CMonster &p_monster);
+		void setHeal(int p_heal);
 
 	protected:
 		int m_heal;

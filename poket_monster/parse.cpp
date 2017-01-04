@@ -3,6 +3,9 @@
 CParse::CParse(){
 }
 
+CParse::~CParse(){
+}
+
 void CParse::parseMonsters(std::string m_path){
 	std::string l_tmp1, l_tmp, l_hp, l_speed, l_attack, l_defense, l_name, l_Smin, l_Smax, l_Sparalysis, l_Sfall, l_Sflood, l_Sburn, l_Sprotect, l_Sheal, l_Spoison;
 	int l_min, l_max;
@@ -270,7 +273,7 @@ void CParse::parseAttack(std::string m_path){
 				}
 
 			} while (l_tmp != "EndAttack" );
-			CAttack l_attack(l_name, l_type, l_nbUse, l_power, l_fail);
+			l_attack = new CAttack(l_name, l_type, l_nbUse, l_power, l_fail);
 			m_tabAttacks.push_back(l_attack);
 		}
 	}
@@ -314,7 +317,7 @@ void CParse::parseObjects(std::string m_path){
 
 			} while (l_tmp != "EndObject");
 
-			CObject l_object(l_name);
+			l_object = new CObject(l_name);
 
 			if (l_type == "Potion"){
 				//l_object.setHeal(l_heal);

@@ -24,10 +24,15 @@ void CMonster::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
 }
 
 Attack::STATE CMonster::applyDamage(Attack::TYPE p_attackType, int p_damage){
+	return Attack::STATE::success;
 }
 
 void CMonster::updateState(){
 	float l_rescueProb = (6.0f - m_stateLongevity)/6.0f;
+
+	std::mt19937 l_rng;
+	l_rng.seed(std::random_device()());
+	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
 
 	if (m_type == Monster::TYPE::grass && m_arena->getState() == Arena::STATE::flooded){
 		m_hp += (int)m_hpMax / 20;
@@ -55,10 +60,6 @@ void CMonster::updateState(){
 			break;
 
 		case Monster::STATE::paralized:
-			std::mt19937 l_rng;
-			l_rng.seed(std::random_device()());
-			std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
-
 			if (l_dist6(l_rng) <= (unsigned int)l_rescueProb * 100){
 				m_state = Monster::STATE::feelgood;
 				m_stateLongevity = 0;

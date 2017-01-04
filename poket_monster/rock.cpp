@@ -37,6 +37,6 @@ bool CRock::hide(){
 	l_rng.seed(std::random_device()());
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist62(0, 100);
 
-	return (l_dist62(l_rng) <= (int)m_protect * 100) ? true : false;
+	return (l_dist62(l_rng) <= (unsigned int)m_protect * 100) ? true : false;
 }
 
