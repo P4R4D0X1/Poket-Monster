@@ -9,7 +9,7 @@ class CDrug : public CObject{
 		virtual ~CDrug();
 
 	protected:
-		useDrug();
+		void useDrug(CMonster &p_monster);
 };
 
 #endif
