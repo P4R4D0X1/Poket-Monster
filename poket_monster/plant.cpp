@@ -25,3 +25,8 @@ bool CPlant::heal(){
 
 	return (l_dist6(l_rng) <= m_heal * 100) ? true : false;
 }
+
+void CPlant::info(){
+	CGrass::info();
+	std::cout << "Heal : " << m_heal << std::endl;
+}

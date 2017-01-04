@@ -33,3 +33,8 @@ bool CElectric::paralyze(){
 	
 	return (l_dist6(l_rng) <= m_paralysis * 100) ? true : false;
 }
+
+void CElectric::info(){
+	CMonster::info();
+	std::cout << "Paralysis : " << m_paralysis << std::endl;
+}

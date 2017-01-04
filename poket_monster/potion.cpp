@@ -5,7 +5,8 @@ CPotion::CPotion(){
 	m_heal = 0;
 }
 
-CPotion::CPotion(int p_heal){
+CPotion::CPotion(std::string p_name, int p_heal){
+	m_name = p_name;
 	m_heal = p_heal;
 }
 
@@ -26,4 +27,10 @@ Potion::TYPE CPotion::getType(){
 
 void CPotion::setHeal(int p_heal){
 	m_heal = p_heal;
+}
+
+void CPotion::info(){
+	std::cout << m_name << std::endl;
+	std::cout << "Type of potion : " << m_type << std::endl;
+	std::cout << "Heal : " << m_heal << std::endl;
 }

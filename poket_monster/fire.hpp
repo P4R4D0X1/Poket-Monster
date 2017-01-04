@@ -12,6 +12,7 @@ class CFire : public CMonster{
 		void attack(Monster::ATTACK_SLOT p_attack, CMonster&  p_enemy);
 		Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
 		bool fire();
+		void info();
 
 	protected:
 		float m_burn;

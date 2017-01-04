@@ -19,13 +19,14 @@ void CParse::parseMonsters(std::string m_path){
 		std::cerr << "Error while oppening" << std::endl;
 	}
 
+	std::cout << "[PARSING MONSTERS]\n" << std::endl;
 	while (!l_file.eof()){
 
 		std::getline(l_file, l_tmp1);
 
 		if (l_tmp1 == "Monster"){
 			sMonster* l_monster = NULL;
-
+			l_monster = new sMonster();
 			do {
 				std::getline(l_file, l_tmp);
 
@@ -198,8 +199,9 @@ void CParse::parseMonsters(std::string m_path){
 
 					std::cout << "Poison : " << l_poison << std::endl;
 				}
-
 			} while (l_tmp != "EndMonster");
+
+			std::cout << std::endl;
 
 			m_tabMonsters.push_back(l_monster);
 		}
@@ -218,6 +220,7 @@ void CParse::parseAttack(std::string m_path){
 		std::cerr << "Error while oppening" << std::endl;
 	}
 
+	std::cout << "[PARSING ATTACKS]" << std::endl;
 	while (!l_file.eof()){
 		std::getline(l_file, l_tmp1);
 		if (l_tmp1 == "Attack"){
@@ -273,6 +276,7 @@ void CParse::parseAttack(std::string m_path){
 				}
 
 			} while (l_tmp != "EndAttack" );
+			std::cout << std::endl;
 			l_attack = new CAttack(l_name, l_type, l_nbUse, l_power, l_fail);
 			m_tabAttacks.push_back(l_attack);
 		}
@@ -280,8 +284,9 @@ void CParse::parseAttack(std::string m_path){
 }
 
 void CParse::parseObjects(std::string m_path){
-	std::string l_tmp1, l_tmp, l_type, l_name, l_sHeal;
+	std::string l_tmp1, l_tmp, l_name, l_sHeal;
 	int l_heal;
+	Object::TYPE l_type;
 
 	std::fstream l_file(m_path.c_str(), std::ios::in);
 
@@ -289,6 +294,7 @@ void CParse::parseObjects(std::string m_path){
 		std::cerr << "Error while oppening" << std::endl;
 	}
 
+	std::cout << "[PARSING OBJECTS]" << std::endl;
 	while (!l_file.eof()){
 		std::getline(l_file, l_tmp1);
 		if (l_tmp1 == "Object"){
@@ -303,9 +309,16 @@ void CParse::parseObjects(std::string m_path){
 				}
 
 				else if (!(l_tmp.find("Type") == std::string::npos)){
-					l_type = l_tmp.erase(0, 6);
+					l_tmp = l_tmp.erase(0, 6);
 
-					std::cout << l_type << std::endl;
+					if (l_tmp.compare("Potion")){
+						l_type = Object::TYPE::potion;
+					}
+					else if (l_tmp.compare("Drug")){
+						l_type = Object::TYPE::drug;
+					}
+
+					std::cout << "Type : " << l_type << std::endl;
 				}
 
 				else if (!(l_tmp.find("Heal") == std::string::npos)){
@@ -317,11 +330,14 @@ void CParse::parseObjects(std::string m_path){
 
 			} while (l_tmp != "EndObject");
 
-			l_object = new CObject(l_name);
-
-			if (l_type == "Potion"){
-				//l_object.setHeal(l_heal);
+			if (l_type == Object::TYPE::potion){
+				l_object = new CPotion(l_name, l_heal);
 			}
+			else if (l_type == Object::TYPE::drug){
+				l_object = new CDrug(l_name);
+			}
+
+			std::cout << std::endl;
 
 			m_tabObjects.push_back(l_object);
 		}

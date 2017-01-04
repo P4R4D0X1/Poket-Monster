@@ -13,6 +13,7 @@ class CWater : public CMonster{
 		Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
 		void updateState(CArena& p_arena);
 		bool flood();
+		void info();
 
 	protected:
 		float m_flood;

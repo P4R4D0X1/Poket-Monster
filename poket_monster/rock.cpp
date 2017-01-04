@@ -40,3 +40,7 @@ bool CRock::hide(){
 	return (l_dist62(l_rng) <= (unsigned int)m_protect * 100) ? true : false;
 }
 
+void CRock::info(){
+	CMonster::info();
+	std::cout << "Protect : " << m_protect << std::endl;
+}

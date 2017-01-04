@@ -30,6 +30,7 @@ class CMonster{
 		Monster::STATE getState();
 		void setState(Monster::STATE p_state);
 		void setArena(CArena& p_arena);
+		virtual void info();
 
 	protected:
 		std::string m_name;

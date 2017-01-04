@@ -11,6 +11,7 @@ class CGrass : public CMonster{
 
 		virtual void attack(Monster::ATTACK_SLOT p_attack, CMonster&  p_enemy);
 		Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
+		void info();
 
 	protected:
 
