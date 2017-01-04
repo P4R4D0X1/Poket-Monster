@@ -52,4 +52,31 @@ namespace Arena{
 	};
 }
 
+namespace Potion{
+	enum TYPE{
+		potion,
+		superPotion,
+		hyperPotion,
+		maxPotion,
+		fullRestore
+	};
+}
+
+namespace Object{
+	enum TYPE{
+		potion,
+		drug
+	};
+}
+
+namespace Drug{
+	enum TYPE{
+		burnHeal,
+		iceHeal,
+		antidote,
+		paralizeHeal,
+		awakening
+	};
+}
+
 #endif

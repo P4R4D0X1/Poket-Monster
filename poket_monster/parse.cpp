@@ -268,6 +268,7 @@ void CParse::parseAttack(std::string m_path){
 
 			} while (l_tmp != "EndAttack" );
 			CAttack l_attack(l_name, l_type, l_nbUse, l_power, l_fail);
+			m_tabAttacks.push_back(l_attack);
 		}
 	}
 }
@@ -286,6 +287,7 @@ void CParse::parseObjects(std::string m_path){
 	while (!l_file.eof()){
 		std::getline(l_file, l_tmp1);
 		if (l_tmp1 == "Object"){
+			CObject *l_object = NULL;
 			do {
 				std::getline(l_file, l_tmp);
 
@@ -310,14 +312,12 @@ void CParse::parseObjects(std::string m_path){
 
 			} while (l_tmp != "EndObject");
 
+			CObject l_object(l_name);
+
 			if (l_type == "Potion"){
-				CPotion l_potion(l_name, l_heal);
+				//l_object.setHeal(l_heal);
 			}
-			else if (l_type == "Drug"){
-				CDrug l_drug(l_name);
-			}
-			else{
-				std::cerr << "ERROR while parsing object : type not recognised." << std::endl;
-			}
+			
+			m_tabObjects.push_back(l_object);
 	}
 }

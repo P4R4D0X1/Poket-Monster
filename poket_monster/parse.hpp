@@ -50,6 +50,7 @@ class CParse{
 	protected:
 		std::vector <sMonster*> m_tabMonsters;
 		std::vector <CAttack*> m_tabAttacks;
+		std::vector <CObject*> m_tabObjects;
 
 };
 
