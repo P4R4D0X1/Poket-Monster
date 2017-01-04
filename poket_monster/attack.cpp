@@ -35,11 +35,17 @@ int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
 	m_nbUse--;
 
 	//On regarde si l'attaque est reussie ou non
-	if (l_dist62(l_rng) <= (unsigned sqint)(m_failProbability * 100))
+	if (p_attacker.getState() == Monster::STATE::paralized){
+		//Si le joueur est paralysé il a une chance sur quatre de rater son attaque
+		if (l_dist62(l_rng) <= 25)
+			return 0;
+	}
+	else if (l_dist62(l_rng) <= (unsigned int)(m_failProbability * 100))
 		return 0;
 	
+	//Si le joueur tombe parceque le terrain est inondé il se prend un quart de son attaque 
 	if (p_enemy.applyDamage(m_type, l_damage) == Attack::STATE::fallen)
-		return (int)(l_damage / 4);
+		return (int)(p_attacker.getAttack() / 4);
 
 	return 0;
 }

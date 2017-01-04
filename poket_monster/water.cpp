@@ -13,7 +13,7 @@ CWater::CWater(std::string p_name, int p_hp, int p_speed, int p_attack, int p_de
 CWater::~CWater(){
 }
 
-void CWater::attack(Monster::ATTACK p_attack, CMonster&  p_enemy){
+void CWater::attack(Monster::ATTACK p_attack, CMonster& p_enemy){
 	m_hp -= m_attacks[p_attack].use(*this, p_enemy);
 }
 
@@ -27,7 +27,7 @@ Attack::STATE CWater::applyDamage(Attack::TYPE p_attackType, int p_damage){
 		return Attack::STATE::fallen;
 	}
 	else{
-		//Si c'est un monstre de type electriqueil a l'avantage sur le type eau
+		//Si c'est un monstre de type electrique il a l'avantage sur le type eau
 		if (p_attackType == Attack::TYPE::electric)
 			p_damage *= 2;
 
