@@ -5,7 +5,7 @@ CAttack::CAttack(){
 
 }
 
-CAttack::CAttack(std::string p_name, Attack::TYPE p_type, int p_nbUse, int p_power, int p_failProbability){
+CAttack::CAttack(std::string p_name, Attack::TYPE p_type, int p_nbUse, int p_power, float p_failProbability){
 	m_name = p_name;
 	m_type = p_type;
 	m_nbUse = p_nbUse;

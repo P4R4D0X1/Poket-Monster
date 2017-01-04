@@ -80,6 +80,7 @@
   <ItemGroup>
     <ClCompile Include="arena.cpp" />
     <ClCompile Include="attack.cpp" />
+    <ClCompile Include="chalon.cpp" />
     <ClCompile Include="drug.cpp" />
     <ClCompile Include="electric.cpp" />
     <ClCompile Include="fire.cpp" />
@@ -98,6 +99,7 @@
   <ItemGroup>
     <ClInclude Include="arena.hpp" />
     <ClInclude Include="attack.hpp" />
+    <ClInclude Include="chalon.hpp" />
     <ClInclude Include="drug.hpp" />
     <ClInclude Include="fire.hpp" />
     <ClInclude Include="grass.hpp" />
