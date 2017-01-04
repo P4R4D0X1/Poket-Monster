@@ -53,3 +53,11 @@ int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
 Attack::TYPE CAttack::getType(){
 	return m_type;
 }
+
+void CAttack::info(){
+	std::cout << m_name << std::endl;
+	std::cout << "Type : " << m_type << std::endl;
+	std::cout << "NbUse : " << m_nbUse << std::endl;
+	std::cout << "Power : " << m_power << std::endl;
+	std::cout << "Fail : " << m_failProbability << std::endl;
+}

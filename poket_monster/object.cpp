@@ -13,3 +13,11 @@ CObject::~CObject(){
 std::string CObject::getName(){
 	return m_name;
 }
+
+Object::TYPE CObject::getType(){
+	return m_type;
+}
+
+void CObject::info(){
+	std::cout << m_name << std::endl;
+}

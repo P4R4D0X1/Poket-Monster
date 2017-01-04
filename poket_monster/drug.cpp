@@ -20,6 +20,6 @@ void CDrug::useDrug(class CMonster& p_monster){
 }
 
 void CDrug::info(){
-	std::cout << m_name << std::endl;
+	CObject::info();
 	std::cout << "Type of drug : " << m_type << std::endl;
 }

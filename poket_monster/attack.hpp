@@ -16,6 +16,7 @@ class CAttack{
 		//Return la valeur de la contre attack
 		int use(class CMonster& p_attacker, class CMonster& p_enemy);
 		Attack::TYPE getType();
+		void info();
 
 	protected:
 		std::string m_name;

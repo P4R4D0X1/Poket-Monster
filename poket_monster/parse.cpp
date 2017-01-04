@@ -343,3 +343,48 @@ void CParse::parseObjects(std::string m_path){
 		}
 	}
 }
+
+void CParse::infoStructMonster(sMonster *p_monster){
+	std::cout << p_monster->m_name << "\n";
+	std::cout << "Type : " << p_monster->m_type << std::endl;
+	std::cout << "HP : [" << p_monster->m_hpMin << ", " << p_monster->m_hpMax << "]" << std::endl;
+	std::cout << "Speed : [" << p_monster->m_speedMin << ", " << p_monster->m_speedMax << "]" << std::endl;
+	std::cout << "Attack : [" << p_monster->m_attackMin << ", " << p_monster->m_attackMax << "]" << std::endl;
+	std::cout << "Defense : [" << p_monster->m_defenseMin << ", " << p_monster->m_defenseMax << "]" << std::endl;
+
+	//Pour afficher les membres spécifiques au type de monstre
+	/*switch (p_monster.m_type){
+		case (0) :
+			break;
+		case (1) :
+			break;
+		case (2) :
+			break;
+		case (3) :
+			break;
+	}*/
+
+}
+
+void CParse::info(){
+	int i;
+	std::cout << "[PRINTING VALUES]" << std::endl;
+
+	std::cout << "[MONSTERS]" << std::endl;
+	for (i = 0; i < m_tabMonsters.size(); i++){
+		infoStructMonster(m_tabMonsters[i]);
+		std::cout << std::endl;
+	}
+
+	std::cout << "[ATTACKS]" << std::endl;
+	for (i = 0; i < m_tabAttacks.size(); i++){
+		m_tabAttacks[i]->info();
+		std::cout << std::endl;
+	}
+
+	std::cout << "[OBJECTS]" << std::endl;
+	for (i = 0; i < m_tabObjects.size(); i++){			
+				m_tabObjects[i]->info();
+				std::cout << std::endl;
+	}
+}

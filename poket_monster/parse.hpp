@@ -47,6 +47,9 @@ class CParse{
 		void parseAttack(std::string m_path);
 		void parseObjects(std::string m_path);
 
+		void infoStructMonster(sMonster *p_monster);
+		void info();
+
 	protected:
 		std::vector <sMonster*> m_tabMonsters;
 		std::vector <CAttack*> m_tabAttacks;

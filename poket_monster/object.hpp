@@ -14,6 +14,8 @@ class CObject{
 		virtual ~CObject();
 
 		std::string getName();
+		Object::TYPE getType();
+		void info();
 
 	protected:
 		std::string m_name;

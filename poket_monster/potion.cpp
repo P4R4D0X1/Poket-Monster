@@ -30,7 +30,7 @@ void CPotion::setHeal(int p_heal){
 }
 
 void CPotion::info(){
-	std::cout << m_name << std::endl;
+	CObject::info();
 	std::cout << "Type of potion : " << m_type << std::endl;
 	std::cout << "Heal : " << m_heal << std::endl;
 }
