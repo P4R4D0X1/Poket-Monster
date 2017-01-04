@@ -144,6 +144,9 @@ void CMonster::useDrug(CDrug& p_drug){
 	std::cout << "You used one" << p_drug.getName() << "!" << std::endl;
 }
 
+bool CMonster::isAlive(){
+	return (m_hp <= 0) ? false : true;
+}
 
 int CMonster::getAttack(){
 	return m_attack;

@@ -24,6 +24,7 @@ class CMonster{
 		virtual void updateState(); //va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
 		virtual void usePotion(CPotion& p_potion);
 		virtual void useDrug(CDrug &p_drug);
+		bool isAlive();
 		int getAttack();
 		int getDefense();
 		Monster::STATE getState();
