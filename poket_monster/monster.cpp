@@ -46,7 +46,7 @@ void CMonster::updateState(){
 		case Monster::STATE::poisoned:
 			if (m_arena->getState() == Arena::STATE::flooded){
 				m_stateLongevity = 0;
-				m_state == Monster::STATE::feelgood;
+				m_state = Monster::STATE::feelgood;
 			}
 			else{
 				m_hp -= (int)m_attack / 10;
@@ -59,7 +59,7 @@ void CMonster::updateState(){
 			l_rng.seed(std::random_device()());
 			std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
 
-			if (l_dist6(l_rng) <= (int)l_rescueProb * 100){
+			if (l_dist6(l_rng) <= (unsigned int)l_rescueProb * 100){
 				m_state = Monster::STATE::feelgood;
 				m_stateLongevity = 0;
 			}
@@ -71,7 +71,7 @@ void CMonster::updateState(){
 		case Monster::STATE::burned:
 			if (m_arena->getState() == Arena::STATE::flooded){
 				m_stateLongevity = 0;
-				m_state == Monster::STATE::feelgood;
+				m_state = Monster::STATE::feelgood;
 			}
 			else{
 				m_hp -= (int)m_attack / 10;
