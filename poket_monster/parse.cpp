@@ -19,7 +19,6 @@ void CParse::parseMonsters(std::string m_path){
 		std::cerr << "Error while oppening" << std::endl;
 	}
 
-	std::cout << "[PARSING MONSTERS]\n" << std::endl;
 	while (!l_file.eof()){
 
 		std::getline(l_file, l_tmp1);
@@ -33,8 +32,6 @@ void CParse::parseMonsters(std::string m_path){
 				if (!(l_tmp.find("Name") == std::string::npos)){
 					l_name = l_tmp.erase(0, 7);
 					l_monster->m_name = l_name;
-
-					std::cout << l_name << std::endl;
 				}
 
 				else if (!(l_tmp.find("Type") == std::string::npos)){
@@ -62,8 +59,6 @@ void CParse::parseMonsters(std::string m_path){
 					}
 
 					l_monster->m_type = l_type;
-
-					std::cout << l_type << std::endl;
 				}
 
 
@@ -81,8 +76,6 @@ void CParse::parseMonsters(std::string m_path){
 
 					l_monster->m_hpMin = l_min;
 					l_monster->m_hpMax = l_max;
-
-					std::cout << "HP : " << l_min << " / " << l_max << std::endl;
 				}
 
 				else if (!(l_tmp.find("Speed") == std::string::npos)){
@@ -99,8 +92,6 @@ void CParse::parseMonsters(std::string m_path){
 
 					l_monster->m_speedMin = l_min;
 					l_monster->m_speedMax = l_max;
-
-					std::cout << "SPEED : " << l_min << " / " << l_max << std::endl;
 				}
 
 				else if (!(l_tmp.find("Attack") == std::string::npos)){
@@ -117,8 +108,6 @@ void CParse::parseMonsters(std::string m_path){
 
 					l_monster->m_attackMin = l_min;
 					l_monster->m_attackMax = l_max;
-
-					std::cout << "ATTACK : " << l_min << " / " << l_max << std::endl;
 				}
 
 				else if (!(l_tmp.find("Defense") == std::string::npos)){
@@ -135,18 +124,13 @@ void CParse::parseMonsters(std::string m_path){
 
 					l_monster->m_defenseMin = l_min;
 					l_monster->m_defenseMax = l_max;
-
-					std::cout << "DEFENSE : " << l_min << " / " << l_max << std::endl;
 				}
 
 				else if (!(l_tmp.find("Paralysis") == std::string::npos)){
 					l_Sparalysis = l_tmp.erase(0, 12);
-					std::cout << l_Sparalysis << std::endl;
 					l_paralysis = std::stof(l_Sparalysis.c_str());
 
 					l_monster->m_paralysis = l_paralysis;
-
-					std::cout << "Paralysis : " << l_paralysis << std::endl;
 				}
 
 				else if (!(l_tmp.find("Flood") == std::string::npos)){
@@ -154,8 +138,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_flood = std::stof(l_Sflood.c_str());
 
 					l_monster->m_flood = l_flood;
-
-					std::cout << "Flood : " << l_flood << std::endl;
 				}
 
 				else if (!(l_tmp.find("Fall") == std::string::npos)){
@@ -163,8 +145,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_fall = std::stof(l_Sfall.c_str());
 
 					l_monster->m_fall = l_fall;
-
-					std::cout << "Fall : " << l_fall << std::endl;
 				}
 
 				else if (!(l_tmp.find("Burn") == std::string::npos)){
@@ -172,8 +152,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_burn = std::stof(l_Sburn.c_str());
 
 					l_monster->m_burn = l_burn;
-
-					std::cout << "Burn : " << l_burn << std::endl;
 				}
 
 				else if (!(l_tmp.find("Protect") == std::string::npos)){
@@ -181,8 +159,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_protect = std::stof(l_Sprotect.c_str());
 
 					l_monster->m_protect = l_protect;
-
-					std::cout << "Protect : " << l_protect << std::endl;
 				}
 
 				else if (!(l_tmp.find("Heal") == std::string::npos)){
@@ -190,8 +166,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_heal = std::stof(l_Sheal.c_str());
 
 					l_monster->m_heal = l_heal;
-
-					std::cout << "Heal : " << l_heal << std::endl;
 				}
 
 				else if (!(l_tmp.find("Poison") == std::string::npos)){
@@ -199,12 +173,9 @@ void CParse::parseMonsters(std::string m_path){
 					l_poison = std::stof(l_Spoison.c_str());
 
 					l_monster->m_poison = l_poison;
-
-					std::cout << "Poison : " << l_poison << std::endl;
 				}
 			} while (l_tmp != "EndMonster");
 
-			std::cout << std::endl;
 
 			m_tabMonsters.push_back(l_monster);
 		}
@@ -223,7 +194,6 @@ void CParse::parseAttack(std::string m_path){
 		std::cerr << "Error while oppening" << std::endl;
 	}
 
-	std::cout << "[PARSING ATTACKS]" << std::endl;
 	while (!l_file.eof()){
 		std::getline(l_file, l_tmp1);
 		if (l_tmp1 == "Attack"){
@@ -233,7 +203,6 @@ void CParse::parseAttack(std::string m_path){
 
 				if (!(l_tmp.find("Name") == std::string::npos)){
 					l_name = l_tmp.erase(0, 6);
-					std::cout << l_name << std::endl;
 				}
 
 				else if (!(l_tmp.find("Type") == std::string::npos)){
@@ -253,33 +222,24 @@ void CParse::parseAttack(std::string m_path){
 					if (l_tmp.compare("Rock")){
 						l_type = Attack::TYPE::rock;
 					}
-
-					std::cout << l_type << std::endl;
 				}
 
 				else if (!(l_tmp.find("Power") == std::string::npos)){
 					l_sPower = l_tmp.erase(0, 7);
 					l_power = atoi(l_sPower.c_str());
-
-					std::cout << l_power << std::endl;
 				}
 
 				else if (!(l_tmp.find("NbUse") == std::string::npos)){
 					l_sNbUse = l_tmp.erase(0, 7);
 					l_nbUse = atoi(l_sNbUse.c_str());
-
-					std::cout << l_nbUse << std::endl;
 				}
 
 				else if (!(l_tmp.find("Fail") == std::string::npos)){
 					l_sFail = l_tmp.erase(0, 7);
 					l_fail = std::stof(l_sFail.c_str());
-
-					std::cout << l_fail << std::endl;
 				}
 
 			} while (l_tmp != "EndAttack" );
-			std::cout << std::endl;
 			l_attack = new CAttack(l_name, l_type, l_nbUse, l_power, l_fail);
 			m_tabAttacks.push_back(l_attack);
 		}
@@ -297,7 +257,6 @@ void CParse::parseObjects(std::string m_path){
 		std::cerr << "Error while oppening" << std::endl;
 	}
 
-	std::cout << "[PARSING OBJECTS]" << std::endl;
 	while (!l_file.eof()){
 		std::getline(l_file, l_tmp1);
 		if (l_tmp1 == "Object"){
@@ -307,8 +266,6 @@ void CParse::parseObjects(std::string m_path){
 
 				if (!(l_tmp.find("Name") == std::string::npos)){
 					l_name = l_tmp.erase(0, 6);
-
-					std::cout << l_name << std::endl;
 				}
 
 				else if (!(l_tmp.find("Type") == std::string::npos)){
@@ -320,15 +277,11 @@ void CParse::parseObjects(std::string m_path){
 					else if (l_tmp.compare("Drug")){
 						l_type = Object::TYPE::drug;
 					}
-
-					std::cout << "Type : " << l_type << std::endl;
 				}
 
 				else if (!(l_tmp.find("Heal") == std::string::npos)){
 					l_sHeal = l_tmp.erase(0, 6);
 					l_heal = atoi(l_sHeal.c_str());
-
-					std::cout << "Heal : " << l_heal << std::endl;
 				}
 
 			} while (l_tmp != "EndObject");
@@ -339,8 +292,6 @@ void CParse::parseObjects(std::string m_path){
 			else if (l_type == Object::TYPE::drug){
 				l_object = new CDrug(l_name);
 			}
-
-			std::cout << std::endl;
 
 			m_tabObjects.push_back(l_object);
 		}
