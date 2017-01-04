@@ -11,7 +11,7 @@ CRock::~CRock(){
 }
 
 void CRock::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
-	m_hp -= m_attacks[p_attack].use(*this, p_enemy);
+	m_hp -= m_attacks[p_attack]->use(*this, p_enemy);
 }
 
 Attack::STATE CRock::applyDamage(Attack::TYPE p_attackType, int p_damage){

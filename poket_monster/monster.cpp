@@ -12,6 +12,7 @@ CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p
 	m_defense = p_defense;
 	m_type = p_type;
 	m_paralyzedTour = 0;
+	m_arena = NULL;
 }
 
 
@@ -19,14 +20,13 @@ CMonster::~CMonster(){
 }
 
 void CMonster::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
-	m_hp -= m_attacks[p_attack].use(*this, p_enemy);
+	m_hp -= m_attacks[p_attack]->use(*this, p_enemy);
 }
 
 Attack::STATE CMonster::applyDamage(Attack::TYPE p_attackType, int p_damage){
 }
 
 void CMonster::updateState(){
-	//Et la du coup si c'est inondé on lodifie l'etat du monstre en fonction de sa reaction à la flotte 
 	
 }
 
@@ -46,4 +46,8 @@ void CMonster::setState(Monster::STATE p_state){
 	if (p_state == Monster::STATE::paralized)
 		m_paralyzedTour = 6;
 	m_state = p_state;
+}
+
+void CMonster::setArena(CArena& p_arena){
+	m_arena = &p_arena;
 }

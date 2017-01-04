@@ -10,7 +10,7 @@
 class CAttack{
 	public:
 		CAttack();
-		CAttack(std::string p_name, Attack::TYPE p_type, int p_nbUse, int p_power, int p_failProbability);
+		CAttack(std::string p_name, Attack::TYPE p_type, int p_nbUse, int p_power, float p_failProbability);
 		virtual ~CAttack();
 
 		//Return la valeur de la contre attack

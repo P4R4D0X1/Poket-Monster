@@ -7,6 +7,7 @@
 
 #include "namespace.hpp"
 #include "attack.hpp"
+#include "arena.hpp"
 
 
 class CMonster{
@@ -17,13 +18,14 @@ class CMonster{
 
 		virtual void attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy);
 		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
-		//updateState va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
-		virtual void updateState();
-		//void usePotion(CObject& p_potion);
+		virtual void updateState(); //va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
+		//virtual void usePotion(CObject& p_potion);
+		//virtual void useDrug(CObject& p_drug);
 		int getAttack();
 		int getDefense();
 		Monster::STATE getState();
 		void setState(Monster::STATE p_state);
+		void setArena(CArena& p_arena);
 
 	protected:
 		std::string m_name;
@@ -36,7 +38,8 @@ class CMonster{
 		Monster::TYPE m_type;
 		Monster::STATE m_state;
 
-		std::vector<CAttack&> m_attacks;
+		std::vector<CAttack*> m_attacks;
+		CArena* m_arena;
 };
 
 #endif
