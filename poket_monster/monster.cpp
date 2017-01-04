@@ -104,8 +104,39 @@ void CMonster::usePotion(CPotion& p_potion){
 }
 
 
-void useDrug(CDrug& p_drug){
+void CMonster::useDrug(CDrug& p_drug){
 
+	if (p_drug.getType() == Drug::TYPE::burnHeal){
+		if (m_state == Monster::STATE::burned){
+			m_state = Monster::STATE::feelgood;
+			std::cout << "Pokemon not burned any more!" << std::endl;
+		}
+	}
+	else if (p_drug.getType() == Drug::TYPE::iceHeal){
+		if (m_state == Monster::STATE::freezed){
+			m_state = Monster::STATE::feelgood;
+			std::cout << "Pokemon not freezed any more!" << std::endl;
+		}
+	}
+	else if (p_drug.getType() == Drug::TYPE::antidote){
+		if (m_state == Monster::STATE::poisoned){
+			m_state = Monster::STATE::feelgood;
+		std::cout << "Pokemon not poisoned any more!" << std::endl;
+		}
+	}
+	else if (m_name == "Paralyse Heal"){
+		if (m_state == Monster::STATE::paralized){
+			m_state = Monster::STATE::feelgood;
+		std::cout << "Pokemon not paralyzed any more!" << std::endl;
+		}
+	}
+	else if (m_name == "Awakening"){
+		if (m_state == Monster::STATE::asleep){
+			m_state = Monster::STATE::feelgood;
+		std::cout << "Pokemon not asleep any more!" << std::endl;
+		}
+	}
+	std::cout << "You used one" << p_drug.getName() << "!" << std::endl;
 }
 
 
