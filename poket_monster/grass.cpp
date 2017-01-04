@@ -10,7 +10,6 @@ CGrass::~CGrass(){
 }
 
 void CGrass::attack(Monster::ATTACK_SLOT p_attack, CMonster&  p_enemy){
-
 }
 
 Attack::STATE CGrass::applyDamage(Attack::TYPE p_attackType, int p_damage){

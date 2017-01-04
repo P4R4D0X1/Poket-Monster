@@ -23,7 +23,7 @@ class CAttack{
 
 		int m_nbUse;
 		int m_power;
-		int m_failProbability;
+		float m_failProbability;
 };
 
 #endif

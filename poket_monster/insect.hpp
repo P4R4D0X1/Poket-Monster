@@ -6,10 +6,14 @@
 class CInsect : public CGrass{
 	public:
 		CInsect();
-		CInsect(std::string p_name, int p_hp, int p_speed, int p_attack, int p_defense);
+		CInsect(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_poison);
 		virtual ~CInsect();
 
+		virtual void attack(Monster::ATTACK_SLOT p_attack, CMonster&  p_enemy);
+		bool poison();
+
 	protected:
+		float m_poison;
 
 };
 
