@@ -214,6 +214,7 @@ void CParse::parseAttack(std::string m_path){
 	while (!l_file.eof()){
 		std::getline(l_file, l_tmp1);
 		if (l_tmp1 == "Attack"){
+			CAttack *l_attack = NULL;
 			do {
 				std::getline(l_file, l_tmp);
 
@@ -249,6 +250,7 @@ void CParse::parseAttack(std::string m_path){
 				}
 
 			} while (l_tmp != "EndAttack" );
+			CAttack l_attack(l_name, l_type, l_nbUse, l_power, l_fail);
 		}
 	}
 }
