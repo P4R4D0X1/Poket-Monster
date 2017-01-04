@@ -17,6 +17,8 @@ class CParse{
 	protected:
 		void parseMonsters(std::string m_path);
 		void parseAttack(std::string m_path);
+		void parseObjects(std::string m_path);
+
 };
 
 #endif

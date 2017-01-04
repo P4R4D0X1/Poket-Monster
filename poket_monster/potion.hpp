@@ -8,8 +8,10 @@ class CPotion : public CObject{
 		CPotion();
 		virtual ~CPotion();
 
-	protected:
+		void usePotion(CMonster &p_monster);
 
+	protected:
+		int m_heal;
 };
 
 
