@@ -3,6 +3,17 @@
 
 #include "parse.hpp"
 
+/*
+*
+*	On fais une fonction getFourAttackByType() dans le parse
+*	
+*	Gerer le player
+*	Gerer l'attribution des objets et des pokemon
+*
+*	coder la mecanique de jeu basique
+*
+*/
+
 
 using namespace std;
 
