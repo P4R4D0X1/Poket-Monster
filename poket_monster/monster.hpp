@@ -8,6 +8,9 @@
 #include "namespace.hpp"
 #include "attack.hpp"
 #include "arena.hpp"
+#include "object.hpp"
+#include "potion.hpp"
+#include "drug.hpp"
 
 
 class CMonster{
@@ -18,9 +21,9 @@ class CMonster{
 
 		virtual void attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy);
 		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
-		void updateState(); //va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
-		//virtual void usePotion(CObject& p_potion);
-		//virtual void useDrug(CObject& p_drug);
+		virtual void updateState(); //va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
+		virtual void usePotion(CPotion& p_potion);
+		virtual void useDrug(CDrug& p_drug);
 		int getAttack();
 		int getDefense();
 		Monster::STATE getState();

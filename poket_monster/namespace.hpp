@@ -32,7 +32,7 @@ namespace Monster{
 		paralized,
 		burned, 
 		freezed, 
-		sleep,
+		asleep,
 		confusion,
 
 	};

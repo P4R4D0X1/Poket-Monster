@@ -86,6 +86,64 @@ void CMonster::updateState(){
 	m_arena->updateState();
 }
 
+void CMonster::usePotion(CPotion& p_potion){
+	if (p_potion.getType() == Potion::TYPE::fullRestore){
+		//Redonner tous les pv au pokémon et soigner l'état
+		m_hp = m_hpMax;
+		m_state = Monster::STATE::feelgood;
+		std::cout << "HP and state retored! You used one Full Restore" << std::endl;
+	}
+	else if (p_potion.getType() == Potion::TYPE::maxPotion){
+		//Redonner tous les PVs au pokémon
+		m_hp = m_hpMax;
+		std::cout << "HP restored to the max!You used one Max Potion" << std::endl;
+
+	}
+	else if (p_potion.getType() == Potion::TYPE::potion || p_potion.getType() == Potion::TYPE::hyperPotion || p_potion.getType() == Potion::TYPE::superPotion){
+		//Recuperer m_heal et l'ajouter au PV du pokémon
+		m_hp += p_potion.getHeal();
+		std::cout << "You used " << p_potion.getName() << "!" << std::endl;
+		std::cout << "HP + " << p_potion.getHeal() << std::endl;
+	}
+}
+
+
+void CMonster::useDrug(CDrug& p_drug){
+
+	if (p_drug.getType() == Drug::TYPE::burnHeal){
+		if (m_state == Monster::STATE::burned){
+			m_state = Monster::STATE::feelgood;
+			std::cout << "Pokemon not burned any more!" << std::endl;
+		}
+	}
+	else if (p_drug.getType() == Drug::TYPE::iceHeal){
+		if (m_state == Monster::STATE::freezed){
+			m_state = Monster::STATE::feelgood;
+			std::cout << "Pokemon not freezed any more!" << std::endl;
+		}
+	}
+	else if (p_drug.getType() == Drug::TYPE::antidote){
+		if (m_state == Monster::STATE::poisoned){
+			m_state = Monster::STATE::feelgood;
+		std::cout << "Pokemon not poisoned any more!" << std::endl;
+		}
+	}
+	else if (m_name == "Paralyse Heal"){
+		if (m_state == Monster::STATE::paralized){
+			m_state = Monster::STATE::feelgood;
+		std::cout << "Pokemon not paralyzed any more!" << std::endl;
+		}
+	}
+	else if (m_name == "Awakening"){
+		if (m_state == Monster::STATE::asleep){
+			m_state = Monster::STATE::feelgood;
+		std::cout << "Pokemon not asleep any more!" << std::endl;
+		}
+	}
+	std::cout << "You used one" << p_drug.getName() << "!" << std::endl;
+}
+
+
 int CMonster::getAttack(){
 	return m_attack;
 }
