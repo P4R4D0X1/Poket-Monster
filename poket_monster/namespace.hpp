@@ -30,7 +30,11 @@ namespace Monster{
 		feelgood,
 		poisoned,
 		paralized,
-		burned
+		burned, 
+		freezed, 
+		sleep,
+		confusion,
+
 	};
 
 	enum ATTACK_SLOT{
