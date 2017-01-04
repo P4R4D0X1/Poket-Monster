@@ -38,17 +38,20 @@ void CParse::parseMonsters(std::string m_path){
 					if (l_tmp.compare("Electric")){
 						l_type = Monster::TYPE::electric;
 					}
-					if (l_tmp.compare("Water")){
+					else if (l_tmp.compare("Water")){
 						l_type = Monster::TYPE::water;
 					}
-					if (l_tmp.compare("Grass")){
+					else if (l_tmp.compare("Grass")){
 						l_type = Monster::TYPE::grass;
 					}
-					if (l_tmp.compare("Fire")){
+					else if (l_tmp.compare("Fire")){
 						l_type = Monster::TYPE::fire;
 					}
-					if (l_tmp.compare("Rock")){
+					else if (l_tmp.compare("Rock")){
 						l_type = Monster::TYPE::rock;
+					}
+					else{
+						std::cerr << "Error while parsing monsters : type not recognized." << std::endl;
 					}
 
 					l_monster->m_type = l_type;
@@ -273,7 +276,6 @@ void CParse::parseAttack(std::string m_path){
 	}
 }
 
-
 void CParse::parseObjects(std::string m_path){
 	std::string l_tmp1, l_tmp, l_type, l_name, l_sHeal;
 	int l_heal;
@@ -317,7 +319,8 @@ void CParse::parseObjects(std::string m_path){
 			if (l_type == "Potion"){
 				//l_object.setHeal(l_heal);
 			}
-			
+
 			m_tabObjects.push_back(l_object);
+		}
 	}
 }

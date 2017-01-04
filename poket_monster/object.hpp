@@ -5,20 +5,19 @@
 #include <string>
 #include <vector>
 
-#include "monster.hpp"
 #include "namespace.hpp"
 
 class CObject{
-public:
-	CObject();
-	CObject::CObject(std::string p_name);
-	virtual ~CObject();
+	public:
+		CObject();
+		CObject(std::string p_name);
+		virtual ~CObject();
 
-	std::string getName();
+		std::string getName();
 
-protected:
-	std::string m_name;
-	Object::TYPE m_type;
+	protected:
+		std::string m_name;
+		Object::TYPE m_type;
 };
 
 

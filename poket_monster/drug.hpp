@@ -15,6 +15,7 @@ class CDrug : public CObject{
 
 	protected:
 		Drug::TYPE m_type;
+
 };
 
 #endif
