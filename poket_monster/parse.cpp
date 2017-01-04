@@ -204,7 +204,7 @@ void CParse::parseAttack(std::string m_path){
 	std::string l_tmp1, l_tmp, l_name, l_sPower, l_sNbUse, l_sFail;
 	int l_min, l_max, l_power, l_nbUse;
 	float l_paralysis, l_fall, l_flood, l_burn, l_heal, l_protect, l_poison, l_fail;
-	Monster::TYPE l_type;
+	Attack::TYPE l_type;
 
 	std::fstream l_file(m_path.c_str(), std::ios::in);
 
@@ -227,19 +227,19 @@ void CParse::parseAttack(std::string m_path){
 				else if (!(l_tmp.find("Type") == std::string::npos)){
 					l_tmp = l_tmp.erase(0, 7);
 					if (l_tmp.compare("Electric")){
-						l_type = Monster::TYPE::electric;
+						l_type = Attack::TYPE::electric;
 					}
 					if (l_tmp.compare("Water")){
-						l_type = Monster::TYPE::water;
+						l_type = Attack::TYPE::water;
 					}
 					if (l_tmp.compare("Grass")){
-						l_type = Monster::TYPE::grass;
+						l_type = Attack::TYPE::grass;
 					}
 					if (l_tmp.compare("Fire")){
-						l_type = Monster::TYPE::fire;
+						l_type = Attack::TYPE::fire;
 					}
 					if (l_tmp.compare("Rock")){
-						l_type = Monster::TYPE::rock;
+						l_type = Attack::TYPE::rock;
 					}
 
 					std::cout << l_type << std::endl;
