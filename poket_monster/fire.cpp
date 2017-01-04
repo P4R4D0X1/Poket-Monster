@@ -20,9 +20,6 @@ void CFire::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
 }
 
 Attack::STATE CFire::applyDamage(Attack::TYPE p_attackType, int p_damage){
-	if (p_attackType == Attack::TYPE::water)
-		p_damage *= 2;
-
 		m_hp -= p_damage;
 		return Attack::STATE::success;
 }

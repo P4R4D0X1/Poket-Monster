@@ -12,8 +12,6 @@ class CPotion : public CObject{
 		void usePotion(class CMonster& p_monster);
 		int getHeal();
 		Potion::TYPE getType();
-		void setHeal(int p_heal);
-
 		void info();
 
 	protected:

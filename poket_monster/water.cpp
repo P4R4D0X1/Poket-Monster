@@ -28,12 +28,7 @@ Attack::STATE CWater::applyDamage(Attack::TYPE p_attackType, int p_damage){
 	//Si l'attaquant glisse a cause du terrain inondé il se reprend son attaque
 	if (m_arena->getState() == Arena::STATE::flooded && l_dist6(l_rng) <= m_fall * 100){
 		return Attack::STATE::fallen;
-	}
-	else{
-		//Si c'est un monstre de type electrique il a l'avantage sur le type eau
-		if (p_attackType == Attack::TYPE::electric)
-			p_damage *= 2;
-
+	}else{
 		m_hp -= p_damage;
 		return Attack::STATE::success;
 	}

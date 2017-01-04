@@ -32,6 +32,7 @@ int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
 	l_damage += 2;
 	l_damage *= (l_dist6(l_rng)/100);
 
+	l_damage *= computeAttackCoef(p_attacker.getType(), p_enemy.getType());
 	m_nbUse--;
 
 	//On regarde si l'attaque est reussie ou non
@@ -48,6 +49,40 @@ int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
 		return (int)(p_attacker.getAttack() / 4);
 
 	return 0;
+}
+
+float computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy){
+	//WATER vs FIRE
+	if (p_attacker == Monster::TYPE::water && p_enemy == Monster::TYPE::fire)
+		return 2.f;
+	if (p_attacker == Monster::TYPE::fire && p_enemy == Monster::TYPE::water)
+		return 0.5f;
+
+	//FIRE vs GRASS
+	if (p_attacker == Monster::TYPE::fire && (p_enemy == Monster::TYPE::plant || p_enemy == Monster::TYPE::insect))
+		return 2.f;
+	if ((p_enemy == Monster::TYPE::plant || p_enemy == Monster::TYPE::insect) && p_enemy == Monster::TYPE::fire)
+		return 0.5f;
+
+	//GRASS vs ROCK
+	if ((p_enemy == Monster::TYPE::plant || p_enemy == Monster::TYPE::insect) && p_enemy == Monster::TYPE::rock)
+		return 2.f;
+	if (p_attacker == Monster::TYPE::rock && (p_enemy == Monster::TYPE::plant || p_enemy == Monster::TYPE::insect))
+		return 0.5f;
+
+	//ROCK vs ELECTRIC
+	if (p_attacker == Monster::TYPE::rock && p_enemy == Monster::TYPE::electric)
+		return 2.f;
+	if (p_attacker == Monster::TYPE::electric && p_enemy == Monster::TYPE::rock)
+		return 0.5f;
+
+	//ELECTRIC vs WATER
+	if (p_attacker == Monster::TYPE::electric && p_enemy == Monster::TYPE::water)
+		return 2.f;
+	if (p_attacker == Monster::TYPE::water && p_enemy == Monster::TYPE::electric)
+		return 0.5f;
+
+	return 1.f;
 }
 
 Attack::TYPE CAttack::getType(){

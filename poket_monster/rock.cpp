@@ -25,9 +25,6 @@ void CRock::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
 }
 
 Attack::STATE CRock::applyDamage(Attack::TYPE p_attackType, int p_damage){
-	if (p_attackType == Attack::TYPE::grass)
-		p_damage *= 2;
-
 	m_hp -= p_damage;
 	return Attack::STATE::success;
 }

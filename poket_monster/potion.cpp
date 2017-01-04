@@ -25,10 +25,6 @@ Potion::TYPE CPotion::getType(){
 	return m_type;
 }
 
-void CPotion::setHeal(int p_heal){
-	m_heal = p_heal;
-}
-
 void CPotion::info(){
 	CObject::info();
 	std::cout << "Type of potion : " << m_type << std::endl;

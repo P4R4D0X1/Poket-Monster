@@ -156,6 +156,10 @@ int CMonster::getDefense(){
 	return m_defense;
 }
 
+Monster::TYPE CMonster::getType(){
+	return m_type;
+}
+
 Monster::STATE CMonster::getState(){
 	return m_state;
 }
