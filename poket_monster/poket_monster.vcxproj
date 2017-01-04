@@ -78,6 +78,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="arena.cpp" />
     <ClCompile Include="attack.cpp" />
     <ClCompile Include="drug.cpp" />
     <ClCompile Include="electric.cpp" />
