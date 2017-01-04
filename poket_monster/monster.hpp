@@ -15,7 +15,7 @@ class CMonster{
 		CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, Monster::TYPE p_type);
 		virtual ~CMonster();
 
-		virtual void attack(Monster::ATTACK p_attack, CMonster& p_enemy);
+		virtual void attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy);
 		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
 		//updateState va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
 		virtual void updateState();

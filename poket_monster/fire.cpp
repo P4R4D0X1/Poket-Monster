@@ -12,8 +12,9 @@ CFire::CFire(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attac
 CFire::~CFire(){	
 }
 
-void CFire::attack(Monster::ATTACK p_attack, CMonster& p_enemy){
+void CFire::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
 	m_hp -= m_attacks[p_attack].use(*this, p_enemy);
+
 	if (fire() && m_attacks[p_attack].getType() != Attack::TYPE::normal)
 		p_enemy.setState(Monster::STATE::burned);
 }

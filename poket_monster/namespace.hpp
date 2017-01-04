@@ -33,11 +33,18 @@ namespace Monster{
 		burned
 	};
 
-	enum ATTACK{
+	enum ATTACK_SLOT{
 		first,
 		second,
 		third,
 		fourth
+	};
+}
+
+namespace Arena{
+	enum STATE{
+		normal,
+		flooded
 	};
 }
 

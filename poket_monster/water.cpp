@@ -13,7 +13,7 @@ CWater::CWater(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_att
 CWater::~CWater(){
 }
 
-void CWater::attack(Monster::ATTACK p_attack, CMonster& p_enemy){
+void CWater::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
 	m_hp -= m_attacks[p_attack].use(*this, p_enemy);
 }
 
