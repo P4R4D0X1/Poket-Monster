@@ -8,7 +8,6 @@
 #include "namespace.hpp"
 #include "attack.hpp"
 #include "arena.hpp"
-#include "object.hpp"
 #include "potion.hpp"
 #include "drug.hpp"
 
