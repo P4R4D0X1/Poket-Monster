@@ -7,6 +7,8 @@
 #include <fstream>
 
 #include "monster.hpp"
+#include "attack.hpp"
+#include "object.hpp"
 
 
 class CParse{

@@ -1,6 +1,12 @@
 #include "potion.hpp"
 
 CPotion::CPotion(){
+	m_heal = 0;
+}
+
+CPotion::CPotion(std::string p_name, int p_heal){
+	m_name = p_name;
+	m_heal = p_heal;
 }
 
 void CPotion::usePotion(CMonster &p_monster){

@@ -240,5 +240,12 @@ void CParse::parseObjects(std::string m_path){
 				}
 
 			} while (l_tmp != "EndObject");
+
+			if (l_type == "Potion"){
+				CPotion l_potion(l_name, l_heal);
+			}
+			else if (l_type == "Drug"){
+				CDrug l_drug(l_name);
+			}
 	}
 }

@@ -3,6 +3,10 @@
 CDrug::CDrug(){
 }
 
+CDrug::CDrug(std::string p_name){
+	m_name = p_name;
+}
+
 void CDrug::useDrug(CMonster &p_monster){
 	//p_monster.useDrug(*this);
 	if (m_name == "Burn Heal"){

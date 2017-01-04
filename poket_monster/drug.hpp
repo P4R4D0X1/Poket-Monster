@@ -6,6 +6,7 @@
 class CDrug : public CObject{
 	public:
 		CDrug();
+		CDrug(std::string p_name);
 		virtual ~CDrug();
 
 	protected:
