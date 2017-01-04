@@ -6,21 +6,17 @@
 #include <vector>
 
 #include "monster.hpp"
-#include "potion.hpp"
-#include "drug.hpp"
-
+#include "namespace.hpp"
 
 class CObject{
 public:
 	CObject();
+	CObject::CObject(std::string p_name);
 	virtual ~CObject();
 
 protected:
 	std::string m_name;
-
-	std::vector <CDrug> m_drugs;
-	std::vector <CPotion> m_potions;
-
+	Object::TYPE m_type;
 };
 
 

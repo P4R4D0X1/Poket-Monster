@@ -4,8 +4,11 @@ CPotion::CPotion(){
 	m_heal = 0;
 }
 
-CPotion::CPotion(std::string p_name, int p_heal){
-	m_name = p_name;
+CPotion::CPotion(int p_heal){
+	m_heal = p_heal;
+}
+
+void CPotion::setHeal(int p_heal){
 	m_heal = p_heal;
 }
 

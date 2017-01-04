@@ -9,6 +9,7 @@ CDrug::CDrug(std::string p_name){
 
 void CDrug::useDrug(CMonster &p_monster){
 	//p_monster.useDrug(*this);
+
 	if (m_name == "Burn Heal"){
 		/*if (p_monster.m_state == burned){
 			p_monster.m_state = normal;
