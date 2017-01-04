@@ -3,7 +3,7 @@
 CInsect::CInsect(){
 }
 
-CInsect::CInsect(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_poison) : CGrass(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense){
+CInsect::CInsect(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_poison) : CGrass(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense, Monster::TYPE::insect){
 	m_poison = p_poison;
 }
 

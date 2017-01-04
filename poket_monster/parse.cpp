@@ -45,8 +45,11 @@ void CParse::parseMonsters(std::string m_path){
 					else if (l_tmp.compare("Water")){
 						l_type = Monster::TYPE::water;
 					}
-					else if (l_tmp.compare("Grass")){
-						l_type = Monster::TYPE::grass;
+					else if (l_tmp.compare("Plant")){
+						l_type = Monster::TYPE::plant;
+					}
+					else if (l_tmp.compare("Insect")){
+						l_type = Monster::TYPE::insect;
 					}
 					else if (l_tmp.compare("Fire")){
 						l_type = Monster::TYPE::fire;

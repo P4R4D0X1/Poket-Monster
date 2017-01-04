@@ -3,7 +3,7 @@
 CPlant::CPlant(){
 }
 
-CPlant::CPlant(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_heal) : CGrass(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense){
+CPlant::CPlant(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_heal) : CGrass(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense, Monster::TYPE::plant){
 	m_heal = p_heal;
 }
 

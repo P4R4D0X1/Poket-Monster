@@ -23,7 +23,8 @@ namespace Monster{
 		water,
 		rock,
 		fire,
-		grass
+		insect,
+		plant
 	};
 
 	enum STATE{
