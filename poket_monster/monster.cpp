@@ -34,9 +34,6 @@ void CMonster::updateState(){
 	l_rng.seed(std::random_device()());
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
 
-	if ((m_type == Monster::TYPE::insect || m_type == Monster::TYPE::plant) && m_arena->getState() == Arena::STATE::flooded){
-		m_hp += (int)m_hpMax / 20;
-	}
 
 	if (m_stateLongevity == 0){
 		m_state = Monster::STATE::feelgood;

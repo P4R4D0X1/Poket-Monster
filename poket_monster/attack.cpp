@@ -51,7 +51,7 @@ int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
 	return 0;
 }
 
-float computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy){
+float CAttack::computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy){
 	//WATER vs FIRE
 	if (p_attacker == Monster::TYPE::water && p_enemy == Monster::TYPE::fire)
 		return 2.f;

@@ -17,6 +17,14 @@ Attack::STATE CGrass::applyDamage(Attack::TYPE p_attackType, int p_damage){
 	return Attack::STATE::success;
 }
 
+void CGrass::updateState(){
+	if (m_arena->getState() == Arena::STATE::flooded)
+		m_hp += (int)m_hpMax / 20;
+	
+	CMonster::updateState();
+}
+
 void CGrass::info(){
 	CMonster::info();
 }
+
