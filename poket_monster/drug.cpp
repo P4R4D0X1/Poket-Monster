@@ -12,5 +12,5 @@ Drug::TYPE CDrug::getType(){
 }
 
 void CDrug::useDrug(CMonster &p_monster){
-	//p_monster.useDrug(*this);
+	p_monster.useDrug(*this);
 }
