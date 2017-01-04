@@ -205,5 +205,40 @@ void CParse::parseAttack(std::string m_path){
 
 
 void CParse::parseObjects(std::string m_path){
+	std::string l_tmp1, l_tmp, l_type, l_name, l_sHeal;
+	int l_heal;
 
+	std::fstream l_file(m_path.c_str(), std::ios::in);
+
+	if (!l_file){
+		std::cerr << "Error while oppening" << std::endl;
+	}
+
+	while (!l_file.eof()){
+		std::getline(l_file, l_tmp1);
+		if (l_tmp1 == "Object"){
+			do {
+				std::getline(l_file, l_tmp);
+
+				if (!(l_tmp.find("Name") == std::string::npos)){
+					l_name = l_tmp.erase(0, 6);
+
+					std::cout << l_name << std::endl;
+				}
+
+				else if (!(l_tmp.find("Type") == std::string::npos)){
+					l_type = l_tmp.erase(0, 6);
+
+					std::cout << l_type << std::endl;
+				}
+
+				else if (!(l_tmp.find("Heal") == std::string::npos)){
+					l_sHeal = l_tmp.erase(0, 6);
+					l_heal = atoi(l_sHeal.c_str());
+
+					std::cout << "Heal : " << l_heal << std::endl;
+				}
+
+			} while (l_tmp != "EndObject");
+	}
 }

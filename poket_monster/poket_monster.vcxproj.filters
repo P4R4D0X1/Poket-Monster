@@ -127,5 +127,8 @@
     <None Include="monsters.pkmn">
       <Filter>Fichiers de ressources</Filter>
     </None>
+    <None Include="objects.pkmn">
+      <Filter>Fichiers de ressources</Filter>
+    </None>
   </ItemGroup>
 </Project>

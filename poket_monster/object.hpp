@@ -5,8 +5,10 @@
 #include <string>
 #include <vector>
 
+#include "monster.hpp"
 #include "potion.hpp"
 #include "drug.hpp"
+
 
 class CObject{
 public:
