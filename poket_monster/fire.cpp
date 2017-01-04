@@ -13,9 +13,9 @@ CFire::~CFire(){
 }
 
 void CFire::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
-	m_hp -= m_attacks[p_attack].use(*this, p_enemy);
+	m_hp -= m_attacks[p_attack]->use(*this, p_enemy);
 
-	if (fire() && m_attacks[p_attack].getType() != Attack::TYPE::normal)
+	if (fire() && m_attacks[p_attack]->getType() != Attack::TYPE::normal)
 		p_enemy.setState(Monster::STATE::burned);
 }
 

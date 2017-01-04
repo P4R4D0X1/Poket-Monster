@@ -14,7 +14,10 @@ CWater::~CWater(){
 }
 
 void CWater::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
-	m_hp -= m_attacks[p_attack].use(*this, p_enemy);
+	m_hp -= m_attacks[p_attack]->use(*this, p_enemy);
+	
+	if (flood())
+		m_arena->flood();
 }
 
 Attack::STATE CWater::applyDamage(Attack::TYPE p_attackType, int p_damage){
@@ -22,8 +25,8 @@ Attack::STATE CWater::applyDamage(Attack::TYPE p_attackType, int p_damage){
 	l_rng.seed(std::random_device()());
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
 
-	//Dans le 'if' il faut gerer si il y a de la flotte sur le terrain aussi <3
-	if (l_dist6(l_rng) <= m_fall * 100){
+	//Si l'attaquant glisse a cause du terrain inondé il se reprend son attaque
+	if (m_arena->getState() == Arena::STATE::flooded && l_dist6(l_rng) <= m_fall * 100){
 		return Attack::STATE::fallen;
 	}
 	else{
