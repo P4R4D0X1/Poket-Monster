@@ -202,3 +202,8 @@ void CParse::parseAttack(std::string m_path){
 		}
 	}
 }
+
+
+void CParse::parseObjects(std::string m_path){
+
+}

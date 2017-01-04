@@ -5,8 +5,8 @@
 #include <string>
 #include <vector>
 
-//#include "potion.hpp"
-//#include "drug.hpp"
+#include "potion.hpp"
+#include "drug.hpp"
 
 class CObject{
 public:
@@ -16,8 +16,8 @@ public:
 protected:
 	std::string m_name;
 
-	//std::vector <CDrug> m_drugs;
-	//std::vector <CPotion> m_potions;
+	std::vector <CDrug> m_drugs;
+	std::vector <CPotion> m_potions;
 
 };
 
