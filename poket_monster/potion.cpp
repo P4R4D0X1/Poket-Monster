@@ -21,5 +21,5 @@ Potion::TYPE CPotion::getType(){
 }
 
 void CPotion::usePotion(CMonster &p_monster){
-	//p_monster.usePotion(*this);
+	p_monster.usePotion(*this);
 }
