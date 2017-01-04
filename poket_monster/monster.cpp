@@ -29,6 +29,10 @@ Attack::STATE CMonster::applyDamage(Attack::TYPE p_attackType, int p_damage){
 void CMonster::updateState(){
 	float l_rescueProb = (6.0f - m_stateLongevity)/6.0f;
 
+	if (m_type == Monster::TYPE::grass && m_arena->getState() == Arena::STATE::flooded){
+		m_hp += (int)m_hpMax / 20;
+	}
+
 	if (m_stateLongevity == 0){
 		m_state = Monster::STATE::feelgood;
 		m_arena->updateState();

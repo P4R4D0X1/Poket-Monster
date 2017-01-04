@@ -18,7 +18,7 @@ class CMonster{
 
 		virtual void attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy);
 		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
-		virtual void updateState(); //va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
+		void updateState(); //va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
 		//virtual void usePotion(CObject& p_potion);
 		//virtual void useDrug(CObject& p_drug);
 		int getAttack();
