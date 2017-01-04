@@ -82,6 +82,33 @@ void CMonster::updateState(){
 	m_arena->updateState();
 }
 
+void CMonster::usePotion(CPotion& p_potion){
+	if (p_potion.getType() == Potion::TYPE::fullRestore){
+		//Redonner tous les pv au pokémon et soigner l'état
+		m_hp = m_hpMax;
+		m_state = Monster::STATE::feelgood;
+		std::cout << "HP and state retored! You used one Full Restore" << std::endl;
+	}
+	else if (p_potion.getType() == Potion::TYPE::maxPotion){
+		//Redonner tous les PVs au pokémon
+		m_hp = m_hpMax;
+		std::cout << "HP restored to the max!You used one Max Potion" << std::endl;
+
+	}
+	else if (p_potion.getType() == Potion::TYPE::potion || p_potion.getType() == Potion::TYPE::hyperPotion || p_potion.getType() == Potion::TYPE::superPotion){
+		//Recuperer m_heal et l'ajouter au PV du pokémon
+		m_hp += p_potion.getHeal();
+		std::cout << "You used " << p_potion.getName() << "!" << std::endl;
+		std::cout << "HP + " << p_potion.getHeal() << std::endl;
+	}
+}
+
+
+void useDrug(CDrug& p_drug){
+
+}
+
+
 int CMonster::getAttack(){
 	return m_attack;
 }

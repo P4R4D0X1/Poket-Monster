@@ -10,6 +10,10 @@ class CPotion : public CObject{
 		virtual ~CPotion();
 
 		void setHeal(int p_heal);
+
+		int getHeal();
+		Potion::TYPE getType();
+
 		void usePotion(CMonster &p_monster);
 
 	protected:

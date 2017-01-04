@@ -14,6 +14,8 @@ public:
 	CObject::CObject(std::string p_name);
 	virtual ~CObject();
 
+	std::string getName();
+
 protected:
 	std::string m_name;
 	Object::TYPE m_type;
