@@ -11,13 +11,14 @@ class CArena{
 		CArena();
 		virtual ~CArena();
 
+		void updateState();
 		void flood();
 		Arena::STATE getState();
 		void setState(Arena::STATE p_state);
 
 	protected:
 		Arena::STATE m_state;
-		int m_floodedTour;
+		int m_stateLongevity;
 };
 
 #endif

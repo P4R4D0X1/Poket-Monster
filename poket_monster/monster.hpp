@@ -34,7 +34,7 @@ class CMonster{
 		int m_speed;
 		int m_attack;
 		int m_defense;
-		int m_paralyzedTour;
+		int m_stateLongevity;
 		Monster::TYPE m_type;
 		Monster::STATE m_state;
 

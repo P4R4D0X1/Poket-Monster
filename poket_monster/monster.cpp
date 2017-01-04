@@ -11,7 +11,7 @@ CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p
 	m_attack = p_attack;
 	m_defense = p_defense;
 	m_type = p_type;
-	m_paralyzedTour = 0;
+	m_stateLongevity = 0;
 	m_arena = NULL;
 }
 
@@ -27,7 +27,59 @@ Attack::STATE CMonster::applyDamage(Attack::TYPE p_attackType, int p_damage){
 }
 
 void CMonster::updateState(){
-	
+	float l_rescueProb = (6.0f - m_stateLongevity)/6.0f;
+
+	if (m_stateLongevity == 0){
+		m_state = Monster::STATE::feelgood;
+		m_arena->updateState();
+		return;
+	}
+
+	switch (m_state){
+		case  Monster::STATE::feelgood:
+			break;
+
+		case Monster::STATE::poisoned:
+			if (m_arena->getState() == Arena::STATE::flooded){
+				m_stateLongevity = 0;
+				m_state == Monster::STATE::feelgood;
+			}
+			else{
+				m_hp -= (int)m_attack / 10;
+				m_stateLongevity--;
+			}
+			break;
+
+		case Monster::STATE::paralized:
+			std::mt19937 l_rng;
+			l_rng.seed(std::random_device()());
+			std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
+
+			if (l_dist6(l_rng) <= (int)l_rescueProb * 100){
+				m_state = Monster::STATE::feelgood;
+				m_stateLongevity = 0;
+			}
+			else{
+				m_stateLongevity--;
+			}
+			break;
+
+		case Monster::STATE::burned:
+			if (m_arena->getState() == Arena::STATE::flooded){
+				m_stateLongevity = 0;
+				m_state == Monster::STATE::feelgood;
+			}
+			else{
+				m_hp -= (int)m_attack / 10;
+				m_stateLongevity--;
+			}
+			break;
+
+		default:
+			break;
+	}
+
+	m_arena->updateState();
 }
 
 int CMonster::getAttack(){
@@ -44,7 +96,7 @@ Monster::STATE CMonster::getState(){
 
 void CMonster::setState(Monster::STATE p_state){
 	if (p_state == Monster::STATE::paralized)
-		m_paralyzedTour = 6;
+		m_stateLongevity = 6;
 	m_state = p_state;
 }
 
