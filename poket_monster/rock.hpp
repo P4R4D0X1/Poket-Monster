@@ -12,6 +12,7 @@ class CRock : public CMonster{
 		void attack(Monster::ATTACK_SLOT p_attack, CMonster&  p_enemy);
 		Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
 		bool hide(); //hides during 3 rounds max
+		void info();
 
 	protected:
 		float m_protect;

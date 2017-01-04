@@ -46,3 +46,9 @@ bool CWater::flood(){
 
 	return (l_dist6(l_rng) <= m_flood * 100)?true:false;
 }
+
+void CWater::info(){
+	CMonster::info();
+	std::cout << "Flood : " << m_flood << std::endl;
+	std::cout << "Fall : " << m_fall << std::endl;
+}

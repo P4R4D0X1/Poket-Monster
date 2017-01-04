@@ -11,6 +11,7 @@ class CPlant : public CGrass{
 
 		virtual void attack(Monster::ATTACK_SLOT p_attack, CMonster&  p_enemy);
 		bool heal();
+		void info();
 
 	protected:
 		float m_heal;

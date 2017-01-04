@@ -34,3 +34,8 @@ bool CFire::fire(){
 
 	return (l_dist6(l_rng) <= m_burn * 100) ? true : false;
 }
+
+void CFire::info(){
+	CMonster::info();
+	std::cout << "Burn : " << m_burn << std::endl;
+}

@@ -25,3 +25,8 @@ bool CInsect::poison(){
 
 	return (l_dist6(l_rng) <= m_poison * 100) ? true : false;
 }
+
+void CInsect::info(){
+	CGrass::info();
+	std::cout << "Poison : " << m_poison << std::endl;
+}

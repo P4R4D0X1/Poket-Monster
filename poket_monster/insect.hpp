@@ -11,6 +11,7 @@ class CInsect : public CGrass{
 
 		virtual void attack(Monster::ATTACK_SLOT p_attack, CMonster&  p_enemy);
 		bool poison();
+		void info();
 
 	protected:
 		float m_poison;

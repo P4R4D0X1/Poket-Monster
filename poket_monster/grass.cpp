@@ -19,3 +19,7 @@ Attack::STATE CGrass::applyDamage(Attack::TYPE p_attackType, int p_damage){
 	m_hp -= p_damage;
 	return Attack::STATE::success;
 }
+
+void CGrass::info(){
+	CMonster::info();
+}
