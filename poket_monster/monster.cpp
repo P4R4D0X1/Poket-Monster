@@ -166,3 +166,12 @@ void CMonster::setState(Monster::STATE p_state){
 void CMonster::setArena(CArena& p_arena){
 	m_arena = &p_arena;
 }
+
+void CMonster::info(){
+	std::cout << m_name << std::endl;
+	std::cout << "Type of monster : " << m_type << std::endl;
+	std::cout << "HP : " << m_hp << "/" << m_hpMax << std::endl;
+	std::cout << "Speed : " << m_speed << std::endl;
+	std::cout << "Attack : " << m_attack << std::endl;
+	std::cout << "Defense : " << m_defense << std::endl;
+}
