@@ -403,3 +403,56 @@ void CParse::info(){
 				std::cout << std::endl;
 	}
 }
+
+sMonster* CParse::chooseRandomMonster(){
+	int l_nb;
+
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distributionHP(0, m_tabMonsters.size());
+
+	l_nb = distributionHP(generator);
+
+	return (m_tabMonsters[l_nb]);
+}
+
+CMonster* CParse::createMonster(sMonster* p_monster){
+	int l_hp, l_speed, l_attack, l_defense;
+	CMonster *l_monster;
+	std::default_random_engine generator;
+
+	std::uniform_int_distribution<int> distributionHp(p_monster->m_hpMin, p_monster->m_hpMax);
+	l_hp = distributionHp(generator);
+
+	std::uniform_int_distribution<int> distributionSpeed(p_monster->m_speedMin, p_monster->m_speedMax);
+	l_speed = distributionSpeed(generator);
+
+	std::uniform_int_distribution<int> distributionAttack(p_monster->m_attackMin, p_monster->m_attackMax);
+	l_attack = distributionAttack(generator);
+
+	std::uniform_int_distribution<int> distributionDefense(p_monster->m_defenseMin, p_monster->m_defenseMax);
+	l_defense = distributionDefense(generator);
+
+	switch (p_monster->m_type){
+		case 0:
+			//(CElectric)l_monster = new CElectric(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_type);
+			break;
+
+		case 1:
+			break;
+
+		case 2:
+			break;
+
+		case 3 :
+			break;
+
+		case 4:
+			break;
+
+		case 5:
+			break;
+
+	}
+
+	return l_monster;
+}

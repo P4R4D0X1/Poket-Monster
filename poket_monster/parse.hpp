@@ -10,6 +10,14 @@
 #include "attack.hpp"
 #include "object.hpp"
 
+#include "electric.hpp"
+#include "water.hpp"
+#include "fire.hpp"
+#include "plant.hpp"
+#include "insect.hpp"
+#include "rock.hpp"
+
+
 typedef struct sMonster{
 	std::string m_name;
 	Monster::TYPE m_type;
@@ -48,6 +56,9 @@ class CParse{
 
 		void infoStructMonster(sMonster *p_monster);
 		void info();
+
+		sMonster* chooseRandomMonster();
+		CMonster* createMonster(sMonster* p_monster);
 
 	protected:
 		std::vector <sMonster*> m_tabMonsters;
