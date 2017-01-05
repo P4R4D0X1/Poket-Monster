@@ -16,7 +16,7 @@ class CObject{
 		virtual void use(class CMonster& p_monster);
 		std::string getName();
 		Object::TYPE getObjectType();
-		void info();
+		virtual void info();
 
 	protected:
 		std::string m_name;

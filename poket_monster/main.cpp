@@ -27,6 +27,8 @@ int main(int argc, char **argv){
 
 	l_parse.info();
 
+	l_parse.createMonster(l_parse.chooseRandomMonster());
+
 	system("pause");
 	return EXIT_SUCCESS;
 }

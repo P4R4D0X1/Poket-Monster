@@ -19,7 +19,7 @@ void CParse::parseMonsters(std::string m_path){
 		std::cerr << "Error while oppening" << std::endl;
 	}
 
-	std::cout << "[PARSING MONSTERS]\n" << std::endl;
+	std::cout << "[PARSING MONSTERS]" << std::endl;
 	while (!l_file.eof()){
 
 		std::getline(l_file, l_tmp1);
@@ -33,13 +33,10 @@ void CParse::parseMonsters(std::string m_path){
 				if (!(l_tmp.find("Name") == std::string::npos)){
 					l_name = l_tmp.erase(0, 7);
 					l_monster->m_name = l_name;
-
-					std::cout << l_name << std::endl;
 				}
 
 				else if (!(l_tmp.find("Type") == std::string::npos)){
 					l_tmp = l_tmp.erase(0, 7);
-					std::cout << "DEBUG, type : " << l_tmp << std::endl;
 
 					if (l_tmp.compare("Electric") == 0){
 						l_type = Monster::TYPE::electric;
@@ -64,8 +61,6 @@ void CParse::parseMonsters(std::string m_path){
 					}
 
 					l_monster->m_type = l_type;
-
-					std::cout << l_type << std::endl;
 				}
 
 
@@ -83,8 +78,6 @@ void CParse::parseMonsters(std::string m_path){
 
 					l_monster->m_hpMin = l_min;
 					l_monster->m_hpMax = l_max;
-
-					std::cout << "HP : " << l_min << " / " << l_max << std::endl;
 				}
 
 				else if (!(l_tmp.find("Speed") == std::string::npos)){
@@ -101,8 +94,6 @@ void CParse::parseMonsters(std::string m_path){
 
 					l_monster->m_speedMin = l_min;
 					l_monster->m_speedMax = l_max;
-
-					std::cout << "SPEED : " << l_min << " / " << l_max << std::endl;
 				}
 
 				else if (!(l_tmp.find("Attack") == std::string::npos)){
@@ -119,8 +110,6 @@ void CParse::parseMonsters(std::string m_path){
 
 					l_monster->m_attackMin = l_min;
 					l_monster->m_attackMax = l_max;
-
-					std::cout << "ATTACK : " << l_min << " / " << l_max << std::endl;
 				}
 
 				else if (!(l_tmp.find("Defense") == std::string::npos)){
@@ -137,18 +126,13 @@ void CParse::parseMonsters(std::string m_path){
 
 					l_monster->m_defenseMin = l_min;
 					l_monster->m_defenseMax = l_max;
-
-					std::cout << "DEFENSE : " << l_min << " / " << l_max << std::endl;
 				}
 
 				else if (!(l_tmp.find("Paralysis") == std::string::npos)){
 					l_Sparalysis = l_tmp.erase(0, 12);
-					std::cout << l_Sparalysis << std::endl;
 					l_paralysis = std::stof(l_Sparalysis.c_str());
 
 					l_monster->m_paralysis = l_paralysis;
-
-					std::cout << "Paralysis : " << l_paralysis << std::endl;
 				}
 
 				else if (!(l_tmp.find("Flood") == std::string::npos)){
@@ -156,8 +140,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_flood = std::stof(l_Sflood.c_str());
 
 					l_monster->m_flood = l_flood;
-
-					std::cout << "Flood : " << l_flood << std::endl;
 				}
 
 				else if (!(l_tmp.find("Fall") == std::string::npos)){
@@ -165,8 +147,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_fall = std::stof(l_Sfall.c_str());
 
 					l_monster->m_fall = l_fall;
-
-					std::cout << "Fall : " << l_fall << std::endl;
 				}
 
 				else if (!(l_tmp.find("Burn") == std::string::npos)){
@@ -174,8 +154,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_burn = std::stof(l_Sburn.c_str());
 
 					l_monster->m_burn = l_burn;
-
-					std::cout << "Burn : " << l_burn << std::endl;
 				}
 
 				else if (!(l_tmp.find("Protect") == std::string::npos)){
@@ -183,8 +161,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_protect = std::stof(l_Sprotect.c_str());
 
 					l_monster->m_protect = l_protect;
-
-					std::cout << "Protect : " << l_protect << std::endl;
 				}
 
 				else if (!(l_tmp.find("Heal") == std::string::npos)){
@@ -192,8 +168,6 @@ void CParse::parseMonsters(std::string m_path){
 					l_heal = std::stof(l_Sheal.c_str());
 
 					l_monster->m_heal = l_heal;
-
-					std::cout << "Heal : " << l_heal << std::endl;
 				}
 
 				else if (!(l_tmp.find("Poison") == std::string::npos)){
@@ -201,12 +175,8 @@ void CParse::parseMonsters(std::string m_path){
 					l_poison = std::stof(l_Spoison.c_str());
 
 					l_monster->m_poison = l_poison;
-
-					std::cout << "Poison : " << l_poison << std::endl;
 				}
 			} while (l_tmp != "EndMonster");
-
-			std::cout << std::endl;
 
 			m_tabMonsters.push_back(l_monster);
 		}
@@ -235,12 +205,11 @@ void CParse::parseAttack(std::string m_path){
 
 				if (!(l_tmp.find("Name") == std::string::npos)){
 					l_name = l_tmp.erase(0, 6);
-					std::cout << l_name << std::endl;
 				}
 
 				else if (!(l_tmp.find("Type") == std::string::npos)){
 					l_tmp = l_tmp.erase(0, 6);
-					std::cout << "DBG " << l_tmp << std::endl;
+
 					if (l_tmp.compare("Electric") == 0){
 						l_type = Attack::TYPE::electric;
 					}
@@ -320,29 +289,32 @@ void CParse::parseObjects(std::string m_path){
 					else if (!l_line.compare("Drug")){
 						l_type = Object::TYPE::drug;
 					}
+					else{
+						std::cerr << "ERROR PARSING TYPEEEEEE" << std::endl;
+					}
 				}
-				else if (l_line.find("ObjectType") != std::string::npos) {
-					l_line = l_line.erase(0, 12);
+				else if (l_line.find("Objectype") != std::string::npos) {
+					l_line = l_line.erase(0, 11);
 
 					if (!l_line.compare("potion")){
 						l_potionType = Potion::TYPE::potion;
 					}
-					else if (!l_line.compare("superPotion")){;
+					else if (!l_line.compare("superPotion")){
 						l_potionType = Potion::TYPE::superPotion;
 					}
-					if (!l_line.compare("hyperPotion")){;
+					else if (!l_line.compare("hyperPotion")){
 						l_potionType = Potion::TYPE::hyperPotion;
 					}
 					else if (!l_line.compare("maxPotion")){
 						l_potionType = Potion::TYPE::maxPotion;
 					}
-					if (!l_line.compare("fullRestore")){
+					else if (!l_line.compare("fullRestore")){
 						l_potionType = Potion::TYPE::fullRestore;
 					}
 					else if (!l_line.compare("burnHeal")){
 						l_drugType = Drug::TYPE::burnHeal;
 					}
-					else if (!l_line.compare("IceHeal")){
+					else if (!l_line.compare("iceHeal")){
 						l_drugType = Drug::TYPE::iceHeal;
 					}
 					else if (!l_line.compare("antidote")){
@@ -355,8 +327,7 @@ void CParse::parseObjects(std::string m_path){
 						l_drugType = Drug::TYPE::awakening;
 					}
 					else{
-						std::cout << "ERROR PARSING OBJECT TYPE" << std::endl;
-
+						std::cerr << "ERROR PARSING OBJECT TYPE" << std::endl;
 					}
 				}
 				else if (l_line.find("Heal") != std::string::npos){
@@ -365,15 +336,13 @@ void CParse::parseObjects(std::string m_path){
 				}
 
 			} while (l_line.compare("EndObject"));
-
+			
 			if (l_type == Object::TYPE::potion){
 				l_object = new CPotion(l_name, l_heal, l_potionType);
 			}
 			else if (l_type == Object::TYPE::drug){
 				l_object = new CDrug(l_name, l_drugType);
 			}
-
-			std::cout << std::endl;
 
 			m_tabObjects.push_back(l_object);
 		}
@@ -389,17 +358,27 @@ void CParse::infoStructMonster(sMonster *p_monster){
 	std::cout << "Defense : [" << p_monster->m_defenseMin << ", " << p_monster->m_defenseMax << "]" << std::endl;
 
 	//Pour afficher les membres spécifiques au type de monstre
-	/*switch (p_monster.m_type){
+	switch (p_monster->m_type){
 		case (0) :
+			std::cout << "Paralysis : " << p_monster->m_paralysis << std::endl;
 			break;
 		case (1) :
+			std::cout << "Flood : " << p_monster->m_flood << std::endl;
+			std::cout << "Fall : " << p_monster->m_fall << std::endl;
 			break;
 		case (2) :
+			std::cout << "Protect : " << p_monster->m_protect << std::endl;
 			break;
 		case (3) :
+			std::cout << "Burn : " << p_monster->m_burn << std::endl;
 			break;
-	}*/
-
+		case (4) :
+			std::cout << "Poison : " << p_monster->m_poison << std::endl;
+			break;
+		case 5:
+			std::cout << "Heal : " << p_monster->m_heal << std::endl;
+			break;
+	}
 }
 
 void CParse::info(){
@@ -423,4 +402,57 @@ void CParse::info(){
 				(*m_tabObjects[i]).info();
 				std::cout << std::endl;
 	}
+}
+
+sMonster* CParse::chooseRandomMonster(){
+	int l_nb;
+
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distributionHP(0, m_tabMonsters.size());
+
+	l_nb = distributionHP(generator);
+
+	return (m_tabMonsters[l_nb]);
+}
+
+CMonster* CParse::createMonster(sMonster* p_monster){
+	int l_hp, l_speed, l_attack, l_defense;
+	CMonster *l_monster;
+	std::default_random_engine generator;
+
+	std::uniform_int_distribution<int> distributionHp(p_monster->m_hpMin, p_monster->m_hpMax);
+	l_hp = distributionHp(generator);
+
+	std::uniform_int_distribution<int> distributionSpeed(p_monster->m_speedMin, p_monster->m_speedMax);
+	l_speed = distributionSpeed(generator);
+
+	std::uniform_int_distribution<int> distributionAttack(p_monster->m_attackMin, p_monster->m_attackMax);
+	l_attack = distributionAttack(generator);
+
+	std::uniform_int_distribution<int> distributionDefense(p_monster->m_defenseMin, p_monster->m_defenseMax);
+	l_defense = distributionDefense(generator);
+
+	switch (p_monster->m_type){
+		case 0:
+			//(CElectric)l_monster = new CElectric(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_type);
+			break;
+
+		case 1:
+			break;
+
+		case 2:
+			break;
+
+		case 3 :
+			break;
+
+		case 4:
+			break;
+
+		case 5:
+			break;
+
+	}
+
+	return l_monster;
 }
