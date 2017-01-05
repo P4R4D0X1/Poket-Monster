@@ -80,4 +80,9 @@ namespace Drug{
 	};
 }
 
+namespace Player{
+	enum ACTION{
+
+	};
+}
 #endif
