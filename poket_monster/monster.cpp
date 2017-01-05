@@ -100,6 +100,10 @@ bool CMonster::isAlive(){
 	return (m_hp <= 0) ? false : true;
 }
 
+int CMonster::getSpeed(){
+	return m_speed;
+}
+
 int CMonster::getAttack(){
 	return m_attack;
 }

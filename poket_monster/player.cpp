@@ -8,7 +8,7 @@ CPlayer::~CPlayer(){
 
 
 void CPlayer::chooseMonster(unsigned int p_index){
-	m_actualMonster = m_monster.at(p_index);
+	m_actualMonster = m_monster.at(p_index);	
 }
 
 void CPlayer::attack(unsigned int p_index, CPlayer& p_enemy){
@@ -31,4 +31,8 @@ void CPlayer::objectListInfo(){
 		(*l_it)->info();
 		std::cout << std::endl;
 	}
+}
+
+int CPlayer::getMonsterSpeed(){
+	return m_actualMonster->getSpeed();
 }

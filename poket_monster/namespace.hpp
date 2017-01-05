@@ -82,7 +82,9 @@ namespace Drug{
 
 namespace Player{
 	enum ACTION{
-
+		chooseMonster,
+		attack,
+		useObject
 	};
 }
 #endif

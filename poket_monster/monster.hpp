@@ -23,8 +23,9 @@ class CMonster{
 		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
 		virtual void updateState(); //va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
 		virtual void useObject(CObject& p_object);
-		
 		bool isAlive();
+
+		int getSpeed();
 		int getAttack();
 		int getDefense();
 		Monster::TYPE getType();

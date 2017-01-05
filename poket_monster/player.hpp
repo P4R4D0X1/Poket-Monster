@@ -29,9 +29,9 @@ class CPlayer{
 		void attackListInfo();
 		void objectListInfo();
 
-	protected:
-		void attack(unsigned int p_index, CPlayer& p_enemy);
+		int getMonsterSpeed();
 
+	protected:
 		std::string m_name;
 
 		CMonster* m_actualMonster;
