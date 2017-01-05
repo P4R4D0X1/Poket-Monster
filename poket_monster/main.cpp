@@ -25,7 +25,7 @@ int main(int argc, char **argv){
 	l_parse.parseAttack("attacks.pkmn");
 	l_parse.parseObjects("objects.pkmn");
 
-	//l_parse.info();
+	l_parse.info();
 
 	system("pause");
 	return EXIT_SUCCESS;

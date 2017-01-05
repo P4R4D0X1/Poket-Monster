@@ -358,17 +358,27 @@ void CParse::infoStructMonster(sMonster *p_monster){
 	std::cout << "Defense : [" << p_monster->m_defenseMin << ", " << p_monster->m_defenseMax << "]" << std::endl;
 
 	//Pour afficher les membres spécifiques au type de monstre
-	/*switch (p_monster.m_type){
+	switch (p_monster->m_type){
 		case (0) :
+			std::cout << "Paralysis : " << p_monster->m_paralysis << std::endl;
 			break;
 		case (1) :
+			std::cout << "Flood : " << p_monster->m_flood << std::endl;
+			std::cout << "Fall : " << p_monster->m_fall << std::endl;
 			break;
 		case (2) :
+			std::cout << "Protect : " << p_monster->m_protect << std::endl;
 			break;
 		case (3) :
+			std::cout << "Burn : " << p_monster->m_burn << std::endl;
 			break;
-	}*/
-
+		case (4) :
+			std::cout << "Poison : " << p_monster->m_poison << std::endl;
+			break;
+		case 5:
+			std::cout << "Heal : " << p_monster->m_heal << std::endl;
+			break;
+	}
 }
 
 void CParse::info(){
