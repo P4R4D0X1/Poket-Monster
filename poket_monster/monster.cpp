@@ -19,8 +19,8 @@ CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p
 CMonster::~CMonster(){
 }
 
-void CMonster::attack(Monster::ATTACK_SLOT p_attack, CMonster& p_enemy){
-	m_hp -= m_attacks[p_attack]->use(*this, p_enemy);
+void CMonster::attack(unsigned int p_index, CMonster& p_enemy){
+	m_hp -= m_attacks[p_index]->use(*this, p_enemy);
 }
 
 Attack::STATE CMonster::applyDamage(Attack::TYPE p_attackType, int p_damage){
