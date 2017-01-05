@@ -285,7 +285,7 @@ void CParse::parseAttack(std::string m_path){
 
 void CParse::parseObjects(std::string m_path){
 	int l_heal;
-	std::string l_line, l_tmp, l_name, l_sHeal;
+	std::string l_line, l_name, l_sHeal;
 	Object::TYPE l_type;
 	Potion::TYPE l_potionType;
 	Drug::TYPE l_drugType;
@@ -309,71 +309,68 @@ void CParse::parseObjects(std::string m_path){
 				std::getline(l_file, l_line);
 
 				if (l_line.find("Name") != std::string::npos){
-					l_name = l_tmp.erase(0, 6);
-
-					std::cout << l_name << std::endl;
+					l_name = l_line.erase(0, 6);
 				}
 				else if (l_line.find("Type") != std::string::npos){
-					l_tmp = l_tmp.erase(0, 6);
+					l_line = l_line.erase(0, 6);
 
-					if (!l_tmp.compare("Potion")){
+					if (!l_line.compare("Potion")){
 						l_type = Object::TYPE::potion;
 					}
-					else if (!l_tmp.compare("Drug")){
+					else if (!l_line.compare("Drug")){
 						l_type = Object::TYPE::drug;
 					}
-
-					std::cout << "Type : " << l_type << std::endl;
 				}
 				else if (l_line.find("ObjectType") != std::string::npos) {
-					l_tmp = l_tmp.erase(0, 12);
+					l_line = l_line.erase(0, 12);
 
-					if (!l_tmp.compare("Potion")){
-						l_type = Object::TYPE::potion;
+					if (!l_line.compare("potion")){
+						l_potionType = Potion::TYPE::potion;
 					}
-					else if (!l_tmp.compare("superPotion")){
-						l_type = Object::TYPE::drug;
+					else if (!l_line.compare("superPotion")){;
+						l_potionType = Potion::TYPE::superPotion;
 					}
-					if (!l_tmp.compare("hyperPotion")){
-						l_type = Object::TYPE::potion;
+					if (!l_line.compare("hyperPotion")){;
+						l_potionType = Potion::TYPE::hyperPotion;
 					}
-					else if (!l_tmp.compare("maxPotion")){
-						l_type = Object::TYPE::drug;
+					else if (!l_line.compare("maxPotion")){
+						l_potionType = Potion::TYPE::maxPotion;
 					}
-					if (!l_tmp.compare("fullRestore")){
-						l_type = Object::TYPE::potion;
+					if (!l_line.compare("fullRestore")){
+						l_potionType = Potion::TYPE::fullRestore;
 					}
-					else if (!l_tmp.compare("burnHeal")){
-						l_type = Object::TYPE::drug;
+					else if (!l_line.compare("burnHeal")){
+						l_drugType = Drug::TYPE::burnHeal;
 					}
-					if (!l_tmp.compare("IceHeal")){
-						l_type = Object::TYPE::potion;
+					else if (!l_line.compare("IceHeal")){
+						l_drugType = Drug::TYPE::iceHeal;
 					}
-					else if (!l_tmp.compare("antidote")){
-						l_type = Object::TYPE::drug;
+					else if (!l_line.compare("antidote")){
+						l_drugType = Drug::TYPE::antidote;
 					}
-					if (!l_tmp.compare("paralizeHeal")){
-						l_type = Object::TYPE::potion;
+					else if (!l_line.compare("paralizeHeal")){
+						l_drugType = Drug::TYPE::paralizeHeal;
 					}
-					else if (!l_tmp.compare("awakening")){
-						l_type = Object::TYPE::drug;
+					else if (!l_line.compare("awakening")){
+						l_drugType = Drug::TYPE::awakening;
 					}
-					std::cout << "Type : " << l_type << std::endl;
+					else{
+						std::cout << "ERROR PARSING OBJECT TYPE" << std::endl;
+
+					}
 				}
-				else if (l_tmp.find("Heal") != std::string::npos){
-					l_sHeal = l_tmp.erase(0, 6);
+				else if (l_line.find("Heal") != std::string::npos){
+					l_sHeal = l_line.erase(0, 6);
 					l_heal = atoi(l_sHeal.c_str());
-
-					std::cout << "Heal : " << l_heal << std::endl;
 				}
 
-			} while (l_tmp != "EndObject");
+			} while (l_line.compare("EndObject"));
 
 			if (l_type == Object::TYPE::potion){
-				l_object = new CPotion(l_name, l_heal);
+				l_object = new CPotion(l_name, l_heal, l_potionType);
 			}
 			else if (l_type == Object::TYPE::drug){
-				l_object = new CDrug(l_name);
+				l_object = new CDrug(l_name, l_drugType);
 			}
 
 			std::cout << std::endl;
@@ -423,7 +420,7 @@ void CParse::info(){
 
 	std::cout << "[OBJECTS]" << std::endl;
 	for (i = 0; i < m_tabObjects.size(); i++){			
-				m_tabObjects[i]->info();
+				(*m_tabObjects[i]).info();
 				std::cout << std::endl;
 	}
 }

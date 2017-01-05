@@ -1,52 +1,62 @@
 Object
 	Name	Potion
 	Type	Potion
+	ObjectType	potion
 	Heal	20
 EndObject
 
 Object
 	Name	Super Potion
 	Type	Potion
+	ObjectType	superPotion
 	Heal	50
 EndObject
 
 Object
 	Name	Hyper Potion
 	Type	Potion
+	ObjectType	hyperPotion
 	Heal	200
 EndObject
 
 Object
 	Name	Max Potion
 	Type	Potion
+	ObjectType	maxPotion
 EndObject
 
 Object
 	Name	Full Restore
 	Type	Potion
+	ObjectType	fullRestore
 EndObject
 
 Object
 	Name	Burn Heal
 	Type	Drug
+	ObjectType	burnHeal
 EndObject
 
 Object
 	Name	Ice Heal
 	Type	Drug
+	ObjectType	iceHeal
 EndObject
 
 Object
 	Name	Antidote
 	Type	Drug
+	ObjectType	antidote
 EndObject
 
 Object
 	Name	Paralyze Heal
 	Type	Drug
+	ObjectType	paralyzeHeal
 EndObject
 
 Object
 	Name	Awakening
 	Type	Drug
+	ObjectType	awakening
 EndObject

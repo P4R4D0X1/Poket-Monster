@@ -8,6 +8,7 @@ CPotion::CPotion(){
 CPotion::CPotion(std::string p_name, int p_heal, Potion::TYPE p_type): CObject(p_name, Object::TYPE::potion){
 	m_heal = p_heal;
 	m_type = p_type;
+
 }
 
 CPotion::~CPotion(){
