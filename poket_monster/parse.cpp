@@ -320,29 +320,32 @@ void CParse::parseObjects(std::string m_path){
 					else if (!l_line.compare("Drug")){
 						l_type = Object::TYPE::drug;
 					}
+					else{
+						std::cerr << "ERROR PARSING TYPEEEEEE" << std::endl;
+					}
 				}
-				else if (l_line.find("ObjectType") != std::string::npos) {
-					l_line = l_line.erase(0, 12);
+				else if (l_line.find("Objectype") != std::string::npos) {
+					l_line = l_line.erase(0, 11);
 
 					if (!l_line.compare("potion")){
 						l_potionType = Potion::TYPE::potion;
 					}
-					else if (!l_line.compare("superPotion")){;
+					else if (!l_line.compare("superPotion")){
 						l_potionType = Potion::TYPE::superPotion;
 					}
-					if (!l_line.compare("hyperPotion")){;
+					else if (!l_line.compare("hyperPotion")){
 						l_potionType = Potion::TYPE::hyperPotion;
 					}
 					else if (!l_line.compare("maxPotion")){
 						l_potionType = Potion::TYPE::maxPotion;
 					}
-					if (!l_line.compare("fullRestore")){
+					else if (!l_line.compare("fullRestore")){
 						l_potionType = Potion::TYPE::fullRestore;
 					}
 					else if (!l_line.compare("burnHeal")){
 						l_drugType = Drug::TYPE::burnHeal;
 					}
-					else if (!l_line.compare("IceHeal")){
+					else if (!l_line.compare("iceHeal")){
 						l_drugType = Drug::TYPE::iceHeal;
 					}
 					else if (!l_line.compare("antidote")){
@@ -355,8 +358,7 @@ void CParse::parseObjects(std::string m_path){
 						l_drugType = Drug::TYPE::awakening;
 					}
 					else{
-						std::cout << "ERROR PARSING OBJECT TYPE" << std::endl;
-
+						std::cerr << "ERROR PARSING OBJECT TYPE" << std::endl;
 					}
 				}
 				else if (l_line.find("Heal") != std::string::npos){
@@ -365,15 +367,13 @@ void CParse::parseObjects(std::string m_path){
 				}
 
 			} while (l_line.compare("EndObject"));
-
+			
 			if (l_type == Object::TYPE::potion){
 				l_object = new CPotion(l_name, l_heal, l_potionType);
 			}
 			else if (l_type == Object::TYPE::drug){
 				l_object = new CDrug(l_name, l_drugType);
 			}
-
-			std::cout << std::endl;
 
 			m_tabObjects.push_back(l_object);
 		}
