@@ -330,33 +330,43 @@ void CParse::parseObjects(std::string m_path){
 
 					if (!l_tmp.compare("Potion")){
 						l_type = Object::TYPE::potion;
+						l_potionType = Potion::TYPE::potion;
 					}
 					else if (!l_tmp.compare("superPotion")){
-						l_type = Object::TYPE::drug;
+						l_type = Object::TYPE::potion;
+						l_potionType = Potion::TYPE::superPotion;
 					}
 					if (!l_tmp.compare("hyperPotion")){
 						l_type = Object::TYPE::potion;
+						l_potionType = Potion::TYPE::hyperPotion;
 					}
 					else if (!l_tmp.compare("maxPotion")){
-						l_type = Object::TYPE::drug;
+						l_type = Object::TYPE::potion;
+						l_potionType = Potion::TYPE::maxPotion;
 					}
 					if (!l_tmp.compare("fullRestore")){
 						l_type = Object::TYPE::potion;
+						l_potionType = Potion::TYPE::fullRestore;
 					}
 					else if (!l_tmp.compare("burnHeal")){
 						l_type = Object::TYPE::drug;
+						l_drugType = Drug::TYPE::burnHeal;
 					}
-					if (!l_tmp.compare("IceHeal")){
-						l_type = Object::TYPE::potion;
+					else if (!l_tmp.compare("IceHeal")){
+						l_type = Object::TYPE::drug;
+						l_drugType = Drug::TYPE::iceHeal;
 					}
 					else if (!l_tmp.compare("antidote")){
 						l_type = Object::TYPE::drug;
+						l_drugType = Drug::TYPE::antidote;
 					}
-					if (!l_tmp.compare("paralizeHeal")){
-						l_type = Object::TYPE::potion;
+					else if (!l_tmp.compare("paralizeHeal")){
+						l_type = Object::TYPE::drug;
+						l_drugType = Drug::TYPE::paralizeHeal;
 					}
 					else if (!l_tmp.compare("awakening")){
 						l_type = Object::TYPE::drug;
+						l_drugType = Drug::TYPE::awakening;
 					}
 					std::cout << "Type : " << l_type << std::endl;
 				}
@@ -370,10 +380,10 @@ void CParse::parseObjects(std::string m_path){
 			} while (l_tmp != "EndObject");
 
 			if (l_type == Object::TYPE::potion){
-				l_object = new CPotion(l_name, l_heal);
+				l_object = new CPotion(l_name, l_heal, l_potionType);
 			}
 			else if (l_type == Object::TYPE::drug){
-				l_object = new CDrug(l_name);
+				l_object = new CDrug(l_name, l_drugType);
 			}
 
 			std::cout << std::endl;
