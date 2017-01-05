@@ -6,12 +6,13 @@
 class CPotion : public CObject{
 	public:
 		CPotion();
-		CPotion(std::string p_name,int p_heal);
+		CPotion(std::string p_name,int p_heal, Potion::TYPE p_type);
 		virtual ~CPotion();
 		
-		void usePotion(class CMonster& p_monster);
-		int getHeal();
+		void use(class CMonster& p_monster);
 		Potion::TYPE getType();
+		int getHeal();
+
 		void info();
 
 	protected:

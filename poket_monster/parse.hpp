@@ -10,7 +10,6 @@
 #include "attack.hpp"
 #include "object.hpp"
 
-
 typedef struct sMonster{
 	std::string m_name;
 	Monster::TYPE m_type;

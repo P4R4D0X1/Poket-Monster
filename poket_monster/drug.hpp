@@ -6,10 +6,12 @@
 class CDrug : public CObject{
 	public:
 		CDrug();
-		CDrug(std::string p_name);
+		CDrug(std::string p_name, Drug::TYPE p_type);
 		virtual ~CDrug();
+
+		void use(class CMonster& p_monster);
 		Drug::TYPE getType();
-		void useDrug(class CMonster& p_monster);
+
 		void info();
 
 	protected:

@@ -10,16 +10,18 @@
 class CObject{
 	public:
 		CObject();
-		CObject(std::string p_name);
+		CObject(std::string p_name, Object::TYPE p_type);
 		virtual ~CObject();
 
+		virtual void use(class CMonster& p_monster);
 		std::string getName();
-		Object::TYPE getType();
+		Object::TYPE getObjectType();
 		void info();
 
 	protected:
 		std::string m_name;
 		Object::TYPE m_type;
+		bool m_used;
 };
 
 

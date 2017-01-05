@@ -5,16 +5,18 @@ CPotion::CPotion(){
 	m_heal = 0;
 }
 
-CPotion::CPotion(std::string p_name, int p_heal){
-	m_name = p_name;
+CPotion::CPotion(std::string p_name, int p_heal, Potion::TYPE p_type): CObject(p_name, Object::TYPE::potion){
 	m_heal = p_heal;
+	m_type = p_type;
 }
 
 CPotion::~CPotion(){
 }
 
-void CPotion::usePotion(class CMonster& p_monster){
-	p_monster.usePotion(*this);
+void CPotion::use(class CMonster& p_monster){
+	CObject::use(p_monster);
+
+	p_monster.useObject(*this);
 }
 
 int CPotion::getHeal(){
