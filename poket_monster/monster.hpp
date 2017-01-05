@@ -32,6 +32,7 @@ class CMonster{
 		void setState(Monster::STATE p_state);
 		void setArena(CArena& p_arena);
 		virtual void info();
+		void attacksInfo();
 
 	protected:
 		virtual void usePotion(CPotion& p_potion);

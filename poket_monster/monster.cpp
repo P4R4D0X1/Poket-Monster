@@ -96,89 +96,6 @@ void CMonster::useObject(CObject& p_object){
 	}
 }
 
-void CMonster::usePotion(CPotion& p_potion){
-	switch (p_potion.getType()){
-		case Potion::TYPE::fullRestore:
-			m_hp = m_hpMax;
-			m_state = Monster::STATE::feelgood;
-
-			std::cout << "HP and state retored! You used one Full Restore" << std::endl;
-			break;
-
-		case Potion::TYPE::maxPotion:
-			m_hp = m_hpMax;
-
-			std::cout << "HP restored to the max!You used one Max Potion" << std::endl;
-			break;
-
-		case Potion::TYPE::potion || Potion::TYPE::hyperPotion || Potion::TYPE::superPotion:
-			m_hp += p_potion.getHeal();
-
-			std::cout << "You used " << p_potion.getName() << "!" << std::endl;
-			std::cout << "HP + " << p_potion.getHeal() << std::endl;
-			break;
-
-		default:
-			break;
-	}
-}
-
-
-void CMonster::useDrug(CDrug& p_drug){
-	switch (p_drug.getType()){
-		case Drug::TYPE::burnHeal:
-			if (m_state == Monster::STATE::burned){
-				m_state = Monster::STATE::feelgood;
-				m_stateLongevity = 0;
-
-				std::cout << "Pokemon not burned any more!" << std::endl;
-			}
-			break;
-		
-		case Drug::TYPE::iceHeal:
-			if (m_state == Monster::STATE::freezed){
-				m_state = Monster::STATE::feelgood;
-				m_stateLongevity = 0;
-
-				std::cout << "Pokemon not freezed any more!" << std::endl;
-			}
-			break;
-
-		case Drug::TYPE::antidote:
-			if (m_state == Monster::STATE::poisoned){
-				m_state = Monster::STATE::feelgood;
-				m_stateLongevity = 0;
-
-				std::cout << "Pokemon not poisoned any more!" << std::endl;
-			}
-			break;
-
-		case Drug::TYPE::paralizeHeal:
-			if (m_state == Monster::STATE::paralized){
-				m_state = Monster::STATE::feelgood;
-				m_stateLongevity = 0;
-
-				std::cout << "Pokemon not paralized any more!" << std::endl;
-			}
-			break;
-
-		case Drug::TYPE::awakening:
-			if (m_state == Monster::STATE::asleep){
-				m_state = Monster::STATE::feelgood;
-				m_stateLongevity = 0;
-
-				std::cout << "Pokemon not asleep any more!" << std::endl;
-			}
-			break;
-
-		default:
-			break;
-
-	}
-
-	std::cout << "You used one" << p_drug.getName() << "!" << std::endl;
-}
-
 bool CMonster::isAlive(){
 	return (m_hp <= 0) ? false : true;
 }
@@ -216,4 +133,97 @@ void CMonster::info(){
 	std::cout << "Speed : " << m_speed << std::endl;
 	std::cout << "Attack : " << m_attack << std::endl;
 	std::cout << "Defense : " << m_defense << std::endl;
+}
+
+void CMonster::attacksInfo(){
+	std::vector<CAttack*>::iterator l_it;
+
+	for (l_it = m_attacks.begin(); l_it != m_attacks.end(); ++l_it){
+		std::cout << "\t[ " << std::distance(m_attacks.begin(), l_it) << " ]\n";
+		(*l_it)->info();
+		std::cout << std::endl;
+	}
+}
+
+void CMonster::usePotion(CPotion& p_potion){
+	switch (p_potion.getType()){
+	case Potion::TYPE::fullRestore:
+		m_hp = m_hpMax;
+		m_state = Monster::STATE::feelgood;
+
+		std::cout << "HP and state retored! You used one Full Restore" << std::endl;
+		break;
+
+	case Potion::TYPE::maxPotion:
+		m_hp = m_hpMax;
+
+		std::cout << "HP restored to the max!You used one Max Potion" << std::endl;
+		break;
+
+	case Potion::TYPE::potion || Potion::TYPE::hyperPotion || Potion::TYPE::superPotion:
+		m_hp += p_potion.getHeal();
+
+		std::cout << "You used " << p_potion.getName() << "!" << std::endl;
+		std::cout << "HP + " << p_potion.getHeal() << std::endl;
+		break;
+
+	default:
+		break;
+	}
+}
+
+
+void CMonster::useDrug(CDrug& p_drug){
+	switch (p_drug.getType()){
+	case Drug::TYPE::burnHeal:
+		if (m_state == Monster::STATE::burned){
+			m_state = Monster::STATE::feelgood;
+			m_stateLongevity = 0;
+
+			std::cout << "Pokemon not burned any more!" << std::endl;
+		}
+		break;
+
+	case Drug::TYPE::iceHeal:
+		if (m_state == Monster::STATE::freezed){
+			m_state = Monster::STATE::feelgood;
+			m_stateLongevity = 0;
+
+			std::cout << "Pokemon not freezed any more!" << std::endl;
+		}
+		break;
+
+	case Drug::TYPE::antidote:
+		if (m_state == Monster::STATE::poisoned){
+			m_state = Monster::STATE::feelgood;
+			m_stateLongevity = 0;
+
+			std::cout << "Pokemon not poisoned any more!" << std::endl;
+		}
+		break;
+
+	case Drug::TYPE::paralizeHeal:
+		if (m_state == Monster::STATE::paralized){
+			m_state = Monster::STATE::feelgood;
+			m_stateLongevity = 0;
+
+			std::cout << "Pokemon not paralized any more!" << std::endl;
+		}
+		break;
+
+	case Drug::TYPE::awakening:
+		if (m_state == Monster::STATE::asleep){
+			m_state = Monster::STATE::feelgood;
+			m_stateLongevity = 0;
+
+			std::cout << "Pokemon not asleep any more!" << std::endl;
+		}
+		break;
+
+	default:
+		break;
+
+	}
+
+	std::cout << "You used one" << p_drug.getName() << "!" << std::endl;
 }

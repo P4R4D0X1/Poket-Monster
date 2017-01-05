@@ -12,8 +12,23 @@ void CPlayer::chooseMonster(unsigned int p_index){
 }
 
 void CPlayer::attack(unsigned int p_index, CPlayer& p_enemy){
-	//** TO DO **//
-	//Faut faire une fonction dans player pour choisir l'attaque du monstre
-	//En attendant on met la première attaque par defaut
-	m_actualMonster->attack(Monster::ATTACK_SLOT::first, *(p_enemy.m_actualMonster));
+	m_actualMonster->attack(p_index, *(p_enemy.m_actualMonster));
+}
+
+void CPlayer::useObject(unsigned int p_index){
+	m_actualMonster->useObject(*m_object.at(p_index));
+}
+
+void CPlayer::attackListInfo(){
+	m_actualMonster->attacksInfo();
+}
+
+void CPlayer::objectListInfo(){
+	std::vector<CObject*>::iterator l_it;
+
+	for (l_it = m_object.begin(); l_it != m_object.end(); ++l_it){
+		std::cout << "\t[ " << std::distance(m_object.begin(), l_it) << " ]\n";
+		(*l_it)->info();
+		std::cout << std::endl;
+	}
 }
