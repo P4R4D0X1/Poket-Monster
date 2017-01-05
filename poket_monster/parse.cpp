@@ -434,24 +434,31 @@ CMonster* CParse::createMonster(sMonster* p_monster){
 
 	switch (p_monster->m_type){
 		case 0:
-			//(CElectric)l_monster = new CElectric(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_type);
+			l_monster = new CElectric(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_paralysis);
 			break;
 
 		case 1:
+			l_monster = new CWater(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_flood, p_monster->m_fall);
 			break;
 
 		case 2:
+			l_monster = new CRock(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_protect);
 			break;
 
 		case 3 :
+			l_monster = new CFire(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_burn);
 			break;
 
 		case 4:
+			l_monster = new CInsect(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_poison);
 			break;
 
 		case 5:
+			l_monster = new CPlant(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_heal);
 			break;
-
+		default:
+			std::cerr << "ERROR CREATING MONSTER" << std::endl;
+			break;
 	}
 
 	return l_monster;
