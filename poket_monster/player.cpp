@@ -17,6 +17,7 @@ void CPlayer::attack(unsigned int p_index, CPlayer& p_enemy){
 
 void CPlayer::useObject(unsigned int p_index){
 	m_actualMonster->useObject(*m_object.at(p_index));
+	m_object.erase(m_object.begin() + p_index);
 }
 
 void CPlayer::attackListInfo(){
