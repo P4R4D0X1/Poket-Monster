@@ -114,6 +114,7 @@
     <ClInclude Include="player.hpp" />
     <ClInclude Include="potion.hpp" />
     <ClInclude Include="rock.hpp" />
+    <ClInclude Include="vectorUtils.hpp" />
     <ClInclude Include="water.hpp" />
   </ItemGroup>
   <ItemGroup>

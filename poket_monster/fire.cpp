@@ -9,13 +9,16 @@ CFire::CFire(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attac
 	m_burn = p_burn;
 }
 
+CFire::CFire(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_burn, std::vector<CAttack*>& p_attacks) : CMonster(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense, p_attacks, Monster::TYPE::fire){
+}
+
 CFire::~CFire(){	
 }
 
 void CFire::attack(unsigned int p_index, CMonster& p_enemy){
 	m_hp -= m_attacks[p_index]->use(*this, p_enemy);
 
-	if (fire() && m_attacks[p_attack]->getType() != Attack::TYPE::normal)
+	if (fire() && m_attacks[p_index]->getType() != Attack::TYPE::normal)
 		p_enemy.setState(Monster::STATE::burned);
 }
 

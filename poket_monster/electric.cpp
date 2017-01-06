@@ -8,6 +8,9 @@ CElectric::CElectric(std::string p_name, int p_hp, int p_hpMax, int p_speed, int
 	m_paralysis = p_paralysis;
 }
 
+CElectric::CElectric(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_paralysis, std::vector<CAttack*>& p_attacks) : CMonster(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense, Monster::TYPE::electric){
+}
+
 CElectric::~CElectric(){
 }
 

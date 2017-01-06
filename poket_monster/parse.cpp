@@ -1,4 +1,5 @@
 #include "parse.hpp"
+#include "vectorUtils.hpp"
 
 CParse::CParse(){
 }
@@ -359,23 +360,28 @@ void CParse::infoStructMonster(sMonster *p_monster){
 
 	//Pour afficher les membres spécifiques au type de monstre
 	switch (p_monster->m_type){
-		case (0) :
+		case (Monster::TYPE::electric) :
 			std::cout << "Paralysis : " << p_monster->m_paralysis << std::endl;
 			break;
-		case (1) :
+
+		case Monster::TYPE::water:
 			std::cout << "Flood : " << p_monster->m_flood << std::endl;
 			std::cout << "Fall : " << p_monster->m_fall << std::endl;
 			break;
-		case (2) :
+
+		case Monster::TYPE::rock:
 			std::cout << "Protect : " << p_monster->m_protect << std::endl;
 			break;
-		case (3) :
+
+		case Monster::TYPE::fire:
 			std::cout << "Burn : " << p_monster->m_burn << std::endl;
 			break;
-		case (4) :
+
+		case Monster::TYPE::insect:
 			std::cout << "Poison : " << p_monster->m_poison << std::endl;
 			break;
-		case 5:
+
+		case Monster::TYPE::plant:
 			std::cout << "Heal : " << p_monster->m_heal << std::endl;
 			break;
 	}
@@ -404,15 +410,50 @@ void CParse::info(){
 	}
 }
 
-sMonster* CParse::chooseRandomMonster(){
-	int l_nb;
+std::vector<CAttack*>& CParse::createAttackVector(int p_attackAmount, Attack::TYPE p_type){
+	CAttack *l_attack;
+	std::vector<CAttack*>::iterator l_it;
+	std::vector<CAttack*> l_attacks, l_vector;
 
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distributionHP(0, m_tabMonsters.size());
+	//On remplit un vector avec les adresses de toutes les attaques du type souhaité/normal
+	for (l_it = m_tabAttacks.begin(); l_it != m_tabAttacks.end(); ++l_it){
+		if ((*l_it)->getType() == Attack::TYPE::normal || (*l_it)->getType() == p_type)
+			l_attacks.push_back(*l_it);
+	}
 
-	l_nb = distributionHP(generator);
+	while (p_attackAmount > 0 && l_attacks.size()){
+		//On choisit une attaque aléatoirement et on utilise le constructeur de copie de attack pour l'ajouter au tableau d'attaque
+		l_it = select_randomly(l_attacks.begin(), l_attacks.end());
+		l_attack = new CAttack(**l_it);
+		l_vector.push_back(l_attack);
+		l_attacks.erase(l_it);	
 
-	return (m_tabMonsters[l_nb]);
+		p_attackAmount--;
+	}
+	
+	return l_vector;
+}
+
+std::vector<CMonster*>& CParse::createMonsterVector(int p_monsterAmount){
+	//on abesoin d'un constructeur qui prend en parametre un vector pour monster
+	CMonster *l_monster;
+	std::vector<sMonster*>::iterator l_it;
+	std::vector<sMonster*> l_monsters;
+	std::vector<CMonster*> l_vector;
+
+	l_monsters = m_tabMonsters;
+	
+	while (p_monsterAmount > 0 && l_monsters.size()){
+		//On choisit une attaque aléatoirement et on utilise le constructeur de copie de attack pour l'ajouter au tableau d'attaque
+		l_it = select_randomly(l_monsters.begin(), l_monsters.end());
+		l_monster = createMonster(*l_it);
+		l_vector.push_back(l_monster);
+		l_monsters.erase(l_it);
+
+		p_monsterAmount--;
+	}
+
+	return l_vector;
 }
 
 CMonster* CParse::createMonster(sMonster* p_monster){
@@ -420,7 +461,7 @@ CMonster* CParse::createMonster(sMonster* p_monster){
 	CMonster *l_monster;
 	std::default_random_engine generator;
 
-	std::uniform_int_distribution<int> distributionHp(p_monster->m_hpMin, p_monster->m_hpMax);
+	std::uniform_int_distribution<int> distributionHp(p_monster->m_hpMin, p_monster->m_hpMax );
 	l_hp = distributionHp(generator);
 
 	std::uniform_int_distribution<int> distributionSpeed(p_monster->m_speedMin, p_monster->m_speedMax);
@@ -433,29 +474,30 @@ CMonster* CParse::createMonster(sMonster* p_monster){
 	l_defense = distributionDefense(generator);
 
 	switch (p_monster->m_type){
-		case 0:
+		case Monster::TYPE::electric:
 			l_monster = new CElectric(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_paralysis);
 			break;
 
-		case 1:
+		case Monster::TYPE::water:
 			l_monster = new CWater(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_flood, p_monster->m_fall);
 			break;
 
-		case 2:
+		case Monster::TYPE::rock:
 			l_monster = new CRock(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_protect);
 			break;
 
-		case 3 :
+		case Monster::TYPE::fire:
 			l_monster = new CFire(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_burn);
 			break;
 
-		case 4:
+		case Monster::TYPE::insect:
 			l_monster = new CInsect(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_poison);
 			break;
 
-		case 5:
+		case Monster::TYPE::plant:
 			l_monster = new CPlant(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_heal);
 			break;
+
 		default:
 			std::cerr << "ERROR CREATING MONSTER" << std::endl;
 			break;

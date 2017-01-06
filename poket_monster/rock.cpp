@@ -8,6 +8,9 @@ CRock::CRock(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attac
 	m_hiddenRound = -1;
 }
 
+CRock::CRock(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_protect, std::vector<CAttack*>& p_attacks) : CMonster(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense, p_attacks, Monster::TYPE::rock){
+}
+
 CRock::~CRock(){
 }
 

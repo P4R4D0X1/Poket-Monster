@@ -15,6 +15,18 @@ CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p
 	m_arena = NULL;
 }
 
+CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, std::vector<CAttack*>& p_attacks, Monster::TYPE p_type){
+	m_name = p_name;
+	m_hp = p_hp;
+	m_hpMax = p_hpMax;
+	m_speed = p_speed;
+	m_attack = p_attack;
+	m_defense = p_defense;
+	m_type = p_type;
+	m_stateLongevity = 0;
+	m_arena = NULL;
+	m_attacks = p_attacks;
+}
 
 CMonster::~CMonster(){
 }
