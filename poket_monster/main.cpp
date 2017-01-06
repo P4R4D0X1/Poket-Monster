@@ -21,19 +21,14 @@ int main(int argc, char **argv){
 
 	CParse l_parse;
 	std::vector<CMonster*> l_pokedex;
+	std::vector<CMonster*>::iterator l_it;
 
 	l_parse.parseMonsters("monsters.pkmn");
 	l_parse.parseAttack("attacks.pkmn");
 	l_parse.parseObjects("objects.pkmn");
-
 	l_parse.info();
 
 	l_pokedex = l_parse.createMonsterVector(4);
-
-
-	std::vector<CMonster*>::iterator l_it;
-
-	cout << "YOLO SWAG\n\n\n";
 
 	for (l_it = l_pokedex.begin(); l_it != l_pokedex.end(); ++l_it){
 		std::cout << "________________" << std::endl;
