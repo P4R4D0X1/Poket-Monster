@@ -57,10 +57,10 @@ class CParse{
 		void infoStructMonster(sMonster *p_monster);
 		void info();
 
-		std::vector<CMonster*>& createMonsterVector(int p_monsterAmount);
+		std::vector<CMonster*> createMonsterVector(int p_monsterAmount);
 
 	protected:
-		std::vector<CAttack*>& createAttackVector(int p_attackAmount, Attack::TYPE p_type);
+		std::vector<CAttack*> createAttackVector(int p_attackAmount, Attack::TYPE p_type);
 		CMonster* createMonster(sMonster* p_monster);
 
 		std::vector <sMonster*> m_tabMonsters;

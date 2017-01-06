@@ -20,6 +20,7 @@ using namespace std;
 int main(int argc, char **argv){
 
 	CParse l_parse;
+	std::vector<CMonster*> l_pokedex;
 
 	l_parse.parseMonsters("monsters.pkmn");
 	l_parse.parseAttack("attacks.pkmn");
@@ -27,7 +28,20 @@ int main(int argc, char **argv){
 
 	l_parse.info();
 
-	l_parse.createMonster(l_parse.chooseRandomMonster());
+	l_pokedex = l_parse.createMonsterVector(4);
+
+
+	std::vector<CMonster*>::iterator l_it;
+
+	cout << "YOLO SWAG\n\n\n";
+
+	for (l_it = l_pokedex.begin(); l_it != l_pokedex.end(); ++l_it){
+		std::cout << "________________" << std::endl;
+		std::cout << "\t[ " << std::distance(l_pokedex.begin(), l_it) << " ]\n";
+		(*l_it)->info();
+		(*l_it)->attacksInfo();
+		std::cout << "________________" << std::endl;
+	}
 
 	system("pause");
 	return EXIT_SUCCESS;

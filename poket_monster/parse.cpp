@@ -186,8 +186,8 @@ void CParse::parseMonsters(std::string m_path){
 
 void CParse::parseAttack(std::string m_path){
 	std::string l_tmp1, l_tmp, l_name, l_sPower, l_sNbUse, l_sFail;
-	int l_min, l_max, l_power, l_nbUse;
-	float l_paralysis, l_fall, l_flood, l_burn, l_heal, l_protect, l_poison, l_fail;
+	int l_power, l_nbUse;
+	float l_fail;
 	Attack::TYPE l_type;
 
 	std::fstream l_file(m_path.c_str(), std::ios::in);
@@ -388,7 +388,7 @@ void CParse::infoStructMonster(sMonster *p_monster){
 }
 
 void CParse::info(){
-	int i;
+	unsigned int i;
 	std::cout << "[PRINTING VALUES]" << std::endl;
 
 	std::cout << "[MONSTERS]" << std::endl;
@@ -410,7 +410,7 @@ void CParse::info(){
 	}
 }
 
-std::vector<CMonster*>& CParse::createMonsterVector(int p_monsterAmount){
+std::vector<CMonster*> CParse::createMonsterVector(int p_monsterAmount){
 	//on abesoin d'un constructeur qui prend en parametre un vector pour monster
 	CMonster *l_monster;
 	std::vector<sMonster*>::iterator l_it;
@@ -432,7 +432,7 @@ std::vector<CMonster*>& CParse::createMonsterVector(int p_monsterAmount){
 	return l_vector;
 }
 
-std::vector<CAttack*>& CParse::createAttackVector(int p_attackAmount, Attack::TYPE p_type){
+std::vector<CAttack*> CParse::createAttackVector(int p_attackAmount, Attack::TYPE p_type){
 	CAttack *l_attack;
 	std::vector<CAttack*>::iterator l_it;
 	std::vector<CAttack*> l_attacks, l_vector;
@@ -458,7 +458,7 @@ std::vector<CAttack*>& CParse::createAttackVector(int p_attackAmount, Attack::TY
 
 CMonster* CParse::createMonster(sMonster* p_monster){
 	int l_hp, l_speed, l_attack, l_defense;
-	CMonster *l_monster;
+	CMonster *l_monster(NULL);
 	std::default_random_engine generator;
 
 	std::uniform_int_distribution<int> distributionHp(p_monster->m_hpMin, p_monster->m_hpMax );

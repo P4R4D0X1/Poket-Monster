@@ -17,7 +17,7 @@ CElectric::~CElectric(){
 void CElectric::attack(unsigned int p_index, CMonster& p_enemy){
 	m_hp -= m_attacks[p_index]->use(*this, p_enemy);
 
-	if (paralyze() && m_attacks[p_attack]->getType() != Attack::TYPE::normal)
+	if (paralyze() && m_attacks[p_index]->getType() != Attack::TYPE::normal)
 		p_enemy.setState(Monster::STATE::paralized);
 }
 
