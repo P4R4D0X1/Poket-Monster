@@ -410,30 +410,6 @@ void CParse::info(){
 	}
 }
 
-std::vector<CAttack*>& CParse::createAttackVector(int p_attackAmount, Attack::TYPE p_type){
-	CAttack *l_attack;
-	std::vector<CAttack*>::iterator l_it;
-	std::vector<CAttack*> l_attacks, l_vector;
-
-	//On remplit un vector avec les adresses de toutes les attaques du type souhaité/normal
-	for (l_it = m_tabAttacks.begin(); l_it != m_tabAttacks.end(); ++l_it){
-		if ((*l_it)->getType() == Attack::TYPE::normal || (*l_it)->getType() == p_type)
-			l_attacks.push_back(*l_it);
-	}
-
-	while (p_attackAmount > 0 && l_attacks.size()){
-		//On choisit une attaque aléatoirement et on utilise le constructeur de copie de attack pour l'ajouter au tableau d'attaque
-		l_it = select_randomly(l_attacks.begin(), l_attacks.end());
-		l_attack = new CAttack(**l_it);
-		l_vector.push_back(l_attack);
-		l_attacks.erase(l_it);	
-
-		p_attackAmount--;
-	}
-	
-	return l_vector;
-}
-
 std::vector<CMonster*>& CParse::createMonsterVector(int p_monsterAmount){
 	//on abesoin d'un constructeur qui prend en parametre un vector pour monster
 	CMonster *l_monster;
@@ -451,6 +427,30 @@ std::vector<CMonster*>& CParse::createMonsterVector(int p_monsterAmount){
 		l_monsters.erase(l_it);
 
 		p_monsterAmount--;
+	}
+
+	return l_vector;
+}
+
+std::vector<CAttack*>& CParse::createAttackVector(int p_attackAmount, Attack::TYPE p_type){
+	CAttack *l_attack;
+	std::vector<CAttack*>::iterator l_it;
+	std::vector<CAttack*> l_attacks, l_vector;
+
+	//On remplit un vector avec les adresses de toutes les attaques du type souhaité/normal
+	for (l_it = m_tabAttacks.begin(); l_it != m_tabAttacks.end(); ++l_it){
+		if ((*l_it)->getType() == Attack::TYPE::normal || (*l_it)->getType() == p_type)
+			l_attacks.push_back(*l_it);
+	}
+
+	while (p_attackAmount > 0 && l_attacks.size()){
+		//On choisit une attaque aléatoirement et on utilise le constructeur de copie de attack pour l'ajouter au tableau d'attaque
+		l_it = select_randomly(l_attacks.begin(), l_attacks.end());
+		l_attack = new CAttack(**l_it);
+		l_vector.push_back(l_attack);
+		l_attacks.erase(l_it);
+
+		p_attackAmount--;
 	}
 
 	return l_vector;
@@ -475,27 +475,27 @@ CMonster* CParse::createMonster(sMonster* p_monster){
 
 	switch (p_monster->m_type){
 		case Monster::TYPE::electric:
-			l_monster = new CElectric(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_paralysis);
+			l_monster = new CElectric(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_paralysis, createAttackVector(4, Attack::TYPE::electric));
 			break;
 
 		case Monster::TYPE::water:
-			l_monster = new CWater(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_flood, p_monster->m_fall);
+			l_monster = new CWater(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_flood, p_monster->m_fall, createAttackVector(4, Attack::TYPE::water));
 			break;
 
 		case Monster::TYPE::rock:
-			l_monster = new CRock(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_protect);
+			l_monster = new CRock(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_protect, createAttackVector(4, Attack::TYPE::rock));
 			break;
 
 		case Monster::TYPE::fire:
-			l_monster = new CFire(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_burn);
+			l_monster = new CFire(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_burn, createAttackVector(4, Attack::TYPE::fire));
 			break;
 
 		case Monster::TYPE::insect:
-			l_monster = new CInsect(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_poison);
+			l_monster = new CInsect(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_poison, createAttackVector(4, Attack::TYPE::grass));
 			break;
 
 		case Monster::TYPE::plant:
-			l_monster = new CPlant(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_heal);
+			l_monster = new CPlant(p_monster->m_name, l_hp, l_hp, l_speed, l_attack, l_defense, p_monster->m_heal, createAttackVector(4, Attack::TYPE::grass));
 			break;
 
 		default:
