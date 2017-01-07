@@ -21,10 +21,11 @@
 class CPlayer{
 	public:
 		CPlayer();
+		CPlayer(std::string p_name, std::vector<CMonster*>& p_monsters, std::vector<CObject*>& p_objects);
 		virtual ~CPlayer();
 
 		void chooseMonster(unsigned int p_index);
-		void attack(unsigned int p_index, CPlayer& p_enemy);
+		Attack::STATE attack(unsigned int p_index, CPlayer& p_enemy, CArena& p_arena);
 		void useObject(unsigned int p_index);
 		void attackListInfo();
 		void objectListInfo();
@@ -35,8 +36,8 @@ class CPlayer{
 		std::string m_name;
 
 		CMonster* m_actualMonster;
-		std::vector<CMonster*> m_monster;
-		std::vector<CObject*> m_object;
+		std::vector<CMonster*> m_monsters;
+		std::vector<CObject*> m_objects;
 };
 
 #endif

@@ -16,10 +16,10 @@ CAttack::CAttack(std::string p_name, Attack::TYPE p_type, int p_nbUse, int p_pow
 CAttack::~CAttack(){
 }
 
-int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
-	if (m_nbUse <= 0)
-		return 0;
-
+Attack::STATE CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy, CArena& p_arena){
+	/*
+	*	TODO gerer les attaques spéciales la famille 
+	*/
 	int l_damage;
 
 	std::mt19937 l_rng;
@@ -32,23 +32,27 @@ int CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy){
 	l_damage += 2;
 	l_damage *= (l_dist6(l_rng)/100);
 
-	l_damage *= computeAttackCoef(p_attacker.getType(), p_enemy.getType());
+	l_damage = (unsigned int)((float)l_damage * computeAttackCoef(p_attacker.getType(), p_enemy.getType()));
 	m_nbUse--;
 
 	//On regarde si l'attaque est reussie ou non
 	if (p_attacker.getState() == Monster::STATE::paralized){
 		//Si le joueur est paralysé il a une chance sur quatre de rater son attaque
 		if (l_dist62(l_rng) <= 25)
-			return 0;
+			return Attack::STATE::fallen;
 	}
-	else if (l_dist62(l_rng) <= (unsigned int)(m_failProbability * 100))
-		return 0;
+	else if (l_dist62(l_rng) <= (unsigned int)(m_failProbability * 100)){
+		return Attack::STATE::fallen;
+	}
 	
+	//On regarde si le terrain est inondé et si le joueur rate son attaque
 	//Si le joueur tombe parceque le terrain est inondé il se prend un quart de son attaque 
-	if (p_enemy.applyDamage(m_type, l_damage) == Attack::STATE::fallen)
-		return (int)(p_attacker.getAttack() / 4);
+	if (p_attacker.getType() != Monster::TYPE::water && p_arena.getState() == Arena::STATE::flooded && p_arena.stateImpact()){
+		p_attacker.applyDamage((unsigned int)p_attacker.getAttack() / 4);
+		return Attack::STATE::fallen;
+	}
 
-	return 0;
+	return Attack::STATE::success;
 }
 
 float CAttack::computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy){

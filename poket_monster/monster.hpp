@@ -20,11 +20,15 @@ class CMonster{
 		CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, std::vector<CAttack*>& p_attacks, Monster::TYPE p_type);
 		virtual ~CMonster();
 
-		virtual void attack(unsigned int p_index, CMonster& p_enemy);
-		virtual Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
-		virtual void updateState(); //va prendre en parametre un terrain pour adapter l'etat des monstre en fonction de cet etat #swag
+		virtual Attack::STATE attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena);
+		virtual void specialAttack(CMonster& p_enemy, CArena& p_arena) = 0;
+		void applyDamage(unsigned int p_damage);
+		virtual void updateState(CArena& p_arena); //revoir ce merdier depuis le passage du CArena par paramètres
 		virtual void useObject(CObject& p_object);
 		bool isAlive();
+		
+		virtual void info();
+		void attacksInfo();
 
 		int getSpeed();
 		int getAttack();
@@ -32,9 +36,6 @@ class CMonster{
 		Monster::TYPE getType();
 		Monster::STATE getState();
 		void setState(Monster::STATE p_state);
-		void setArena(CArena& p_arena);
-		virtual void info();
-		void attacksInfo();
 
 	protected:
 		virtual void usePotion(CPotion& p_potion);
@@ -47,11 +48,11 @@ class CMonster{
 		int m_attack;
 		int m_defense;
 		int m_stateLongevity;
+
 		Monster::TYPE m_type;
 		Monster::STATE m_state;
 
 		std::vector<CAttack*> m_attacks;
-		CArena* m_arena;
 };
 
 #endif

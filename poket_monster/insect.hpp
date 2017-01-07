@@ -10,8 +10,9 @@ class CInsect : public CGrass{
 		CInsect(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_poison, std::vector<CAttack*>& p_attacks);
 		virtual ~CInsect();
 
-		virtual void attack(unsigned int p_index, CMonster&  p_enemy);
+		void specialAttack(CMonster& p_enemy, CArena& p_arena);
 		bool poison();
+
 		void info();
 
 	protected:

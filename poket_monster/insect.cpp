@@ -13,13 +13,10 @@ CInsect::CInsect(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_a
 CInsect::~CInsect(){
 }
 
-void CInsect::attack(unsigned int p_index, CMonster&  p_enemy){
-	m_hp -= m_attacks[p_index]->use(*this, p_enemy);
-
-	if (poison() && m_attacks[p_index]->getType() != Attack::TYPE::normal)
+void CInsect::specialAttack(CMonster& p_enemy, CArena& p_arena){
+	if (poison())
 		p_enemy.setState(Monster::STATE::poisoned);
 }
-
 
 bool CInsect::poison(){
 	std::mt19937 l_rng;

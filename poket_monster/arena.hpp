@@ -12,13 +12,15 @@ class CArena{
 		virtual ~CArena();
 
 		void updateState();
-		void flood();
+		void flood(float p_stateImpactProb);
+		bool stateImpact();
+
 		Arena::STATE getState();
-		void setState(Arena::STATE p_state);
 
 	protected:
 		Arena::STATE m_state;
 		int m_stateLongevity;
+		float m_stateImpactProb;
 };
 
 #endif

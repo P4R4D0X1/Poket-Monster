@@ -12,7 +12,6 @@ CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p
 	m_defense = p_defense;
 	m_type = p_type;
 	m_stateLongevity = 0;
-	m_arena = NULL;
 }
 
 CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, std::vector<CAttack*>& p_attacks, Monster::TYPE p_type){
@@ -24,22 +23,21 @@ CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p
 	m_defense = p_defense;
 	m_type = p_type;
 	m_stateLongevity = 0;
-	m_arena = NULL;
 	m_attacks = p_attacks;
 }
 
 CMonster::~CMonster(){
 }
 
-void CMonster::attack(unsigned int p_index, CMonster& p_enemy){
-	m_hp -= m_attacks[p_index]->use(*this, p_enemy);
+Attack::STATE CMonster::attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena){
+	return m_attacks[p_index]->use(*this, p_enemy, p_arena);
 }
 
-Attack::STATE CMonster::applyDamage(Attack::TYPE p_attackType, int p_damage){
-	return Attack::STATE::success;
+void CMonster::applyDamage(unsigned int p_damage){
+	m_hp -= p_damage;
 }
 
-void CMonster::updateState(){
+void CMonster::updateState(CArena& p_arena){
 	float l_rescueProb = (6.0f - m_stateLongevity)/6.0f;
 
 	std::mt19937 l_rng;
@@ -47,9 +45,8 @@ void CMonster::updateState(){
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
 
 
-	if (m_stateLongevity == 0){
+	if (m_state != Monster::STATE::feelgood && m_stateLongevity == 0){
 		m_state = Monster::STATE::feelgood;
-		m_arena->updateState();
 		return;
 	}
 
@@ -57,14 +54,13 @@ void CMonster::updateState(){
 		case  Monster::STATE::feelgood:
 			break;
 
-		case Monster::STATE::poisoned:
-			if (m_arena->getState() == Arena::STATE::flooded){
-				m_stateLongevity = 0;
+		case Monster::STATE::poisoned || Monster::STATE::burned:
+			if (p_arena.getState() == Arena::STATE::flooded){
 				m_state = Monster::STATE::feelgood;
+				m_stateLongevity = 0;
 			}
 			else{
-				m_hp -= (int)m_attack / 10;
-				m_stateLongevity--;
+				applyDamage((unsigned int)m_attack / 10);
 			}
 			break;
 
@@ -78,22 +74,9 @@ void CMonster::updateState(){
 			}
 			break;
 
-		case Monster::STATE::burned:
-			if (m_arena->getState() == Arena::STATE::flooded){
-				m_stateLongevity = 0;
-				m_state = Monster::STATE::feelgood;
-			}
-			else{
-				m_hp -= (int)m_attack / 10;
-				m_stateLongevity--;
-			}
-			break;
-
 		default:
 			break;
 	}
-
-	m_arena->updateState();
 }
 
 void CMonster::useObject(CObject& p_object){
@@ -130,16 +113,6 @@ Monster::TYPE CMonster::getType(){
 
 Monster::STATE CMonster::getState(){
 	return m_state;
-}
-
-void CMonster::setState(Monster::STATE p_state){
-	if (p_state == Monster::STATE::paralized)
-		m_stateLongevity = 6;
-	m_state = p_state;
-}
-
-void CMonster::setArena(CArena& p_arena){
-	m_arena = &p_arena;
 }
 
 void CMonster::info(){
@@ -242,4 +215,10 @@ void CMonster::useDrug(CDrug& p_drug){
 	}
 
 	std::cout << "You used one" << p_drug.getName() << "!" << std::endl;
+}
+
+void CMonster::setState(Monster::STATE p_state){
+	if (p_state == Monster::STATE::paralized)
+		m_stateLongevity = 6;
+	m_state = p_state;
 }

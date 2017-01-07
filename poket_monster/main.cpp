@@ -1,19 +1,34 @@
+//                 uuuuuuu
+//               uu$$$$$$$$$$$uu
+//            uu$$$$$$$$$$$$$$$$$uu
+//           u$$$$$$$$$$$$$$$$$$$$$u
+//          u$$$$$$$$$$$$$$$$$$$$$$$u
+//         u$$$$$$$$$$$$$$$$$$$$$$$$$u
+//         u$$$$$$$$$$$$$$$$$$$$$$$$$u
+//         u$$$$$$"   "$$$"   "$$$$$$u
+//         "$$$$"      u$u       $$$$"
+//          $$$u       u$u       u$$$
+//          $$$u      u$$$u      u$$$
+//           "$$$$uu$$$   $$$uu$$$$"
+//            "$$$$$$$"   "$$$$$$$"
+//              u$$$$$$$u$$$$$$$u
+//               u$"$"$"$"$"$"$u
+//    uuu        $$u$ $ $ $ $u$$       uuu
+//   u$$$$        $$$$$u$u$u$$$       u$$$$
+//    $$$$$uu      "$$$$$$$$$"     uu$$$$$$
+//  u$$$$$$$$$$$uu    """""    uuuu$$$$$$$$$$
+//  $$$$"""$$$$$$$$$$uuu   uu$$$$$$$$$"""$$$"
+//   """      ""$$$$$$$$$$$uu ""$"""
+//             uuuu ""$$$$$$$$$$uuu
+//    u$$$uuu$$$$$$$$$uu ""$$$$$$$$$$$uuu$$$
+//    $$$$$$$$$$""""           ""$$$$$$$$$$$"
+//     "$$$$$"                      ""$$$$""
+//       $$$"                         $$$$"
+
 #include <iostream>
 #include <string>
 
 #include "parse.hpp"
-
-/*
-*
-*	On fais une fonction getFourAttackByType() dans le parse
-*	
-*	Gerer le player
-*	Gerer l'attribution des objets et des pokemon
-*
-*	coder la mecanique de jeu basique
-*
-*/
-
 
 using namespace std;
 

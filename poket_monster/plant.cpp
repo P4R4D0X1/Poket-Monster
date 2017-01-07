@@ -13,13 +13,10 @@ CPlant::CPlant(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_att
 CPlant::~CPlant(){
 }
 
-void CPlant::attack(unsigned int p_index, CMonster&  p_enemy){
-	m_hp -= m_attacks[p_index]->use(*this, p_enemy);
-
-	if (heal() && m_attacks[p_index]->getType() != Attack::TYPE::normal)
+void CPlant::specialAttack(CMonster& p_enemy, CArena& p_arena){
+	if (heal())
 		m_state = Monster::STATE::feelgood;
 }
-
 
 bool CPlant::heal(){
 	std::mt19937 l_rng;

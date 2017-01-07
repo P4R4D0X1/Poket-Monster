@@ -14,16 +14,9 @@ CElectric::CElectric(std::string p_name, int p_hp, int p_hpMax, int p_speed, int
 CElectric::~CElectric(){
 }
 
-void CElectric::attack(unsigned int p_index, CMonster& p_enemy){
-	m_hp -= m_attacks[p_index]->use(*this, p_enemy);
-
-	if (paralyze() && m_attacks[p_index]->getType() != Attack::TYPE::normal)
+void CElectric::specialAttack(CMonster& p_enemy, CArena& p_arena){
+	if (paralyze())
 		p_enemy.setState(Monster::STATE::paralized);
-}
-
-Attack::STATE CElectric::applyDamage(Attack::TYPE p_attackType, int p_damage){
-	m_hp -= p_damage;
-	return Attack::STATE::success;
 }
 
 bool CElectric::paralyze(){

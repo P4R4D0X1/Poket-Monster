@@ -12,19 +12,14 @@ CGrass::CGrass(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_att
 CGrass::~CGrass(){
 }
 
-void CGrass::attack(unsigned int p_index, CMonster&  p_enemy){
+void CGrass::specialAttack(CMonster& p_enemy, CArena& p_arena){
 }
 
-Attack::STATE CGrass::applyDamage(Attack::TYPE p_attackType, int p_damage){
-	m_hp -= p_damage;
-	return Attack::STATE::success;
-}
-
-void CGrass::updateState(){
-	if (m_arena->getState() == Arena::STATE::flooded)
+void CGrass::updateState(CArena& p_arena){
+	if (p_arena.getState() == Arena::STATE::flooded)
 		m_hp += (int)m_hpMax / 20;
 	
-	CMonster::updateState();
+	CMonster::updateState(p_arena);
 }
 
 void CGrass::info(){

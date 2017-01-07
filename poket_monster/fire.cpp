@@ -15,16 +15,9 @@ CFire::CFire(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attac
 CFire::~CFire(){	
 }
 
-void CFire::attack(unsigned int p_index, CMonster& p_enemy){
-	m_hp -= m_attacks[p_index]->use(*this, p_enemy);
-
-	if (fire() && m_attacks[p_index]->getType() != Attack::TYPE::normal)
+void CFire::specialAttack(CMonster& p_enemy, CArena& p_arena){
+	if (fire())
 		p_enemy.setState(Monster::STATE::burned);
-}
-
-Attack::STATE CFire::applyDamage(Attack::TYPE p_attackType, int p_damage){
-		m_hp -= p_damage;
-		return Attack::STATE::success;
 }
 
 bool CFire::fire(){

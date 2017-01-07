@@ -6,6 +6,7 @@
 #include <random>
 
 #include "namespace.hpp"
+#include "arena.hpp"
 
 class CAttack{
 	public:
@@ -14,7 +15,7 @@ class CAttack{
 		virtual ~CAttack();
 
 		//Return la valeur de la contre attack
-		int use(class CMonster& p_attacker, class CMonster& p_enemy);
+		Attack::STATE use(class CMonster& p_attacker, class CMonster& p_enemy, CArena& p_arena);
 		float computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy);
 		Attack::TYPE getType();
 		void info();

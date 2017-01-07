@@ -10,9 +10,9 @@ class CGrass : public CMonster{
 		CGrass(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, std::vector<CAttack*>& p_attacks, Monster::TYPE p_type);
 		virtual ~CGrass();
 
-		virtual void attack(unsigned int p_index, CMonster&  p_enemy);
-		Attack::STATE applyDamage(Attack::TYPE p_attackType, int p_damage);
-		void updateState();
+		virtual void specialAttack(CMonster& p_enemy, CArena& p_arena);
+		void updateState(CArena& p_arena);
+
 		void info();
 
 	protected:
