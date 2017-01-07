@@ -25,6 +25,16 @@
 //     "$$$$$"                      ""$$$$""
 //       $$$"                         $$$$"
 
+#define _CRTDBG_MAP_ALLOC
+#ifdef _DEBUG
+#ifndef DBG_NEW
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
+#endif
+#endif  // _DEBUG
+#include <stdlib.h>
+#include <crtdbg.h>
+
 #include <iostream>
 #include <string>
 
@@ -56,5 +66,6 @@ int main(int argc, char **argv){
 	}
 
 	system("pause");
+	_CrtDumpMemoryLeaks();
 	return EXIT_SUCCESS;
 }
