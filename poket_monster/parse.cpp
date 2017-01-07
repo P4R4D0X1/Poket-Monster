@@ -5,6 +5,20 @@ CParse::CParse(){
 }
 
 CParse::~CParse(){
+	while (!m_tabMonsters.empty()){
+		delete m_tabMonsters.back();
+		m_tabMonsters.pop_back();
+	}
+
+	while (!m_tabAttacks.empty()){
+		delete m_tabAttacks.back();
+		m_tabAttacks.pop_back();
+	}
+
+	while (!m_tabObjects.empty()){
+		delete m_tabObjects.back();
+		m_tabObjects.pop_back();
+	}
 }
 
 void CParse::parseMonsters(std::string m_path){

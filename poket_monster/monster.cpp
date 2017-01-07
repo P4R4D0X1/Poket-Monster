@@ -27,6 +27,10 @@ CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p
 }
 
 CMonster::~CMonster(){
+	while (!m_attacks.empty()){
+		delete m_attacks.back();
+		m_attacks.pop_back();
+	}
 }
 
 Attack::STATE CMonster::attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena){
