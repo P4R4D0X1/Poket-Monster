@@ -17,9 +17,6 @@ CAttack::~CAttack(){
 }
 
 Attack::STATE CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy, CArena& p_arena){
-	/*
-	*	TODO gerer les attaques spéciales la famille 
-	*/
 	int l_damage;
 
 	std::mt19937 l_rng;
@@ -39,10 +36,10 @@ Attack::STATE CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy, 
 	if (p_attacker.getState() == Monster::STATE::paralized){
 		//Si le joueur est paralysé il a une chance sur quatre de rater son attaque
 		if (l_dist62(l_rng) <= 25)
-			return Attack::STATE::fallen;
+			return Attack::STATE::fail;
 	}
 	else if (l_dist62(l_rng) <= (unsigned int)(m_failProbability * 100)){
-		return Attack::STATE::fallen;
+		return Attack::STATE::fail;
 	}
 	
 	//On regarde si le terrain est inondé et si le joueur rate son attaque
@@ -51,6 +48,9 @@ Attack::STATE CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy, 
 		p_attacker.applyDamage((unsigned int)p_attacker.getAttack() / 4);
 		return Attack::STATE::fallen;
 	}
+
+	p_enemy.applyDamage(l_damage);
+	p_attacker.specialAttack(p_enemy, p_arena);
 
 	return Attack::STATE::success;
 }

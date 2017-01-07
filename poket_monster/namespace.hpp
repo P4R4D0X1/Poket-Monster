@@ -12,6 +12,7 @@ namespace Attack{
 	};
 
 	enum STATE{
+		fail,
 		success,
 		fallen
 	};
