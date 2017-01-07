@@ -37,6 +37,8 @@ class CMonster{
 		Monster::STATE getState();
 		void setState(Monster::STATE p_state);
 
+		void displayMonsterType();
+
 	protected:
 		virtual void usePotion(CPotion& p_potion);
 		virtual void useDrug(CDrug &p_drug);
