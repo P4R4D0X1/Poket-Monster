@@ -20,6 +20,8 @@ class CAttack{
 		Attack::TYPE getType();
 		void info();
 
+		void displayAttackType();
+
 	protected:
 		std::string m_name;
 		Attack::TYPE m_type;
