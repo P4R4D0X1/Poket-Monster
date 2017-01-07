@@ -121,10 +121,11 @@ Monster::STATE CMonster::getState(){
 
 void CMonster::info(){
 	std::cout << m_name << std::endl;
-	std::cout << "Type of monster : " << m_type << std::endl;
+	std::cout << "Type of monster : ";
+	displayMonsterType();
 	std::cout << "HP : " << m_hp << "/" << m_hpMax << std::endl;
 	std::cout << "Speed : " << m_speed << std::endl;
-	std::cout << "Attack : " << m_attack << std::endl;
+	std::cout << "Attack : " << m_attack << std::endl; 
 	std::cout << "Defense : " << m_defense << std::endl;
 }
 
@@ -225,4 +226,35 @@ void CMonster::setState(Monster::STATE p_state){
 	if (p_state == Monster::STATE::paralized)
 		m_stateLongevity = 6;
 	m_state = p_state;
+}
+
+void CMonster::displayMonsterType(){
+	switch (m_type){
+		case Monster::TYPE::electric:
+			std::cout << "Electric" << std::endl;
+			break;
+
+		case Monster::TYPE::water:
+			std::cout << "Water" << std::endl;
+			break;
+
+		case Monster::TYPE::fire:
+			std::cout << "Fire" << std::endl;
+			break;
+
+		case Monster::TYPE::insect:
+			std::cout << "Insect" << std::endl;
+			break;
+
+		case Monster::TYPE::plant:
+			std::cout << "Plant" << std::endl;
+			break;
+
+		case Monster::TYPE::rock:
+			std::cout << "Rock" << std::endl;
+
+		default:
+			std::cerr << "ERROR DISPLAYING MONSTER TYPE" << std::endl;
+			break;
+	}
 }
