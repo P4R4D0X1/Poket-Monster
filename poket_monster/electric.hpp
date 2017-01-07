@@ -11,7 +11,7 @@ class CElectric : public CMonster{
 		virtual ~CElectric();
 		
 		void specialAttack(CMonster& p_enemy, CArena& p_arena);
-		bool paralyze(); //indicates if enemy is paralysed or not after the attack
+		bool paralyze(); 
 		
 		void info();
 

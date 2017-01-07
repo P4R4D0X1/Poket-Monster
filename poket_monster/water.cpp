@@ -9,6 +9,8 @@ CWater::CWater(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_att
 }
 
 CWater::CWater(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_flood, float p_fall, std::vector<CAttack*>& p_attacks) : CMonster(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense, p_attacks, Monster::TYPE::water){
+	m_flood = p_flood;
+	m_fall = p_fall;
 }
 
 CWater::~CWater(){

@@ -126,7 +126,7 @@ void CMonster::info(){
 
 void CMonster::attacksInfo(){
 	std::vector<CAttack*>::iterator l_it;
-
+	
 	for (l_it = m_attacks.begin(); l_it != m_attacks.end(); ++l_it){
 		std::cout << "\t[ " << std::distance(m_attacks.begin(), l_it) << " ]\n";
 		(*l_it)->info();

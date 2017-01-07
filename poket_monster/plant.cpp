@@ -8,6 +8,7 @@ CPlant::CPlant(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_att
 }
 
 CPlant::CPlant(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_heal, std::vector<CAttack*>& p_attacks) : CGrass(p_name, p_hp, p_hpMax, p_speed, p_attack, p_defense, p_attacks, Monster::TYPE::plant){
+	m_heal = p_heal;
 }
 
 CPlant::~CPlant(){

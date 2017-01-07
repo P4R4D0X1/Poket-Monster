@@ -11,7 +11,7 @@ class CRock : public CMonster{
 		virtual ~CRock();
 
 		void specialAttack(CMonster& p_enemy, CArena& p_arena);
-		bool hide(); //hides during 3 rounds max
+		bool hide();
 		
 		void info();
 
