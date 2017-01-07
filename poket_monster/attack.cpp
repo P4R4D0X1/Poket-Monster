@@ -131,5 +131,4 @@ void CAttack::displayAttackType(){
 			std::cerr << "ERROR DISPLAYING Attack TYPE" << std::endl;
 			break;
 		}
-
 }
