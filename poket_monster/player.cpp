@@ -165,7 +165,7 @@ void CPlayer::objectListInfo(){
 	std::cout << "__________________________\n";
 }
 
-//GETER / SETER
+//GETTER / SETTER
 
 int CPlayer::getMonsterSpeed(){
 	return m_actualMonster->getSpeed();

@@ -15,21 +15,26 @@
 
 class CMonster{
 	public:
+		//CONSTRUCTOR / DESTRUCTOR
 		CMonster();
 		CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, Monster::TYPE p_type);
 		CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, std::vector<CAttack*>& p_attacks, Monster::TYPE p_type);
 		virtual ~CMonster();
 
-		unsigned int chooseAttack(CMonster& p_enemy, CArena& p_arena); //TODO
+		//FUNCTION
+		unsigned int chooseAttack(CMonster& p_enemy, CArena& p_arena); 
 		Attack::STATE attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena);
 		virtual void specialAttack(CMonster& p_enemy, CArena& p_arena) = 0;
 		void applyDamage(unsigned int p_damage);
 		virtual void updateState(CArena& p_arena);
 		void useObject(CObject& p_object);
 		bool isOperational();
+		
+		//INFO
 		virtual void info();
 		void attacksInfo();
 
+		//GETTER / SETTER
 		int getSpeed();
 		int getAttack();
 		int getDefense();
@@ -39,6 +44,7 @@ class CMonster{
 
 
 	protected:
+		//PROTECTED FUNCTION
 		virtual void usePotion(CPotion& p_potion);
 		virtual void useDrug(CDrug &p_drug);
 		void displayMonsterType();

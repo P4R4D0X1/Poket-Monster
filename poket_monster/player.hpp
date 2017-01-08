@@ -28,7 +28,7 @@ class CPlayer{
 		void monstersListInfo();
 		void objectListInfo();
 
-		//GETER / SETER
+		//GETTER / SETTER
 		int getMonsterSpeed();
 
 	protected:
