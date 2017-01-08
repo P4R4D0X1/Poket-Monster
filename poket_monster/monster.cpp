@@ -37,7 +37,7 @@ CMonster::~CMonster(){
 
 //FUNCTION
 
-unsigned int CMonster::chooseAttack(CMonster& p_enemy, CArena& p_arena){
+void CMonster::chooseAttack(CMonster& p_enemy, CArena& p_arena){
 	std::string l_userInput("");
 	unsigned l_choice = -1;
 

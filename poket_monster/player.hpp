@@ -19,7 +19,7 @@ class CPlayer{
 		void chooseAction(CPlayer& p_enemy, CArena& p_arena);
 		void action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena);
 		
-		unsigned int chooseMonster();	
+		void chooseMonster();	
 		void chooseAttack(CPlayer& p_enemy, CArena& p_arena);
 		void chooseObject();
 

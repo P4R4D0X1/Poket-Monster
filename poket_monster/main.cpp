@@ -39,30 +39,26 @@
 #include <string>
 
 #include "parse.hpp"
+#include "player.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv){
 
 	CParse l_parse;
-	vector<CMonster*> l_pokedex;
-	vector<CMonster*>::iterator l_it;
+	CPlayer *l_playerOne, *l_playerTwo;
+	CArena l_arena;
 
 	l_parse.parseMonsters("monsters.pkmn");
 	l_parse.parseAttack("attacks.pkmn");
 	l_parse.parseObjects("objects.pkmn");
-	l_parse.info();
 
-	l_pokedex = l_parse.createMonsterVector(4);
+	l_playerOne = new CPlayer("PARADOX", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
+	l_playerTwo = new CPlayer("KERA", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
 
-	for (l_it = l_pokedex.begin(); l_it != l_pokedex.end(); ++l_it){
-		cout << "________________" << endl;
-		cout << "\n_________\n[MONSTER]\n_________\n\n";
-		cout << "\t[ " << distance(l_pokedex.begin(), l_it) << " ]\n";
-		(*l_it)->info();
-		cout << "\n_________\n[ATTACKS]\n_________\n\n";
-		(*l_it)->attacksInfo();
-		cout << "________________" << endl;
+	while (1){
+		l_playerOne->chooseAction(*l_playerTwo, l_arena);
+		l_playerTwo->chooseAction(*l_playerOne, l_arena);
 	}
 
 	system("pause");

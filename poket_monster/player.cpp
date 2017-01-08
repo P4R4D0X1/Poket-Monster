@@ -21,6 +21,9 @@ void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 	std::string l_userInput("");
 	int l_choice = -1;
 
+	if (m_actualMonster)
+		m_actualMonster->info();
+
 	do{
 		actionsListInfo();
 		std::cout << "[CHOICE] : ";
@@ -75,7 +78,8 @@ void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena)
 		default:
 			break;
 	}
-	//Mettre a jour le monstre
+
+	//Mettre a jour le monstre et l'arène
 	m_actualMonster->updateState(p_arena);
 	p_arena.updateState();
 
@@ -90,7 +94,7 @@ void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena)
 	}
 }
 
-unsigned int CPlayer::chooseMonster(){
+void CPlayer::chooseMonster(){
 	std::string l_userInput("");
 	unsigned l_choice = -1;
 
