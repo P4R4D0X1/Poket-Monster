@@ -11,11 +11,11 @@ class CInsect : public CGrass{
 		virtual ~CInsect();
 
 		void specialAttack(CMonster& p_enemy, CArena& p_arena);
-		bool poison();
-
 		void info();
 
 	protected:
+		bool poison();
+
 		float m_poison;
 
 };

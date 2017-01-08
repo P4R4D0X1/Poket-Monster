@@ -11,11 +11,11 @@ class CFire : public CMonster{
 		virtual ~CFire();
 
 		void specialAttack(CMonster& p_enemy, CArena& p_arena);
-		bool fire();
-
 		void info();
 
 	protected:
+		bool fire();
+
 		float m_burn;
 
 };

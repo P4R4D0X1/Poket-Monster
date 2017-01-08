@@ -50,7 +50,8 @@ Attack::STATE CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy, 
 	}
 
 	p_enemy.applyDamage(l_damage);
-	p_attacker.specialAttack(p_enemy, p_arena);
+	if (m_type != Attack::TYPE::normal)
+		p_attacker.specialAttack(p_enemy, p_arena);
 
 	return Attack::STATE::success;
 }
@@ -95,40 +96,12 @@ Attack::TYPE CAttack::getType(){
 
 void CAttack::info(){
 	std::cout << m_name << std::endl;
-	std::cout << "Type : ";
-	displayAttackType();
+	std::cout << "Type : " << m_type << std::endl;
 	std::cout << "NbUse : " << m_nbUse << std::endl;
 	std::cout << "Power : " << m_power << std::endl;
 	std::cout << "Fail : " << m_failProbability << std::endl;
 }
 
-void CAttack::displayAttackType(){
-	switch (m_type){
-		case Attack::TYPE::electric:
-			std::cout << "Electric" << std::endl;
-			break;
-
-		case Attack::TYPE::water:
-			std::cout << "Water" << std::endl;
-			break;
-
-		case Attack::TYPE::fire:
-			std::cout << "Fire" << std::endl;
-			break;
-
-		case Attack::TYPE::grass:
-			std::cout << "Grass" << std::endl;
-			break;
-
-		case Attack::TYPE::rock:
-			std::cout << "Rock" << std::endl;
-
-		case Attack::TYPE::normal:
-			std::cout << "Normal" << std::endl;
-			break;
-
-		default:
-			std::cerr << "ERROR DISPLAYING Attack TYPE" << std::endl;
-			break;
-		}
+int CAttack::getNbUse(){
+	return m_nbUse;
 }

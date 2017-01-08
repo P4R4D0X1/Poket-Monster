@@ -19,15 +19,15 @@ void CInsect::specialAttack(CMonster& p_enemy, CArena& p_arena){
 		p_enemy.setState(Monster::STATE::poisoned);
 }
 
+void CInsect::info(){
+	CGrass::info();
+	std::cout << "Poison : " << m_poison << std::endl;
+}
+
 bool CInsect::poison(){
 	std::mt19937 l_rng;
 	l_rng.seed(std::random_device()());
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
 
 	return (l_dist6(l_rng) <= m_poison * 100) ? true : false;
-}
-
-void CInsect::info(){
-	CGrass::info();
-	std::cout << "Poison : " << m_poison << std::endl;
 }

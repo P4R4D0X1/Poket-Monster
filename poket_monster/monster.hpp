@@ -15,21 +15,27 @@
 
 class CMonster{
 	public:
+		//CONSTRUCTOR / DESTRUCTOR
 		CMonster();
 		CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, Monster::TYPE p_type);
 		CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, std::vector<CAttack*>& p_attacks, Monster::TYPE p_type);
 		virtual ~CMonster();
 
+		//FUNCTION
+		void chooseAttack(CMonster& p_enemy, CArena& p_arena); 
 		Attack::STATE attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena);
+		
 		virtual void specialAttack(CMonster& p_enemy, CArena& p_arena) = 0;
 		void applyDamage(unsigned int p_damage);
-		virtual void updateState(CArena& p_arena); //revoir ce merdier depuis le passage du CArena par paramètres
+		virtual void updateState(CArena& p_arena);
 		void useObject(CObject& p_object);
-		bool isAlive();
+		bool isOperational();
 		
+		//INFO
 		virtual void info();
 		void attacksInfo();
 
+		//GETTER / SETTER
 		int getSpeed();
 		int getAttack();
 		int getDefense();
@@ -37,11 +43,12 @@ class CMonster{
 		Monster::STATE getState();
 		void setState(Monster::STATE p_state);
 
-		void displayMonsterType();
 
 	protected:
+		//PROTECTED FUNCTION
 		virtual void usePotion(CPotion& p_potion);
 		virtual void useDrug(CDrug &p_drug);
+		void displayMonsterType();
 
 		std::string m_name;
 		int m_hp;

@@ -12,7 +12,6 @@ class CGrass : public CMonster{
 
 		virtual void specialAttack(CMonster& p_enemy, CArena& p_arena);
 		void updateState(CArena& p_arena);
-
 		void info();
 
 	protected:

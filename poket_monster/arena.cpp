@@ -1,16 +1,16 @@
 #include "arena.hpp"
 
 CArena::CArena(){
+	m_state = Arena::STATE::normal;
+	m_stateLongevity = 0;
+	m_stateImpactProb = 0.f;
 }
 
 CArena::~CArena(){
 }
 
 void CArena::updateState(){
-	m_stateLongevity--;
-
-	if (m_stateLongevity <= 0)
-		m_state == Arena::STATE::normal;
+	(m_stateLongevity > 0) ? m_stateLongevity-- : m_state = Arena::STATE::normal;
 }
 
 void CArena::flood(float p_stateImpactProb){

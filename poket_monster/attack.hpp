@@ -16,13 +16,15 @@ class CAttack{
 
 		//Return la valeur de la contre attack
 		Attack::STATE use(class CMonster& p_attacker, class CMonster& p_enemy, CArena& p_arena);
-		float computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy);
 		Attack::TYPE getType();
+		
 		void info();
 
-		void displayAttackType();
+		int getNbUse();
 
 	protected:
+		float computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy);
+
 		std::string m_name;
 		Attack::TYPE m_type;
 

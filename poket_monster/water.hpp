@@ -11,11 +11,11 @@ class CWater : public CMonster{
 		virtual ~CWater();
 
 		void specialAttack(CMonster& p_enemy, CArena& p_arena);
-		bool flood();
-
 		void info();
 
 	protected:
+		bool flood();
+
 		float m_flood;
 		float m_fall;
 };

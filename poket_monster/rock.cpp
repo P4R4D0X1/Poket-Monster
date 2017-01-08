@@ -20,6 +20,11 @@ void CRock::specialAttack(CMonster& p_enemy, CArena& p_arena){
 	hide();
 }
 
+void CRock::info(){
+	CMonster::info();
+	std::cout << "Protect : " << m_protect << std::endl;
+}
+
 bool CRock::hide(){
 	std::mt19937 l_rng;
 	l_rng.seed(std::random_device()());
@@ -31,11 +36,6 @@ bool CRock::hide(){
 		m_defense *= 2;
 		return true;
 	}
-	
-	return false;
-}
 
-void CRock::info(){
-	CMonster::info();
-	std::cout << "Protect : " << m_protect << std::endl;
+	return false;
 }

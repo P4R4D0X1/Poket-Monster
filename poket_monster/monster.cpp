@@ -1,5 +1,7 @@
 #include "monster.hpp"
 
+//CONSTRUCTOR / DESTRUCTOR
+
 CMonster::CMonster(){
 }
 
@@ -33,8 +35,34 @@ CMonster::~CMonster(){
 	}
 }
 
+//FUNCTION
+
+void CMonster::chooseAttack(CMonster& p_enemy, CArena& p_arena){
+	std::string l_userInput("");
+	unsigned l_choice = -1;
+
+	do{
+		attacksInfo();
+		std::cout << "[CHOICE] : ";
+
+		std::getline(std::cin, l_userInput);
+		l_choice = (unsigned int)std::stoi(l_userInput);
+	} while (l_choice > m_attacks.size() || l_choice < 0);
+
+	attack(l_choice, p_enemy, p_arena);
+}
+
 Attack::STATE CMonster::attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena){
-	return m_attacks[p_index]->use(*this, p_enemy, p_arena);
+	Attack::STATE l_state;
+
+	l_state = m_attacks.at(p_index)->use(*this, p_enemy, p_arena);
+
+	if (m_attacks.at(p_index)->getNbUse() <= 0){
+		delete(m_attacks.at(p_index));
+		m_attacks.erase(m_attacks.begin() + p_index);
+	}
+	
+	return l_state;
 }
 
 void CMonster::applyDamage(unsigned int p_damage){
@@ -49,10 +77,9 @@ void CMonster::updateState(CArena& p_arena){
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
 
 
-	if (m_state != Monster::STATE::feelgood && m_stateLongevity == 0){
+	if (m_state != Monster::STATE::feelgood && m_stateLongevity == 0)
 		m_state = Monster::STATE::feelgood;
-		return;
-	}
+
 
 	switch (m_state){
 		case  Monster::STATE::feelgood:
@@ -81,6 +108,12 @@ void CMonster::updateState(CArena& p_arena){
 		default:
 			break;
 	}
+
+	if (m_hp <= 0)
+		m_state = Monster::STATE::dead;
+
+	if (!m_attacks.size())
+		m_state = Monster::STATE::exhausted;
 }
 
 void CMonster::useObject(CObject& p_object){
@@ -95,9 +128,36 @@ void CMonster::useObject(CObject& p_object){
 	}
 }
 
-bool CMonster::isAlive(){
-	return (m_hp <= 0) ? false : true;
+bool CMonster::isOperational(){
+	return (m_state == Monster::STATE::dead || m_state == Monster::STATE::exhausted) ? false : true;
 }
+
+//INFO
+
+void CMonster::info(){
+	std::cout << m_name << std::endl;
+	std::cout << "Type of monster : ";
+	displayMonsterType();
+	std::cout << "HP : " << m_hp << "/" << m_hpMax << std::endl;
+	std::cout << "Speed : " << m_speed << std::endl;
+	std::cout << "Attack : " << m_attack << std::endl;
+	std::cout << "Defense : " << m_defense << std::endl;
+	std::cout << "State : [" << m_stateLongevity << "] " << m_state << std::endl;
+}
+
+void CMonster::attacksInfo(){
+	std::vector<CAttack*>::iterator l_it;
+
+	std::cout << "_________[ATTACKS]_________\n";
+	for (l_it = m_attacks.begin(); l_it != m_attacks.end(); ++l_it){
+		std::cout << "{" << std::distance(m_attacks.begin(), l_it) << "}\n";
+		(*l_it)->info();
+		std::cout << std::endl;
+	}
+	std::cout << "___________________________\n";
+}
+
+//GETTER / SETTER
 
 int CMonster::getSpeed(){
 	return m_speed;
@@ -119,25 +179,13 @@ Monster::STATE CMonster::getState(){
 	return m_state;
 }
 
-void CMonster::info(){
-	std::cout << m_name << std::endl;
-	std::cout << "Type of monster : ";
-	displayMonsterType();
-	std::cout << "HP : " << m_hp << "/" << m_hpMax << std::endl;
-	std::cout << "Speed : " << m_speed << std::endl;
-	std::cout << "Attack : " << m_attack << std::endl; 
-	std::cout << "Defense : " << m_defense << std::endl;
+void CMonster::setState(Monster::STATE p_state){
+	if (p_state == Monster::STATE::paralized)
+		m_stateLongevity = 6;
+	m_state = p_state;
 }
 
-void CMonster::attacksInfo(){
-	std::vector<CAttack*>::iterator l_it;
-	
-	for (l_it = m_attacks.begin(); l_it != m_attacks.end(); ++l_it){
-		std::cout << "\t[ " << std::distance(m_attacks.begin(), l_it) << " ]\n";
-		(*l_it)->info();
-		std::cout << std::endl;
-	}
-}
+//PROTECTED FUNCTION
 
 void CMonster::usePotion(CPotion& p_potion){
 	switch (p_potion.getType()){
@@ -220,12 +268,6 @@ void CMonster::useDrug(CDrug& p_drug){
 	}
 
 	std::cout << "You used one" << p_drug.getName() << "!" << std::endl;
-}
-
-void CMonster::setState(Monster::STATE p_state){
-	if (p_state == Monster::STATE::paralized)
-		m_stateLongevity = 6;
-	m_state = p_state;
 }
 
 void CMonster::displayMonsterType(){

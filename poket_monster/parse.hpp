@@ -53,11 +53,11 @@ class CParse{
 		void parseMonsters(std::string m_path);
 		void parseAttack(std::string m_path);
 		void parseObjects(std::string m_path);
+		std::vector<CMonster*> createMonsterVector(int p_monsterAmount);
+		std::vector<CObject*> createObjectVector(int p_objectAmount);
 
 		void infoStructMonster(sMonster *p_monster);
 		void info();
-
-		std::vector<CMonster*> createMonsterVector(int p_monsterAmount);
 
 	protected:
 		std::vector<CAttack*> createAttackVector(int p_attackAmount, Attack::TYPE p_type);
