@@ -4,7 +4,10 @@ CPlayer::CPlayer(){
 }
 
 CPlayer::CPlayer(std::string p_name, std::vector<CMonster*>& p_monsters, std::vector<CObject*>& p_objects){
-
+	m_name = p_name;
+	m_actualMonster = NULL;
+	m_monsters = p_monsters;
+	m_objects = p_objects;
 }
 
 CPlayer::~CPlayer(){

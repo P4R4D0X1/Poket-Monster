@@ -446,6 +446,26 @@ std::vector<CMonster*> CParse::createMonsterVector(int p_monsterAmount){
 	return l_vector;
 }
 
+std::vector<CObject*> CParse::createObjectVector(int p_objectAmount){
+	CObject *l_object;
+	std::vector<CObject*>::iterator l_it;
+	std::vector<CObject*> l_objects, l_vector;
+
+	l_objects = m_tabObjects;
+
+	while (p_objectAmount > 0 && l_objects.size()){
+		//On choisit un objet aléatoirement et on utilise le constructeur de copie pour ajouter l'objet au vector
+		l_it = select_randomly(l_objects.begin(), l_objects.end());
+		l_object = new CObject(**l_it);
+		l_vector.push_back(l_object);
+		l_objects.erase(l_it);
+
+		p_objectAmount--;
+	}
+
+	return l_vector;
+}
+
 std::vector<CAttack*> CParse::createAttackVector(int p_attackAmount, Attack::TYPE p_type){
 	CAttack *l_attack;
 	std::vector<CAttack*>::iterator l_it;
