@@ -20,7 +20,7 @@ void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 
 	
 	do{
-		std::cout << "_________[MENU]_________\n";
+		std::cout << "_________[ACTION]_________\n";
 
 		if (m_monsters.size())
 			std::cout << "{" << Player::ACTION::chooseMonster << "}MONSTERS  ";
@@ -31,7 +31,7 @@ void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 		if (m_actualMonster && m_objects.size())
 			std::cout << "{" << Player::ACTION::useObject << "}OBJECTS  ";
 
-		std::cout << "\n______________________\n" << std::endl;
+		std::cout << "\n________________________\n" << std::endl;
 		std::cout << "[CHOICE] : ";
 
 		std::getline(std::cin, l_userInput);
@@ -103,11 +103,13 @@ void CPlayer::attackListInfo(){
 void CPlayer::objectListInfo(){
 	std::vector<CObject*>::iterator l_it;
 
+	std::cout << "_________[OJECTS]_________\n";
 	for (l_it = m_objects.begin(); l_it != m_objects.end(); ++l_it){
-		std::cout << "\t[ " << std::distance(m_objects.begin(), l_it) << " ]\n";
+		std::cout << "{" << std::distance(m_objects.begin(), l_it) << "}\n";
 		(*l_it)->info();
 		std::cout << std::endl;
 	}
+	std::cout << "__________________________\n";
 }
 
 int CPlayer::getMonsterSpeed(){

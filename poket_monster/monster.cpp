@@ -147,11 +147,13 @@ void CMonster::info(){
 void CMonster::attacksInfo(){
 	std::vector<CAttack*>::iterator l_it;
 	
+	std::cout << "_________[ATTACKS]_________\n";
 	for (l_it = m_attacks.begin(); l_it != m_attacks.end(); ++l_it){
-		std::cout << "\t[ " << std::distance(m_attacks.begin(), l_it) << " ]\n";
+		std::cout << "{" << std::distance(m_attacks.begin(), l_it) << "}\n";
 		(*l_it)->info();
 		std::cout << std::endl;
 	}
+	std::cout << "___________________________\n";
 }
 
 void CMonster::usePotion(CPotion& p_potion){
