@@ -39,21 +39,27 @@
 #include <string>
 
 #include "parse.hpp"
+#include "graphic.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv){
 
+	CGraphic l_graphic;
 	CParse l_parse;
 	vector<CMonster*> l_pokedex;
 	vector<CMonster*>::iterator l_it;
 
+	system("color 0E");
+
+	l_graphic.displayHeader("head.pkmn");
+
 	l_parse.parseMonsters("monsters.pkmn");
 	l_parse.parseAttack("attacks.pkmn");
 	l_parse.parseObjects("objects.pkmn");
-	l_parse.info();
+	//l_parse.info();
 
-	l_pokedex = l_parse.createMonsterVector(4);
+	/*l_pokedex = l_parse.createMonsterVector(4);
 
 	for (l_it = l_pokedex.begin(); l_it != l_pokedex.end(); ++l_it){
 		cout << "________________" << endl;
@@ -63,7 +69,7 @@ int main(int argc, char **argv){
 		cout << "\n_________\n[ATTACKS]\n_________\n\n";
 		(*l_it)->attacksInfo();
 		cout << "________________" << endl;
-	}
+	}*/
 
 	system("pause");
 	_CrtDumpMemoryLeaks();

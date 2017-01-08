@@ -85,6 +85,7 @@
     <ClCompile Include="electric.cpp" />
     <ClCompile Include="fire.cpp" />
     <ClCompile Include="game.cpp" />
+    <ClCompile Include="graphic.cpp" />
     <ClCompile Include="grass.cpp" />
     <ClCompile Include="insect.cpp" />
     <ClCompile Include="main.cpp" />
@@ -104,6 +105,7 @@
     <ClInclude Include="drug.hpp" />
     <ClInclude Include="fire.hpp" />
     <ClInclude Include="game.hpp" />
+    <ClInclude Include="graphic.hpp" />
     <ClInclude Include="grass.hpp" />
     <ClInclude Include="insect.hpp" />
     <ClInclude Include="monster.hpp" />
@@ -122,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="attacks.pkmn" />
+    <None Include="head.pkmn" />
     <None Include="monsters.pkmn" />
     <None Include="objects.pkmn" />
   </ItemGroup>
