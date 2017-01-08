@@ -23,10 +23,9 @@ class CMonster{
 		Attack::STATE attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena);
 		virtual void specialAttack(CMonster& p_enemy, CArena& p_arena) = 0;
 		void applyDamage(unsigned int p_damage);
-		virtual void updateState(CArena& p_arena); //revoir ce merdier depuis le passage du CArena par paramètres
+		virtual void updateState(CArena& p_arena);
 		void useObject(CObject& p_object);
-		bool isAlive();
-		
+		bool isOperational();
 		virtual void info();
 		void attacksInfo();
 
@@ -37,11 +36,11 @@ class CMonster{
 		Monster::STATE getState();
 		void setState(Monster::STATE p_state);
 
-		void displayMonsterType();
 
 	protected:
 		virtual void usePotion(CPotion& p_potion);
 		virtual void useDrug(CDrug &p_drug);
+		void displayMonsterType();
 
 		std::string m_name;
 		int m_hp;

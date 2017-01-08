@@ -30,6 +30,8 @@ namespace Monster{
 
 	enum STATE{
 		feelgood,
+		exhausted,
+		dead,
 		poisoned,
 		paralized,
 		burned, 

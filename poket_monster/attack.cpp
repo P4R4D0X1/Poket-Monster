@@ -50,7 +50,8 @@ Attack::STATE CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy, 
 	}
 
 	p_enemy.applyDamage(l_damage);
-	p_attacker.specialAttack(p_enemy, p_arena);
+	if (m_type != Attack::TYPE::normal)
+		p_attacker.specialAttack(p_enemy, p_arena);
 
 	return Attack::STATE::success;
 }
@@ -99,4 +100,8 @@ void CAttack::info(){
 	std::cout << "NbUse : " << m_nbUse << std::endl;
 	std::cout << "Power : " << m_power << std::endl;
 	std::cout << "Fail : " << m_failProbability << std::endl;
+}
+
+int CAttack::getNbUse(){
+	return m_nbUse;
 }

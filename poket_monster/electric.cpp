@@ -20,15 +20,15 @@ void CElectric::specialAttack(CMonster& p_enemy, CArena& p_arena){
 		p_enemy.setState(Monster::STATE::paralized);
 }
 
+void CElectric::info(){
+	CMonster::info();
+	std::cout << "Paralysis : " << m_paralysis << std::endl;
+}
+
 bool CElectric::paralyze(){
 	std::mt19937 l_rng;
 	l_rng.seed(std::random_device()());
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
-	
-	return (l_dist6(l_rng) <= m_paralysis * 100) ? true : false;
-}
 
-void CElectric::info(){
-	CMonster::info();
-	std::cout << "Paralysis : " << m_paralysis << std::endl;
+	return (l_dist6(l_rng) <= m_paralysis * 100) ? true : false;
 }

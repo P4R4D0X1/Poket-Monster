@@ -34,7 +34,16 @@ CMonster::~CMonster(){
 }
 
 Attack::STATE CMonster::attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena){
-	return m_attacks[p_index]->use(*this, p_enemy, p_arena);
+	Attack::STATE l_state;
+
+	l_state = m_attacks.at(p_index)->use(*this, p_enemy, p_arena);
+
+	if (m_attacks.at(p_index)->getNbUse() <= 0){
+		delete(m_attacks.at(p_index));
+		m_attacks.erase(m_attacks.begin() + p_index);
+	}
+	
+	return l_state;
 }
 
 void CMonster::applyDamage(unsigned int p_damage){
@@ -49,10 +58,9 @@ void CMonster::updateState(CArena& p_arena){
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
 
 
-	if (m_state != Monster::STATE::feelgood && m_stateLongevity == 0){
+	if (m_state != Monster::STATE::feelgood && m_stateLongevity == 0)
 		m_state = Monster::STATE::feelgood;
-		return;
-	}
+
 
 	switch (m_state){
 		case  Monster::STATE::feelgood:
@@ -81,6 +89,12 @@ void CMonster::updateState(CArena& p_arena){
 		default:
 			break;
 	}
+
+	if (m_hp <= 0)
+		m_state = Monster::STATE::dead;
+
+	if (!m_attacks.size())
+		m_state = Monster::STATE::exhausted;
 }
 
 void CMonster::useObject(CObject& p_object){
@@ -95,8 +109,8 @@ void CMonster::useObject(CObject& p_object){
 	}
 }
 
-bool CMonster::isAlive(){
-	return (m_hp <= 0) ? false : true;
+bool CMonster::isOperational(){
+	return (m_state == Monster::STATE::dead || m_state == Monster::STATE::exhausted) ? false : true;
 }
 
 int CMonster::getSpeed(){
@@ -127,6 +141,7 @@ void CMonster::info(){
 	std::cout << "Speed : " << m_speed << std::endl;
 	std::cout << "Attack : " << m_attack << std::endl; 
 	std::cout << "Defense : " << m_defense << std::endl;
+	std::cout << "State : [" << m_stateLongevity << "] " << m_state << std::endl;
 }
 
 void CMonster::attacksInfo(){

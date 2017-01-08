@@ -10,12 +10,12 @@ class CElectric : public CMonster{
 		CElectric(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, float p_paralysis, std::vector<CAttack*>& p_attacks);
 		virtual ~CElectric();
 		
-		void specialAttack(CMonster& p_enemy, CArena& p_arena);
-		bool paralyze(); 
-		
+		void specialAttack(CMonster& p_enemy, CArena& p_arena);	
 		void info();
 
 	protected:
+		bool paralyze();
+
 		float m_paralysis;
 };
 

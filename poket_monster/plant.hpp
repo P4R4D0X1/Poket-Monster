@@ -11,11 +11,11 @@ class CPlant : public CGrass{
 		virtual ~CPlant();
 
 		void specialAttack(CMonster& p_enemy, CArena& p_arena);
-		bool heal();
-		
 		void info();
 
 	protected:
+		bool heal();
+
 		float m_heal;
 };
 
