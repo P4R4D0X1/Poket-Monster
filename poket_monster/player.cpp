@@ -23,22 +23,23 @@ void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 	int l_choice = -1;
 
 	//Si le monstre n'est plus operationel on le supprime
-	if (m_actualMonster && !m_actualMonster->isOperational()){
-		for (l_it = m_monsters.begin(); l_it != m_monsters.end();) {
-			if ((*l_it) == m_actualMonster) {
-				delete(*l_it);
-				l_it = m_monsters.erase(l_it);
+	if (m_actualMonster){
+		if (!m_actualMonster->isOperational()){
+			for (l_it = m_monsters.begin(); l_it != m_monsters.end();) {
+				if ((*l_it) == m_actualMonster) {
+					delete(*l_it);
+					l_it = m_monsters.erase(l_it);
+				}
+				else {
+					++l_it;
+				}
 			}
-			else {
-				++l_it;
-			}
+			m_actualMonster = NULL;
 		}
-		m_actualMonster = NULL;
-		std::cout << "DEAD\n";
+		else{
+			m_actualMonster->info();
+		}
 	}
-
-	if (m_actualMonster)
-		m_actualMonster->info();
 
 	do{
 		do{
