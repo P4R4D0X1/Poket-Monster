@@ -19,16 +19,33 @@ CPlayer::~CPlayer(){
 
 void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 	std::string l_userInput("");
+	std::vector<CMonster*>::iterator l_it;
 	int l_choice = -1;
+
+	//Si le monstre n'est plus operationel on le supprime
+	if (m_actualMonster && !m_actualMonster->isOperational()){
+		for (l_it = m_monsters.begin(); l_it != m_monsters.end();) {
+			if ((*l_it) == m_actualMonster) {
+				delete(*l_it);
+				l_it = m_monsters.erase(l_it);
+			}
+			else {
+				++l_it;
+			}
+		}
+		m_actualMonster = NULL;
+		std::cout << "DEAD\n";
+	}
 
 	if (m_actualMonster)
 		m_actualMonster->info();
 
 	do{
-		actionsListInfo();
-		std::cout << "[CHOICE] : ";
-
-		std::getline(std::cin, l_userInput);
+		do{
+			actionsListInfo();
+			std::cout << "[CHOICE] : ";
+			std::getline(std::cin, l_userInput);
+		} while (l_userInput.empty());
 		l_choice = std::stoi(l_userInput);
 
 		switch ((Player::ACTION)l_choice){
@@ -58,7 +75,6 @@ void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 }
 
 void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena){
-	std::vector<CMonster*>::iterator l_it;
 
 	switch (p_action){
 		case Player::ACTION::chooseMonster:
@@ -82,16 +98,6 @@ void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena)
 	//Mettre a jour le monstre et l'arène
 	m_actualMonster->updateState(p_arena);
 	p_arena.updateState();
-
-	//Si le monstre n'est plus operationel on le supprime
-	if (!m_actualMonster->isOperational()){
-		for (l_it = m_monsters.begin(); l_it != m_monsters.end(); ++l_it){
-			if ((*l_it) == m_actualMonster){
-				delete(*l_it);
-				m_monsters.erase(l_it);
-			}
-		}
-	}
 }
 
 void CPlayer::chooseMonster(){
@@ -99,11 +105,13 @@ void CPlayer::chooseMonster(){
 	unsigned l_choice = -1;
 
 	do{
-		monstersListInfo();
-		std::cout << "[CHOICE] : ";
-
-		std::getline(std::cin, l_userInput);
+		do{
+			monstersListInfo();
+			std::cout << "[CHOICE] : ";
+			std::getline(std::cin, l_userInput);
+		} while (l_userInput.empty());
 		l_choice = (unsigned int)std::stoi(l_userInput);
+
 	} while (l_choice > m_monsters.size() || l_choice < 0);
 
 	m_actualMonster = m_monsters.at(l_choice);
@@ -118,11 +126,13 @@ void CPlayer::chooseObject(){
 	unsigned l_choice = -1;
 
 	do{
-		objectListInfo();
-		std::cout << "[CHOICE] : ";
-
-		std::getline(std::cin, l_userInput);
+		do{
+			objectListInfo();
+			std::cout << "[CHOICE] : ";
+			std::getline(std::cin, l_userInput);
+		} while (l_userInput.empty());
 		l_choice = (unsigned int)std::stoi(l_userInput);
+
 	} while (l_choice > m_objects.size() || l_choice < 0);
 
 	m_actualMonster->useObject(*(m_objects.at(l_choice)));

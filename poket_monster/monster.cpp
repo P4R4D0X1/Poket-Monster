@@ -42,11 +42,13 @@ void CMonster::chooseAttack(CMonster& p_enemy, CArena& p_arena){
 	unsigned l_choice = -1;
 
 	do{
-		attacksInfo();
-		std::cout << "[CHOICE] : ";
-
-		std::getline(std::cin, l_userInput);
+		do{
+			attacksInfo();
+			std::cout << "[CHOICE] : ";
+			std::getline(std::cin, l_userInput);
+		} while (l_userInput.empty());
 		l_choice = (unsigned int)std::stoi(l_userInput);
+
 	} while (l_choice > m_attacks.size() || l_choice < 0);
 
 	attack(l_choice, p_enemy, p_arena);
@@ -66,20 +68,16 @@ Attack::STATE CMonster::attack(unsigned int p_index, CMonster& p_enemy, CArena& 
 }
 
 void CMonster::applyDamage(unsigned int p_damage){
+	std::cout << "\t\t" << m_name << " TAKES " << p_damage << " DAMAGE" << std::endl;
 	m_hp -= p_damage;
 }
 
 void CMonster::updateState(CArena& p_arena){
-	float l_rescueProb = (6.0f - m_stateLongevity)/6.0f;
+	float l_rescueProb = (6.0f - (float)m_stateLongevity)/6.0f;
 
 	std::mt19937 l_rng;
 	l_rng.seed(std::random_device()());
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(1, 100);
-
-
-	if (m_state != Monster::STATE::feelgood && m_stateLongevity == 0)
-		m_state = Monster::STATE::feelgood;
-
 
 	switch (m_state){
 		case  Monster::STATE::feelgood:
@@ -96,7 +94,7 @@ void CMonster::updateState(CArena& p_arena){
 			break;
 
 		case Monster::STATE::paralized:
-			if (l_dist6(l_rng) <= (unsigned int)l_rescueProb * 100){
+			if (!m_stateLongevity || l_dist6(l_rng) <= (unsigned int)(l_rescueProb * 100.f)){
 				m_state = Monster::STATE::feelgood;
 				m_stateLongevity = 0;
 			}
@@ -129,6 +127,12 @@ void CMonster::useObject(CObject& p_object){
 }
 
 bool CMonster::isOperational(){
+	if (m_hp <= 0)
+		m_state = Monster::STATE::dead;
+
+	if (!m_attacks.size())
+		m_state = Monster::STATE::exhausted;
+
 	return (m_state == Monster::STATE::dead || m_state == Monster::STATE::exhausted) ? false : true;
 }
 
@@ -182,6 +186,7 @@ Monster::STATE CMonster::getState(){
 void CMonster::setState(Monster::STATE p_state){
 	if (p_state == Monster::STATE::paralized)
 		m_stateLongevity = 6;
+
 	m_state = p_state;
 }
 
