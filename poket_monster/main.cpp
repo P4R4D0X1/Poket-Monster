@@ -37,6 +37,7 @@
 
 #include <iostream>
 #include <string>
+#include <thread>
 
 #include "parse.hpp"
 #include "player.hpp"
@@ -61,6 +62,7 @@ int main(int argc, char **argv){
 	l_playerTwo = new CPlayer("KERA", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
 
 	while (1){
+		cout << "FABIEN\n";
 		l_playerOne->chooseAction(*l_playerTwo, l_arena);
 		l_playerTwo->chooseAction(*l_playerOne, l_arena);
 	}

@@ -17,17 +17,17 @@ CAttack::~CAttack(){
 }
 
 Attack::STATE CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy, CArena& p_arena){
-	int l_damage;
+	unsigned int l_damage;
 
 	std::mt19937 l_rng;
 	l_rng.seed(std::random_device()());
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist6(85, 100);
 	std::uniform_int_distribution<std::mt19937::result_type> l_dist62(0, 100);
 
-	l_damage = 11 * p_attacker.getAttack() * m_power;
-	l_damage /= p_enemy.getDefense() * 25;
+	l_damage = (unsigned int)(11.f * (float)p_attacker.getAttack() * (float)m_power);
+	l_damage /= (unsigned int)((float)p_enemy.getDefense() * 25.f);
 	l_damage += 2;
-	l_damage *= (l_dist6(l_rng)/100);
+	l_damage = (unsigned int)((float)l_damage * ((float)l_dist6(l_rng) / 100.f));
 
 	l_damage = (unsigned int)((float)l_damage * computeAttackCoef(p_attacker.getType(), p_enemy.getType()));
 	m_nbUse--;
