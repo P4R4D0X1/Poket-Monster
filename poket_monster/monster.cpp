@@ -294,6 +294,7 @@ void CMonster::displayMonsterType(){
 
 		case Monster::TYPE::rock:
 			std::cout << "Rock" << std::endl;
+			break;
 
 		default:
 			std::cerr << "ERROR DISPLAYING MONSTER TYPE" << std::endl;

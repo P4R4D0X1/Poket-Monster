@@ -25,6 +25,7 @@ void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 		m_actualMonster->info();
 
 	do{
+		std::cout << "_________|" << m_name << "|_________" << std::endl;
 		actionsListInfo();
 		std::cout << "[CHOICE] : ";
 

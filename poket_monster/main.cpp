@@ -40,6 +40,7 @@
 
 #include "parse.hpp"
 #include "player.hpp"
+#include "graphic.hpp"
 
 using namespace std;
 
@@ -48,6 +49,9 @@ int main(int argc, char **argv){
 	CParse l_parse;
 	CPlayer *l_playerOne, *l_playerTwo;
 	CArena l_arena;
+	CGraphic l_graphic;
+
+	l_graphic.displayHeader("head.pkmn");
 
 	l_parse.parseMonsters("monsters.pkmn");
 	l_parse.parseAttack("attacks.pkmn");
