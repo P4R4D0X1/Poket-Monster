@@ -19,27 +19,7 @@ CPlayer::~CPlayer(){
 
 void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 	std::string l_userInput("");
-	std::vector<CMonster*>::iterator l_it;
 	int l_choice = -1;
-
-	//Si le monstre n'est plus operationel on le supprime
-	if (m_actualMonster){
-		if (!m_actualMonster->isOperational()){
-			for (l_it = m_monsters.begin(); l_it != m_monsters.end();) {
-				if ((*l_it) == m_actualMonster) {
-					delete(*l_it);
-					l_it = m_monsters.erase(l_it);
-				}
-				else {
-					++l_it;
-				}
-			}
-			m_actualMonster = NULL;
-		}
-		else{
-			m_actualMonster->info();
-		}
-	}
 
 	do{
 		do{
@@ -97,7 +77,8 @@ void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena)
 	}
 
 	//Mettre a jour le monstre et l'arène
-	m_actualMonster->updateState(p_arena);
+	//m_actualMonster->updateState(p_arena);
+	p_enemy.updateMonsters(p_arena);
 	p_arena.updateState();
 }
 
@@ -137,6 +118,30 @@ void CPlayer::chooseObject(){
 	} while (l_choice > m_objects.size() || l_choice < 0);
 
 	m_actualMonster->useObject(*(m_objects.at(l_choice)));
+}
+
+void CPlayer::updateMonsters(CArena& p_arena){
+	std::vector<CMonster*>::iterator l_it;
+
+	//Si le monstre n'est plus operationel on le supprime
+	if (m_actualMonster){
+		m_actualMonster->updateState(p_arena);
+		if (!m_actualMonster->isOperational()){
+			for (l_it = m_monsters.begin(); l_it != m_monsters.end();) {
+				if ((*l_it) == m_actualMonster) {
+					delete(*l_it);
+					l_it = m_monsters.erase(l_it);
+				}
+				else {
+					++l_it;
+				}
+			}
+			m_actualMonster = NULL;
+		}
+		else{
+			m_actualMonster->info();
+		}
+	}
 }
 
 //INFO 

@@ -23,6 +23,8 @@ class CPlayer{
 		void chooseAttack(CPlayer& p_enemy, CArena& p_arena);
 		void chooseObject();
 
+		void updateMonsters(CArena& p_arena);
+
 		//INFO 
 		void actionsListInfo();
 		void monstersListInfo();
@@ -38,6 +40,8 @@ class CPlayer{
 		CMonster* m_actualMonster;
 		std::vector<CMonster*> m_monsters;
 		std::vector<CObject*> m_objects;
+
+		
 };
 
 #endif
