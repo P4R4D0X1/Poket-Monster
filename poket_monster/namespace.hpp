@@ -90,4 +90,13 @@ namespace Player{
 		useObject
 	};
 }
+
+namespace Menu{
+	enum TYPE{
+		action,
+		monster,
+		attack,
+		object
+	};
+}
 #endif
