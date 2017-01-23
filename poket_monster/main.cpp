@@ -38,6 +38,7 @@
 #include <iostream>
 #include <string>
 #include <thread>
+#include <SFML/Window.hpp>
 
 #include "parse.hpp"
 #include "player.hpp"
@@ -48,11 +49,9 @@ using namespace std;
 int main(int argc, char **argv){
 
 	CParse l_parse;
-	CPlayer *l_playerOne, *l_playerTwo;
+	CPlayer *l_playerOne, *l_playerTwo, *l_actualPlayer;
 	CArena l_arena;
 	CGraphic l_graphic;
-
-	l_graphic.displayHeader("head.pkmn");
 
 	l_parse.parseMonsters("monsters.pkmn");
 	l_parse.parseAttack("attacks.pkmn");
@@ -61,12 +60,28 @@ int main(int argc, char **argv){
 	l_playerOne = new CPlayer("PARADOX", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
 	l_playerTwo = new CPlayer("KERA", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
 
+	l_actualPlayer = l_playerOne;
+
+	while (1)
+	{
+		if (l_actualPlayer == l_playerOne && l_playerOne->showMenu(*l_playerTwo, l_arena, l_graphic))
+			l_actualPlayer = l_playerTwo;
+		else if (l_actualPlayer == l_playerTwo && l_playerTwo->showMenu(*l_playerOne, l_arena, l_graphic))
+			l_actualPlayer = l_playerOne;
+
+		l_graphic.update();
+	}
+
+
+	/*
+
+
 	while (1){
 		cout << "FABIEN\n";
 		l_playerOne->chooseAction(*l_playerTwo, l_arena);
 		l_playerTwo->chooseAction(*l_playerOne, l_arena);
 	}
-
+	*/
 	system("pause");
 	_CrtDumpMemoryLeaks();
 	return EXIT_SUCCESS;

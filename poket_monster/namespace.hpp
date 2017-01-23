@@ -96,7 +96,9 @@ namespace Menu{
 		action,
 		monster,
 		attack,
-		object
+		object,
+		done
 	};
 }
+
 #endif

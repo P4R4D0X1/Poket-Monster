@@ -32,10 +32,12 @@ class CMonster{
 		bool isOperational();
 		
 		//INFO
+		virtual std::string infoToString();
 		virtual void info();
 		void attacksInfo();
 
 		//GETTER / SETTER
+		std::string getName();
 		int getSpeed();
 		int getAttack();
 		int getDefense();
@@ -43,12 +45,11 @@ class CMonster{
 		Monster::STATE getState();
 		void setState(Monster::STATE p_state);
 
-
 	protected:
 		//PROTECTED FUNCTION
 		virtual void usePotion(CPotion& p_potion);
 		virtual void useDrug(CDrug &p_drug);
-		void displayMonsterType();
+		std::string monsterTypeToString();
 
 		std::string m_name;
 		int m_hp;

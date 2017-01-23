@@ -138,10 +138,20 @@ bool CMonster::isOperational(){
 
 //INFO
 
+std::string CMonster::infoToString(){
+	std::string l_info;
+
+	l_info = m_name + "\n";
+	l_info += "TYPE " + monsterTypeToString() + "\n";
+	l_info += "HP [ " + std::to_string(m_hp) + " / " + std::to_string(m_hpMax) + " ]\n";
+	l_info += "SPEED " + std::to_string(m_speed) + "\n";
+	l_info += "ATTACK " + std::to_string(m_attack) + "\n";
+	l_info += "DEFENSE " + std::to_string(m_defense) + "\n";
+}
+
 void CMonster::info(){
-	std::cout << m_name << std::endl;
-	std::cout << "Type of monster : ";
-	displayMonsterType();
+	std::cout << m_name << "\n"; 
+	std::cout << "TYPE " << monsterTypeToString() << "\n";
 	std::cout << "HP : " << m_hp << "/" << m_hpMax << std::endl;
 	std::cout << "Speed : " << m_speed << std::endl;
 	std::cout << "Attack : " << m_attack << std::endl;
@@ -162,6 +172,10 @@ void CMonster::attacksInfo(){
 }
 
 //GETTER / SETTER
+
+std::string CMonster::getName(){
+	return m_name;
+}
 
 int CMonster::getSpeed(){
 	return m_speed;
@@ -275,34 +289,35 @@ void CMonster::useDrug(CDrug& p_drug){
 	std::cout << "You used one" << p_drug.getName() << "!" << std::endl;
 }
 
-void CMonster::displayMonsterType(){
+std::string CMonster::monsterTypeToString(){
 	switch (m_type){
 		case Monster::TYPE::electric:
-			std::cout << "Electric" << std::endl;
+			return "Electric";
 			break;
 
 		case Monster::TYPE::water:
-			std::cout << "Water" << std::endl;
+			return "Water";
 			break;
 
 		case Monster::TYPE::fire:
-			std::cout << "Fire" << std::endl;
+			return "Fire";
 			break;
 
 		case Monster::TYPE::insect:
-			std::cout << "Insect" << std::endl;
+			return "Insect";
 			break;
 
 		case Monster::TYPE::plant:
-			std::cout << "Plant" << std::endl;
+			return "Plant";
 			break;
 
 		case Monster::TYPE::rock:
-			std::cout << "Rock" << std::endl;
+			return "Rock";
 			break;
 
 		default:
 			std::cerr << "ERROR DISPLAYING MONSTER TYPE" << std::endl;
+			return "ERROR";
 			break;
 	}
 }

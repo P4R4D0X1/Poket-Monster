@@ -7,17 +7,88 @@ CPlayer::CPlayer(){
 
 CPlayer::CPlayer(std::string p_name, std::vector<CMonster*>& p_monsters, std::vector<CObject*>& p_objects){
 	m_name = p_name;
-	m_actualMonster = NULL;
 	m_monsters = p_monsters;
+	m_monster = m_monsters.begin();
 	m_objects = p_objects;
+	m_object = m_objects.begin();
+	m_menu = Menu::monster;
+	updateActionMenu();
 }
 
 CPlayer::~CPlayer(){
 }	
 
+//GRAPHX DEV
+
+bool CPlayer::showMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
+	switch (m_menu){
+		case Menu::action:
+			showActionMenu(p_enemy, p_arena, p_ui);
+			break;
+		
+		case Menu::monster:
+			return showMonsterMenu(p_enemy, p_arena, p_ui);
+			break;
+
+		case Menu::attack:
+			//(*m_monster)->showAttackMenu(p_enemy, p_arena, p_ui);
+			break;
+
+		case Menu::object:
+			return showObjectMenu(p_enemy, p_arena, p_ui);
+			break;
+	}
+
+	return false;
+}
+
+void CPlayer::updateActionMenu(){
+	m_actions.clear();
+
+	if (m_monsters.size()){
+		std::pair<std::string, Menu::TYPE> pairMonster("MONSTER", Menu::TYPE::monster);
+		m_actions.insert(pairMonster);
+	}
+
+	if (m_monsters.size() && m_monster != m_monsters.end()){
+		std::pair<std::string, Menu::TYPE> pairAttack("ATTACK", Menu::TYPE::attack);
+		m_actions.insert(pairAttack);
+	}
+
+	if (m_monster != m_monsters.end() && m_objects.size()){
+		std::pair<std::string, Menu::TYPE> pairObject("ATTACK", Menu::TYPE::object);
+		m_actions.insert(pairObject);
+	}
+
+	m_action = m_actions.begin();
+}
+
+void CPlayer::showActionMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
+	if (p_ui.displayMenuAction(m_actions, m_action)){
+		m_menu = m_action->second;
+		updateActionMenu();
+	}
+}
+
+bool CPlayer::showMonsterMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
+	if (p_ui.displayMenuMonster(m_monsters, m_monster)){
+		return true;
+	}
+
+	return false;
+}
+
+void CPlayer::updateObjectMenu(){
+}
+
+bool CPlayer::showObjectMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
+	return true;
+}
+
 //FUNCTION
 
 void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
+	/*
 	std::string l_userInput("");
 	int l_choice = -1;
 
@@ -53,6 +124,7 @@ void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
 	} while (l_choice == -1);
 
 	action((Player::ACTION)l_choice, p_enemy, p_arena);
+	*/
 }
 
 void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena){
@@ -96,11 +168,11 @@ void CPlayer::chooseMonster(){
 
 	} while (l_choice > m_monsters.size() || l_choice < 0);
 
-	m_actualMonster = m_monsters.at(l_choice);
+	//m_actualMonster = m_monsters.at(l_choice);
 }
 
 void CPlayer::chooseAttack(CPlayer& p_enemy, CArena& p_arena){
-	m_actualMonster->chooseAttack(*(p_enemy.m_actualMonster), p_arena);
+	//m_actualMonster->chooseAttack(*(p_enemy.m_actualMonster), p_arena);
 }
 
 void CPlayer::chooseObject(){
@@ -117,12 +189,12 @@ void CPlayer::chooseObject(){
 
 	} while (l_choice > m_objects.size() || l_choice < 0);
 
-	m_actualMonster->useObject(*(m_objects.at(l_choice)));
+	//m_actualMonster->useObject(*(m_objects.at(l_choice)));
 }
 
 void CPlayer::updateMonsters(CArena& p_arena){
 	std::vector<CMonster*>::iterator l_it;
-
+	/*
 	//Si le monstre n'est plus operationel on le supprime
 	if (m_actualMonster){
 		m_actualMonster->updateState(p_arena);
@@ -142,11 +214,13 @@ void CPlayer::updateMonsters(CArena& p_arena){
 			m_actualMonster->info();
 		}
 	}
+	*/
 }
 
 //INFO 
 
 void CPlayer::actionsListInfo(){
+	/*
 	std::cout << "_________[ACTIONS]_________\n";
 
 	if (m_monsters.size())
@@ -159,9 +233,11 @@ void CPlayer::actionsListInfo(){
 		std::cout << "{" << Player::ACTION::useObject << "}OBJECTS  ";
 
 	std::cout << "\n_________________________\n" << std::endl;
+	*/
 }
 
 void CPlayer::monstersListInfo(){
+	/*
 	std::vector<CMonster*>::iterator l_it;
 
 	std::cout << "_________[MONSTERS]_________\n";
@@ -171,9 +247,11 @@ void CPlayer::monstersListInfo(){
 		std::cout << std::endl;
 	}
 	std::cout << "____________________________\n";
+	*/
 }
 
 void CPlayer::objectListInfo(){
+	/*
 	std::vector<CObject*>::iterator l_it;
 
 	std::cout << "_________[OJECTS]_________\n";
@@ -183,10 +261,12 @@ void CPlayer::objectListInfo(){
 		std::cout << std::endl;
 	}
 	std::cout << "__________________________\n";
+	*/
 }
 
 //GETTER / SETTER
 
 int CPlayer::getMonsterSpeed(){
-	return m_actualMonster->getSpeed();
+	//return m_actualMonster->getSpeed();
+	return 1;
 }
