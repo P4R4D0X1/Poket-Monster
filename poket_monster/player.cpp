@@ -78,6 +78,9 @@ void CPlayer::updateActionMenu(){
 	m_action = m_actions.begin();
 }
 
+void CPlayer::updateObjectMenu(){
+}
+
 void CPlayer::showActionMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 	if (p_ui.displayMenuAction(m_actions, m_action)){
 		m_menu = m_action->second;
@@ -98,17 +101,17 @@ bool CPlayer::showAttackMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 		return false;
 }
 
-void CPlayer::updateObjectMenu(){
-}
-
 bool CPlayer::showObjectMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 	return true;
 }
 
 //FUNCTION
 
+bool CPlayer::isOperational(){
+	return (m_monsters.size()) ? true : false;
+}
+
 void CPlayer::updateMonsters(CArena& p_arena){
-	std::vector<CMonster*>::iterator l_it;
 	
 	//Si le monstre n'est plus operationel on le supprime
 	if (m_monster != m_monsters.end()){
@@ -118,6 +121,7 @@ void CPlayer::updateMonsters(CArena& p_arena){
 			delete(*m_monster);
 			m_monsters.erase(m_monster);
 			m_monster = m_monsters.end();
+			updateActionMenu();
 		}
 	}
 }
