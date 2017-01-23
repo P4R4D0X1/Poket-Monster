@@ -10,6 +10,7 @@
 #include "namespace.hpp"
 
 class CMonster;
+class CAttack;
 
 class CGraphic{
 	public:

@@ -1,5 +1,6 @@
 #include "graphic.hpp"
 #include "monster.hpp"
+#include "attack.hpp"
 
 CGraphic::CGraphic(){
 	if (m_font.loadFromFile("DIMIS.ttf")){
@@ -141,6 +142,76 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 		l_text.setPosition(l_position);
 
 		if (l_iterator == p_monster)
+			l_text.setFillColor(sf::Color::Red);
+		else
+			l_text.setFillColor(sf::Color::Black);
+
+		l_position.y += (l_text.getGlobalBounds().height * 1.5f);
+		m_window.draw(l_text);
+	}
+
+	return false;
+}
+
+bool CGraphic::displayMenuAttack(std::vector<CAttack*>& p_attacks, std::vector<CAttack*>::iterator& p_attack){
+	std::vector<CAttack*>::iterator l_iterator;
+
+	sf::Event l_event;
+	sf::Text l_text;
+	sf::Vector2f l_position(0.f, 0.f);
+
+	l_text.setFont(m_font);
+
+	while (m_window.pollEvent(l_event)){
+		switch (l_event.type){
+		case sf::Event::Closed:
+			m_window.close();
+			break;
+
+		case sf::Event::KeyPressed:
+			switch (l_event.key.code){
+			case sf::Keyboard::Up:
+				if (p_attack == p_attacks.begin())
+					p_attack = --p_attacks.end();
+				else
+					p_attack--;
+
+				break;
+
+			case sf::Keyboard::Down:
+				if (p_attack == --p_attacks.end())
+					p_attack = p_attacks.begin();
+				else
+					p_attack++;
+
+				break;
+
+			case sf::Keyboard::Return:
+				return true;
+				break;
+			}
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	//On affiche les caractéristiques du monstre séléctionné
+	l_position.x = m_window.getSize().x / 2.f;
+	l_text.setString((*p_attack)->infoToString());
+	l_text.setPosition(l_position);
+	l_text.setFillColor(sf::Color::Black);
+
+	m_window.draw(l_text);
+	l_position = sf::Vector2f(0, 0);
+
+	//FAIRE L'AFFICHAGE DU TEXTE LA
+	for (l_iterator = p_attacks.begin(); l_iterator != p_attacks.end(); ++l_iterator){
+		l_text.setString((*l_iterator)->getName());
+		l_text.setPosition(l_position);
+
+		if (l_iterator == p_attack)
 			l_text.setFillColor(sf::Color::Red);
 		else
 			l_text.setFillColor(sf::Color::Black);

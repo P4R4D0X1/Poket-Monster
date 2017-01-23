@@ -56,6 +56,71 @@ Attack::STATE CAttack::use(class CMonster& p_attacker, class CMonster& p_enemy, 
 	return Attack::STATE::success;
 }
 
+std::string CAttack::infoToString(){
+	std::string l_info;
+
+	l_info = m_name + "\n";
+	l_info += "TYPE " + attackTypeToString() + "\n";
+	l_info += "USE " + std::to_string(m_nbUse) + "\n";
+	l_info += "POWER " + std::to_string(m_power) + "\n";
+	l_info += "FAIL " + std::to_string(m_failProbability) + "\n";
+
+	return l_info;
+}
+
+void CAttack::info(){
+	std::cout << m_name << std::endl;
+	std::cout << "Type : " << m_type << std::endl;
+	std::cout << "NbUse : " << m_nbUse << std::endl;
+	std::cout << "Power : " << m_power << std::endl;
+	std::cout << "Fail : " << m_failProbability << std::endl;
+}
+
+std::string CAttack::getName(){
+	return m_name;
+}
+
+Attack::TYPE CAttack::getType(){
+	return m_type;
+}
+
+int CAttack::getNbUse(){
+	return m_nbUse;
+}
+
+std::string CAttack::attackTypeToString(){
+	switch (m_type){
+	case Attack::TYPE::electric:
+		return "Electric";
+		break;
+
+	case Attack::TYPE::water:
+		return "Water";
+		break;
+
+	case Attack::TYPE::rock:
+		return "Rock";
+		break;
+
+	case Attack::TYPE::fire:
+		return "Fire";
+		break;
+
+	case Attack::TYPE::grass:
+		return "Grass";
+		break;
+
+	case Attack::TYPE::normal:
+		return "Normal";
+		break;
+
+	default:
+		std::cerr << "ERROR DISPLAYING ATTACK TYPE" << std::endl;
+		return "ERROR";
+		break;
+	}
+}
+
 float CAttack::computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy){
 	//WATER vs FIRE
 	if (p_attacker == Monster::TYPE::water && p_enemy == Monster::TYPE::fire)
@@ -88,20 +153,4 @@ float CAttack::computeAttackCoef(Monster::TYPE p_attacker, Monster::TYPE p_enemy
 		return 0.5f;
 
 	return 1.f;
-}
-
-Attack::TYPE CAttack::getType(){
-	return m_type;
-}
-
-void CAttack::info(){
-	std::cout << m_name << std::endl;
-	std::cout << "Type : " << m_type << std::endl;
-	std::cout << "NbUse : " << m_nbUse << std::endl;
-	std::cout << "Power : " << m_power << std::endl;
-	std::cout << "Fail : " << m_failProbability << std::endl;
-}
-
-int CAttack::getNbUse(){
-	return m_nbUse;
 }

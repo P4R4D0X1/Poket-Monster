@@ -26,8 +26,7 @@ class CMonster{
 		bool showAttackMenu(CMonster& p_enemy, CArena& p_arena, CGraphic& p_ui);
 
 		//FUNCTION
-		void chooseAttack(CMonster& p_enemy, CArena& p_arena); 
-		Attack::STATE attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena);
+		Attack::STATE attack(CMonster& p_enemy, CArena& p_arena);
 		
 		virtual void specialAttack(CMonster& p_enemy, CArena& p_arena) = 0;
 		void applyDamage(unsigned int p_damage);
@@ -38,7 +37,6 @@ class CMonster{
 		//INFO
 		virtual std::string infoToString();
 		virtual void info();
-		void attacksInfo();
 
 		//GETTER / SETTER
 		std::string getName();

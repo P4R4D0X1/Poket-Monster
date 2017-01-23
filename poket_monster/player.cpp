@@ -21,33 +21,35 @@ CPlayer::~CPlayer(){
 //GRAPHX DEV
 
 bool CPlayer::showMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
+	bool l_tourDone(false);
+
 	switch (m_menu){
 		case Menu::action:
 			showActionMenu(p_enemy, p_arena, p_ui);
 			break;
 		
 		case Menu::monster:
-			if (showMonsterMenu(p_enemy, p_arena, p_ui)){
-				m_menu = Menu::action;
-				updateActionMenu();
-				return true;
-			}
+			l_tourDone = showMonsterMenu(p_enemy, p_arena, p_ui);
 			break;
 
 		case Menu::attack:
-			//(*m_monster)->showAttackMenu(p_enemy, p_arena, p_ui);
+			l_tourDone = showAttackMenu(p_enemy, p_arena, p_ui);
 			break;
 
 		case Menu::object:
-			if (showObjectMenu(p_enemy, p_arena, p_ui)){
-				m_menu = Menu::action;
-				updateActionMenu();
-				return true;
-			}
+			l_tourDone = showObjectMenu(p_enemy, p_arena, p_ui);
 			break;
 	}
 
-	return false;
+	if (l_tourDone){
+		m_menu = Menu::action;
+
+		p_enemy.updateMonsters(p_arena);
+		p_arena.updateState();
+		updateActionMenu();
+	}
+
+	return l_tourDone;
 }
 
 void CPlayer::updateActionMenu(){
@@ -90,8 +92,10 @@ bool CPlayer::showMonsterMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui)
 }
 
 bool CPlayer::showAttackMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
-	if((*m_monster)->showAttackMenu(**(p_enemy.m_monster), p_arena, p_ui)){
-	}
+	if ((*m_monster)->showAttackMenu(**(p_enemy.m_monster), p_arena, p_ui))
+		return true;
+	else
+		return false;
 }
 
 void CPlayer::updateObjectMenu(){
@@ -103,54 +107,16 @@ bool CPlayer::showObjectMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 
 //FUNCTION
 
-
-
-void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena){
-
-	switch (p_action){
-		case Player::ACTION::chooseMonster:
-			chooseMonster();
-			break;
-
-		case Player::ACTION::attack:
-			//Afficher la liste d'attaque du monstre actuel puis choisir l'attaque
-			chooseAttack(p_enemy, p_arena);
-			break;
-
-		case Player::ACTION::useObject:
-			//Afficher la liste d'objet et permettre l'utilisation sur le monstre actuel
-			chooseObject();
-			break;
-
-		default:
-			break;
-	}
-
-	//Mettre a jour le monstre et l'arène
-	p_enemy.updateMonsters(p_arena);
-	p_arena.updateState();
-}
-
-void CPlayer::chooseAttack(CPlayer& p_enemy, CArena& p_arena){
-	//m_actualMonster->chooseAttack(*(p_enemy.m_actualMonster), p_arena);
-}
-
 void CPlayer::updateMonsters(CArena& p_arena){
 	std::vector<CMonster*>::iterator l_it;
 	
 	//Si le monstre n'est plus operationel on le supprime
 	if (m_monster != m_monsters.end()){
 		(*m_monster)->updateState(p_arena);
+		
 		if (!(*m_monster)->isOperational()){
-			for (l_it = m_monsters.begin(); l_it != m_monsters.end();) {
-				if (l_it == m_monster) {
-					delete(*l_it);
-					l_it = m_monsters.erase(l_it);
-				}
-				else {
-					++l_it;
-				}
-			}
+			delete(*m_monster);
+			m_monsters.erase(m_monster);
 			m_monster = m_monsters.end();
 		}
 	}

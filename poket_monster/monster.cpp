@@ -26,6 +26,8 @@ CMonster::CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p
 	m_type = p_type;
 	m_stateLongevity = 0;
 	m_attacks = p_attacks;
+	m_attackSel = m_attacks.begin();
+
 }
 
 CMonster::~CMonster(){
@@ -39,37 +41,23 @@ CMonster::~CMonster(){
 
 bool CMonster::showAttackMenu(CMonster& p_enemy, CArena& p_arena, CGraphic& p_ui){
 	if (p_ui.displayMenuAttack(m_attacks, m_attackSel)){
-
+		attack(p_enemy, p_arena);
+		return true;
+	}else{
+		return false;
 	}
 }
 
 //FUNCTION
 
-void CMonster::chooseAttack(CMonster& p_enemy, CArena& p_arena){
-	std::string l_userInput("");
-	unsigned l_choice = -1;
-
-	do{
-		do{
-			attacksInfo();
-			std::cout << "[CHOICE] : ";
-			std::getline(std::cin, l_userInput);
-		} while (l_userInput.empty());
-		l_choice = (unsigned int)std::stoi(l_userInput);
-
-	} while (l_choice > m_attacks.size() || l_choice < 0);
-
-	attack(l_choice, p_enemy, p_arena);
-}
-
-Attack::STATE CMonster::attack(unsigned int p_index, CMonster& p_enemy, CArena& p_arena){
+Attack::STATE CMonster::attack(CMonster& p_enemy, CArena& p_arena){
 	Attack::STATE l_state;
 
-	l_state = m_attacks.at(p_index)->use(*this, p_enemy, p_arena);
+	l_state = (*m_attackSel)->use(*this, p_enemy, p_arena);
 
-	if (m_attacks.at(p_index)->getNbUse() <= 0){
-		delete(m_attacks.at(p_index));
-		m_attacks.erase(m_attacks.begin() + p_index);
+	if ((*m_attackSel)->getNbUse() <= 0){
+		delete(*m_attackSel);
+		m_attacks.erase(m_attackSel);
 	}
 	
 	return l_state;
@@ -169,17 +157,6 @@ void CMonster::info(){
 	std::cout << "State : [" << m_stateLongevity << "] " << m_state << std::endl;
 }
 
-void CMonster::attacksInfo(){
-	std::vector<CAttack*>::iterator l_it;
-
-	std::cout << "_________[ATTACKS]_________\n";
-	for (l_it = m_attacks.begin(); l_it != m_attacks.end(); ++l_it){
-		std::cout << "{" << std::distance(m_attacks.begin(), l_it) << "}\n";
-		(*l_it)->info();
-		std::cout << std::endl;
-	}
-	std::cout << "___________________________\n";
-}
 
 //GETTER / SETTER
 
