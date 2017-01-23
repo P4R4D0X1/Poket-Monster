@@ -29,8 +29,6 @@ class CGraphic{
 		sf::Font m_font;
 		sf::FloatRect m_playerName;
 		sf::FloatRect m_monsters;
-		sf::FloatRect m_menu;
-
 };
 
 

@@ -26,10 +26,45 @@ void CGraphic::displayPlayerName(std::string p_name){
 	sf::Text l_text;
 	sf::Vector2f l_position(m_window.getSize().x / 2.f, 0.f);
 
+	l_text.setFont(m_font);
+
 	l_text.setString(p_name);
 	l_position.x -= l_text.getGlobalBounds().width / 2.f;
+	l_text.setPosition(l_position);
+
 	l_text.setFillColor(sf::Color::Blue);
 	m_playerName = l_text.getGlobalBounds();
+
+	m_window.draw(l_text);
+}
+
+void CGraphic::displayMonsters(CMonster* p_playerMonster, CMonster* p_enemyMonster){
+	sf::Text l_text;
+	sf::Vector2f l_position(m_window.getSize().x / 2.f, 0.f);
+
+	l_text.setFont(m_font);
+
+	l_text.setString(p_name);
+	l_position.x -= l_text.getGlobalBounds().width / 2.f;
+	l_text.setPosition(l_position);
+
+	l_text.setFillColor(sf::Color::Blue);
+	m_playerName = l_text.getGlobalBounds();
+
+
+	//On affiche les caractéristiques du monstre séléctionné
+	l_position.x = (m_window.getSize().x / 4.f) * 3.f;
+	l_text.setString((*p_monster)->infoToString());
+	l_position.x -= l_text.getGlobalBounds().width / 2.f;
+	l_text.setPosition(l_position);
+	l_text.setFillColor(sf::Color::Black);
+
+	l_rectangle.setSize(sf::Vector2f(l_text.getGlobalBounds().width, l_text.getGlobalBounds().height));
+	l_rectangle.setPosition(sf::Vector2f(l_text.getGlobalBounds().left, l_text.getGlobalBounds().top));
+
+	m_window.draw(l_rectangle);
+	m_window.draw(l_text);
+	l_position = sf::Vector2f(m_window.getSize().x / 4.f, (m_monsters.top + m_monsters.height) * 1.5f);
 
 	m_window.draw(l_text);
 }
@@ -39,7 +74,7 @@ bool CGraphic::displayMenuAction(std::map<std::string, Menu::TYPE>& p_actions, s
 	
 	sf::Event l_event;
 	sf::Text l_text;
-	sf::Vector2f l_position(0.f, 0.f);
+	sf::Vector2f l_position(m_window.getSize().x / 2.f, (m_monsters.top + m_monsters.height) * 1.5f);
 
 	l_text.setFont(m_font);
 
@@ -81,14 +116,16 @@ bool CGraphic::displayMenuAction(std::map<std::string, Menu::TYPE>& p_actions, s
 	//FAIRE L'AFFICHAGE DU TEXTE LA
 	for (l_iterator = p_actions.begin(); l_iterator != p_actions.end(); ++l_iterator){
 		l_text.setString(l_iterator->first);
+		l_position.x -= l_text.getGlobalBounds().width / 2.f;
 		l_text.setPosition(l_position);
+		l_position.x += l_text.getGlobalBounds().width / 2.f;
 
 		if (*l_iterator == *p_action)
 			l_text.setFillColor(sf::Color::Red);
 		else
 			l_text.setFillColor(sf::Color::Black);
 
-		l_position.y += l_text.getGlobalBounds().height;
+		l_position.y += l_text.getGlobalBounds().height * 1.5f;
 		m_window.draw(l_text);
 	}
 
@@ -100,7 +137,7 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 
 	sf::Event l_event;
 	sf::Text l_text;
-	sf::Vector2f l_position(0.f, 0.f);
+	sf::Vector2f l_position(m_window.getSize().x / 4.f, (m_monsters.top + m_monsters.height) * 1.5f);
 	sf::RectangleShape l_rectangle;
 
 	l_text.setFont(m_font);
@@ -145,8 +182,9 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 	}
 	
 	//On affiche les caractéristiques du monstre séléctionné
-	l_position.x = m_window.getSize().x / 2.f;
+	l_position.x = (m_window.getSize().x / 4.f) * 3.f;
 	l_text.setString((*p_monster)->infoToString());
+	l_position.x -= l_text.getGlobalBounds().width / 2.f;
 	l_text.setPosition(l_position);
 	l_text.setFillColor(sf::Color::Black);
 
@@ -155,12 +193,15 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 
 	m_window.draw(l_rectangle);
 	m_window.draw(l_text);
-	l_position = sf::Vector2f(0, 0);
+	l_position = sf::Vector2f(m_window.getSize().x / 4.f, (m_monsters.top + m_monsters.height) * 1.5f);
 
 	//FAIRE L'AFFICHAGE DU TEXTE LA
 	for (l_iterator = p_monsters.begin(); l_iterator != p_monsters.end(); ++l_iterator){
 		l_text.setString((*l_iterator)->getName());
+
+		l_position.x -= l_text.getGlobalBounds().width / 2.f;
 		l_text.setPosition(l_position);
+		l_position.x += l_text.getGlobalBounds().width / 2.f;
 
 		if (l_iterator == p_monster)
 			l_text.setFillColor(sf::Color::Red);
@@ -179,7 +220,7 @@ bool CGraphic::displayMenuAttack(std::vector<CAttack*>& p_attacks, std::vector<C
 
 	sf::Event l_event;
 	sf::Text l_text;
-	sf::Vector2f l_position(0.f, 0.f);
+	sf::Vector2f l_position(m_window.getSize().x / 4.f, (m_monsters.top + m_monsters.height) * 1.5f);
 
 	l_text.setFont(m_font);
 
@@ -219,18 +260,22 @@ bool CGraphic::displayMenuAttack(std::vector<CAttack*>& p_attacks, std::vector<C
 	}
 
 	//On affiche les caractéristiques du monstre séléctionné
-	l_position.x = m_window.getSize().x / 2.f;
+	l_position.x = (m_window.getSize().x / 4.f) * 3.f;
 	l_text.setString((*p_attack)->infoToString());
+	l_position.x -= l_text.getGlobalBounds().width / 2.f;
 	l_text.setPosition(l_position);
 	l_text.setFillColor(sf::Color::Black);
 
 	m_window.draw(l_text);
-	l_position = sf::Vector2f(0, 0);
+	l_position = sf::Vector2f(m_window.getSize().x / 4.f, (m_monsters.top + m_monsters.height) * 1.5f);
 
 	//FAIRE L'AFFICHAGE DU TEXTE LA
 	for (l_iterator = p_attacks.begin(); l_iterator != p_attacks.end(); ++l_iterator){
 		l_text.setString((*l_iterator)->getName());
+
+		l_position.x -= l_text.getGlobalBounds().width / 2.f;
 		l_text.setPosition(l_position);
+		l_position.x += l_text.getGlobalBounds().width / 2.f;
 
 		if (l_iterator == p_attack)
 			l_text.setFillColor(sf::Color::Red);
