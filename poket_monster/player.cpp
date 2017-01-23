@@ -81,9 +81,6 @@ void CPlayer::updateActionMenu(){
 	m_action = m_actions.begin();
 }
 
-void CPlayer::updateObjectMenu(){
-}
-
 void CPlayer::showActionMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 	if (p_ui.displayMenuAction(m_actions, m_action)){
 		m_menu = m_action->second;
@@ -105,6 +102,7 @@ bool CPlayer::showAttackMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 }
 
 bool CPlayer::showObjectMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
+	if (p_ui.displayMenuObject(m_objects, m_object));
 	return true;
 }
 

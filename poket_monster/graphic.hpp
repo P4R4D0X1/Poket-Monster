@@ -23,6 +23,7 @@ class CGraphic{
 		bool displayMenuAction(std::map<std::string, Menu::TYPE>& p_actions, std::map<std::string, Menu::TYPE>::iterator& p_action);
 		bool displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vector<CMonster*>::iterator& p_monster);
 		bool displayMenuAttack(std::vector<CAttack*>& p_attacks, std::vector<CAttack*>::iterator& p_attack);
+		bool displayMenuObject();
 
 	protected:
 		sf::RenderWindow m_window;

@@ -20,7 +20,6 @@ class CPlayer{
 		bool showMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui);
 
 		void updateActionMenu();
-		void updateObjectMenu();
 
 		void showActionMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui);
 		bool showMonsterMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui);
