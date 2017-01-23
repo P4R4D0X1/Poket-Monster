@@ -1,4 +1,5 @@
 #include "graphic.hpp"
+#include "monster.hpp"
 
 CGraphic::CGraphic(){
 	if (m_font.loadFromFile("DIMIS.ttf")){
@@ -124,6 +125,15 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 			break;
 		}
 	}
+	
+	//On affiche les caractéristiques du monstre séléctionné
+	l_position.x = m_window.getSize().x / 2.f;
+	l_text.setString((*p_monster)->infoToString());
+	l_text.setPosition(l_position);
+	l_text.setFillColor(sf::Color::Black);
+
+	m_window.draw(l_text);
+	l_position = sf::Vector2f(0, 0);
 
 	//FAIRE L'AFFICHAGE DU TEXTE LA
 	for (l_iterator = p_monsters.begin(); l_iterator != p_monsters.end(); ++l_iterator){
@@ -135,7 +145,7 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 		else
 			l_text.setFillColor(sf::Color::Black);
 
-		l_position.y += l_text.getGlobalBounds().height;
+		l_position.y += (l_text.getGlobalBounds().height * 1.5f);
 		m_window.draw(l_text);
 	}
 

@@ -27,7 +27,11 @@ bool CPlayer::showMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 			break;
 		
 		case Menu::monster:
-			return showMonsterMenu(p_enemy, p_arena, p_ui);
+			if (showMonsterMenu(p_enemy, p_arena, p_ui)){
+				m_menu = Menu::action;
+				updateActionMenu();
+				return true;
+			}
 			break;
 
 		case Menu::attack:
@@ -35,7 +39,11 @@ bool CPlayer::showMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 			break;
 
 		case Menu::object:
-			return showObjectMenu(p_enemy, p_arena, p_ui);
+			if (showObjectMenu(p_enemy, p_arena, p_ui)){
+				m_menu = Menu::action;
+				updateActionMenu();
+				return true;
+			}
 			break;
 	}
 
@@ -55,9 +63,14 @@ void CPlayer::updateActionMenu(){
 		m_actions.insert(pairAttack);
 	}
 
-	if (m_monster != m_monsters.end() && m_objects.size()){
-		std::pair<std::string, Menu::TYPE> pairObject("ATTACK", Menu::TYPE::object);
+	if (m_objects.size() && m_monster != m_monsters.end()){
+		std::pair<std::string, Menu::TYPE> pairObject("OBJECT", Menu::TYPE::object);
 		m_actions.insert(pairObject);
+	}
+
+	if (m_monsters.size() && m_monster == m_monsters.end()){
+		m_menu = Menu::monster;
+		m_monster = m_monsters.begin();
 	}
 
 	m_action = m_actions.begin();
@@ -66,16 +79,19 @@ void CPlayer::updateActionMenu(){
 void CPlayer::showActionMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 	if (p_ui.displayMenuAction(m_actions, m_action)){
 		m_menu = m_action->second;
-		updateActionMenu();
 	}
 }
 
 bool CPlayer::showMonsterMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
-	if (p_ui.displayMenuMonster(m_monsters, m_monster)){
+	if (p_ui.displayMenuMonster(m_monsters, m_monster))
 		return true;
-	}
+	else
+		return false;
+}
 
-	return false;
+bool CPlayer::showAttackMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
+	if((*m_monster)->showAttackMenu(**(p_enemy.m_monster), p_arena, p_ui)){
+	}
 }
 
 void CPlayer::updateObjectMenu(){
@@ -87,45 +103,7 @@ bool CPlayer::showObjectMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 
 //FUNCTION
 
-void CPlayer::chooseAction(CPlayer& p_enemy, CArena& p_arena){
-	/*
-	std::string l_userInput("");
-	int l_choice = -1;
 
-	do{
-		do{
-			actionsListInfo();
-			std::cout << "[CHOICE] : ";
-			std::getline(std::cin, l_userInput);
-		} while (l_userInput.empty());
-		l_choice = std::stoi(l_userInput);
-
-		switch ((Player::ACTION)l_choice){
-			case Player::ACTION::chooseMonster:
-				if (!m_monsters.size())
-					l_choice = -1;
-				break;
-
-			case Player::ACTION::attack:
-				if (!m_actualMonster || !m_actualMonster->isOperational())
-					l_choice = -1;
-				break;
-
-			case Player::ACTION::useObject:
-				if (!m_actualMonster || !m_objects.size())
-					l_choice = -1;
-				break;
-
-			default:
-				l_choice = -1;
-				break;
-		}
-
-	} while (l_choice == -1);
-
-	action((Player::ACTION)l_choice, p_enemy, p_arena);
-	*/
-}
 
 void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena){
 
@@ -149,58 +127,23 @@ void CPlayer::action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena)
 	}
 
 	//Mettre a jour le monstre et l'arène
-	//m_actualMonster->updateState(p_arena);
 	p_enemy.updateMonsters(p_arena);
 	p_arena.updateState();
-}
-
-void CPlayer::chooseMonster(){
-	std::string l_userInput("");
-	unsigned l_choice = -1;
-
-	do{
-		do{
-			monstersListInfo();
-			std::cout << "[CHOICE] : ";
-			std::getline(std::cin, l_userInput);
-		} while (l_userInput.empty());
-		l_choice = (unsigned int)std::stoi(l_userInput);
-
-	} while (l_choice > m_monsters.size() || l_choice < 0);
-
-	//m_actualMonster = m_monsters.at(l_choice);
 }
 
 void CPlayer::chooseAttack(CPlayer& p_enemy, CArena& p_arena){
 	//m_actualMonster->chooseAttack(*(p_enemy.m_actualMonster), p_arena);
 }
 
-void CPlayer::chooseObject(){
-	std::string l_userInput("");
-	unsigned l_choice = -1;
-
-	do{
-		do{
-			objectListInfo();
-			std::cout << "[CHOICE] : ";
-			std::getline(std::cin, l_userInput);
-		} while (l_userInput.empty());
-		l_choice = (unsigned int)std::stoi(l_userInput);
-
-	} while (l_choice > m_objects.size() || l_choice < 0);
-
-	//m_actualMonster->useObject(*(m_objects.at(l_choice)));
-}
-
 void CPlayer::updateMonsters(CArena& p_arena){
 	std::vector<CMonster*>::iterator l_it;
-	/*
+	
 	//Si le monstre n'est plus operationel on le supprime
-	if (m_actualMonster){
-		m_actualMonster->updateState(p_arena);
-		if (!m_actualMonster->isOperational()){
+	if (m_monster != m_monsters.end()){
+		(*m_monster)->updateState(p_arena);
+		if (!(*m_monster)->isOperational()){
 			for (l_it = m_monsters.begin(); l_it != m_monsters.end();) {
-				if ((*l_it) == m_actualMonster) {
+				if (l_it == m_monster) {
 					delete(*l_it);
 					l_it = m_monsters.erase(l_it);
 				}
@@ -208,60 +151,9 @@ void CPlayer::updateMonsters(CArena& p_arena){
 					++l_it;
 				}
 			}
-			m_actualMonster = NULL;
-		}
-		else{
-			m_actualMonster->info();
+			m_monster = m_monsters.end();
 		}
 	}
-	*/
-}
-
-//INFO 
-
-void CPlayer::actionsListInfo(){
-	/*
-	std::cout << "_________[ACTIONS]_________\n";
-
-	if (m_monsters.size())
-		std::cout << "{" << Player::ACTION::chooseMonster << "}MONSTERS  ";
-
-	if (m_actualMonster && m_actualMonster->isOperational())
-		std::cout << "{" << Player::ACTION::attack << "}ATTACK  ";
-
-	if (m_actualMonster && m_objects.size())
-		std::cout << "{" << Player::ACTION::useObject << "}OBJECTS  ";
-
-	std::cout << "\n_________________________\n" << std::endl;
-	*/
-}
-
-void CPlayer::monstersListInfo(){
-	/*
-	std::vector<CMonster*>::iterator l_it;
-
-	std::cout << "_________[MONSTERS]_________\n";
-	for (l_it = m_monsters.begin(); l_it != m_monsters.end(); ++l_it){
-		std::cout << "{" << std::distance(m_monsters.begin(), l_it) << "}\n";
-		(*l_it)->info();
-		std::cout << std::endl;
-	}
-	std::cout << "____________________________\n";
-	*/
-}
-
-void CPlayer::objectListInfo(){
-	/*
-	std::vector<CObject*>::iterator l_it;
-
-	std::cout << "_________[OJECTS]_________\n";
-	for (l_it = m_objects.begin(); l_it != m_objects.end(); ++l_it){
-		std::cout << "{" << std::distance(m_objects.begin(), l_it) << "}\n";
-		(*l_it)->info();
-		std::cout << std::endl;
-	}
-	std::cout << "__________________________\n";
-	*/
 }
 
 //GETTER / SETTER

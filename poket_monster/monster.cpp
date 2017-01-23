@@ -35,6 +35,14 @@ CMonster::~CMonster(){
 	}
 }
 
+//GRAPHX DEV
+
+bool CMonster::showAttackMenu(CMonster& p_enemy, CArena& p_arena, CGraphic& p_ui){
+	if (p_ui.displayMenuAttack(m_attacks, m_attackSel)){
+
+	}
+}
+
 //FUNCTION
 
 void CMonster::chooseAttack(CMonster& p_enemy, CArena& p_arena){
@@ -147,6 +155,8 @@ std::string CMonster::infoToString(){
 	l_info += "SPEED " + std::to_string(m_speed) + "\n";
 	l_info += "ATTACK " + std::to_string(m_attack) + "\n";
 	l_info += "DEFENSE " + std::to_string(m_defense) + "\n";
+
+	return l_info;
 }
 
 void CMonster::info(){

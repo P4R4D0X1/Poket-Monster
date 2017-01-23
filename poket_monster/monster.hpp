@@ -8,6 +8,7 @@
 #include "namespace.hpp"
 #include "attack.hpp"
 #include "arena.hpp"
+#include "graphic.hpp"
 
 #include "potion.hpp"
 #include "drug.hpp"
@@ -20,6 +21,9 @@ class CMonster{
 		CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, Monster::TYPE p_type);
 		CMonster(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attack, int p_defense, std::vector<CAttack*>& p_attacks, Monster::TYPE p_type);
 		virtual ~CMonster();
+
+		//GRAPHX DEV
+		bool showAttackMenu(CMonster& p_enemy, CArena& p_arena, CGraphic& p_ui);
 
 		//FUNCTION
 		void chooseAttack(CMonster& p_enemy, CArena& p_arena); 
@@ -62,6 +66,7 @@ class CMonster{
 		Monster::TYPE m_type;
 		Monster::STATE m_state;
 
+		std::vector<CAttack*>::iterator m_attackSel;
 		std::vector<CAttack*> m_attacks;
 };
 

@@ -8,7 +8,6 @@
 
 #include "monster.hpp"
 #include "object.hpp"
-#include "graphic.hpp"
 
 class CPlayer{
 	public:
@@ -25,23 +24,18 @@ class CPlayer{
 
 		bool showMonsterMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui);
 
+		bool showAttackMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui);
+
 		void updateObjectMenu();
 		bool showObjectMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui);
 
 		//FUNCTION
-		void chooseAction(CPlayer& p_enemy, CArena& p_arena);
 		void action(Player::ACTION p_action, CPlayer& p_enemy, CArena& p_arena);
 		
 		void chooseMonster();	
 		void chooseAttack(CPlayer& p_enemy, CArena& p_arena);
-		void chooseObject();
 
 		void updateMonsters(CArena& p_arena);
-
-		//INFO 
-		void actionsListInfo();
-		void monstersListInfo();
-		void objectListInfo();
 
 		//GETTER / SETTER
 		int getMonsterSpeed();
