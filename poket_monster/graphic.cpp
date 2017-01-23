@@ -22,6 +22,18 @@ void CGraphic::update(){
 	m_window.clear(sf::Color::White);
 }
 
+void CGraphic::displayPlayerName(std::string p_name){
+	sf::Text l_text;
+	sf::Vector2f l_position(m_window.getSize().x / 2.f, 0.f);
+
+	l_text.setString(p_name);
+	l_position.x -= l_text.getGlobalBounds().width / 2.f;
+	l_text.setFillColor(sf::Color::Blue);
+	m_playerName = l_text.getGlobalBounds();
+
+	m_window.draw(l_text);
+}
+
 bool CGraphic::displayMenuAction(std::map<std::string, Menu::TYPE>& p_actions, std::map<std::string, Menu::TYPE>::iterator& p_action){
 	std::map<std::string, Menu::TYPE>::iterator l_iterator;
 	
@@ -89,8 +101,13 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 	sf::Event l_event;
 	sf::Text l_text;
 	sf::Vector2f l_position(0.f, 0.f);
+	sf::RectangleShape l_rectangle;
 
 	l_text.setFont(m_font);
+
+	l_rectangle.setFillColor(sf::Color::Transparent);
+	l_rectangle.setOutlineThickness(2);
+	l_rectangle.setOutlineColor(sf::Color::Black);
 
 	while (m_window.pollEvent(l_event)){
 		switch (l_event.type){
@@ -133,6 +150,10 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 	l_text.setPosition(l_position);
 	l_text.setFillColor(sf::Color::Black);
 
+	l_rectangle.setSize(sf::Vector2f(l_text.getGlobalBounds().width, l_text.getGlobalBounds().height));
+	l_rectangle.setPosition(sf::Vector2f(l_text.getGlobalBounds().left, l_text.getGlobalBounds().top));
+
+	m_window.draw(l_rectangle);
 	m_window.draw(l_text);
 	l_position = sf::Vector2f(0, 0);
 

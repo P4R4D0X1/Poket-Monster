@@ -57,8 +57,8 @@ int main(int argc, char **argv){
 	l_parse.parseAttack("attacks.pkmn");
 	l_parse.parseObjects("objects.pkmn");
 
-	l_playerOne = new CPlayer("PARADOX", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
-	l_playerTwo = new CPlayer("KERA", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
+	l_playerOne = new CPlayer("PARADOX", l_parse.createMonsterVector(1), l_parse.createObjectVector(4));
+	l_playerTwo = new CPlayer("KERA", l_parse.createMonsterVector(1), l_parse.createObjectVector(4));
 
 	l_actualPlayer = l_playerOne;
 
@@ -69,19 +69,14 @@ int main(int argc, char **argv){
 		else if (l_actualPlayer == l_playerTwo && l_playerTwo->showMenu(*l_playerOne, l_arena, l_graphic))
 			l_actualPlayer = l_playerOne;
 
+		if (!l_actualPlayer->isOperational()){
+			std::cout << l_actualPlayer->getName() << " IS DEAD ! \n";
+			break;
+		}
 		l_graphic.update();
 	}
 
 
-	/*
-
-
-	while (1){
-		cout << "FABIEN\n";
-		l_playerOne->chooseAction(*l_playerTwo, l_arena);
-		l_playerTwo->chooseAction(*l_playerOne, l_arena);
-	}
-	*/
 	system("pause");
 	_CrtDumpMemoryLeaks();
 	return EXIT_SUCCESS;

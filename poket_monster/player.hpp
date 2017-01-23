@@ -32,7 +32,7 @@ class CPlayer{
 		void updateMonsters(CArena& p_arena);
 
 		//GETTER / SETTER
-		int getMonsterSpeed();
+		std::string getName();
 
 	protected:
 		//MEMBER

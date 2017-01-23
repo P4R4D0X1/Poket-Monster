@@ -23,6 +23,8 @@ CPlayer::~CPlayer(){
 bool CPlayer::showMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 	bool l_tourDone(false);
 
+	p_ui.displayPlayerName(m_name);
+
 	switch (m_menu){
 		case Menu::action:
 			showActionMenu(p_enemy, p_arena, p_ui);
@@ -128,7 +130,6 @@ void CPlayer::updateMonsters(CArena& p_arena){
 
 //GETTER / SETTER
 
-int CPlayer::getMonsterSpeed(){
-	//return m_actualMonster->getSpeed();
-	return 1;
+std::string CPlayer::getName(){
+	return m_name;
 }

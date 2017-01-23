@@ -35,6 +35,7 @@ CMonster::~CMonster(){
 		delete m_attacks.back();
 		m_attacks.pop_back();
 	}
+	m_attackSel = m_attacks.end();
 }
 
 //GRAPHX DEV
@@ -142,7 +143,7 @@ std::string CMonster::infoToString(){
 	l_info += "HP [ " + std::to_string(m_hp) + " / " + std::to_string(m_hpMax) + " ]\n";
 	l_info += "SPEED " + std::to_string(m_speed) + "\n";
 	l_info += "ATTACK " + std::to_string(m_attack) + "\n";
-	l_info += "DEFENSE " + std::to_string(m_defense) + "\n";
+	l_info += "DEFENSE " + std::to_string(m_defense);
 
 	return l_info;
 }

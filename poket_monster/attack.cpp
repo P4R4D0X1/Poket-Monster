@@ -63,7 +63,7 @@ std::string CAttack::infoToString(){
 	l_info += "TYPE " + attackTypeToString() + "\n";
 	l_info += "USE " + std::to_string(m_nbUse) + "\n";
 	l_info += "POWER " + std::to_string(m_power) + "\n";
-	l_info += "FAIL " + std::to_string(m_failProbability) + "\n";
+	l_info += "FAIL " + std::to_string(m_failProbability);
 
 	return l_info;
 }
