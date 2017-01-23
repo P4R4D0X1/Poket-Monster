@@ -10,7 +10,7 @@ CGraphic::CGraphic(){
 	sf::ContextSettings l_settings;
 	l_settings.antialiasingLevel = 8;
 
-	m_window.create(sf::VideoMode(800, 600), "POKET MONSTER", sf::Style::Default);
+	m_window.create(sf::VideoMode(800, 400), "POKET MONSTER", sf::Style::Default || ~sf::Style::Resize, l_settings);
 	m_window.setVerticalSyncEnabled(true);
 }
 
@@ -19,7 +19,7 @@ CGraphic::~CGraphic(){
 
 void CGraphic::update(){
 	m_window.display();
-	m_window.clear(sf::Color::White);
+	m_window.clear(sf::Color(122, 122, 122, 255));
 }
 
 void CGraphic::displayPlayerName(std::string p_name){
@@ -38,35 +38,72 @@ void CGraphic::displayPlayerName(std::string p_name){
 	m_window.draw(l_text);
 }
 
-void CGraphic::displayMonsters(CMonster* p_playerMonster, CMonster* p_enemyMonster){
+void CGraphic::displayMonsters(CMonster& p_playerMonster, CMonster& p_enemyMonster){
 	sf::Text l_text;
-	sf::Vector2f l_position(m_window.getSize().x / 2.f, 0.f);
+	sf::Vector2f l_position(m_window.getSize().x / 4.f, (m_playerName.height + m_playerName.top) * 1.5f);
+	sf::RectangleShape l_rectangle;
+
+	m_monsters.top = (m_playerName.height + m_playerName.top) * 1.5f;
+	m_monsters.left = 0.f;
+	m_monsters.width = (float)m_window.getSize().x;
 
 	l_text.setFont(m_font);
-
-	l_text.setString(p_name);
+	
+	l_text.setFillColor(sf::Color::Green);
+	l_text.setString(p_playerMonster.getName());
 	l_position.x -= l_text.getGlobalBounds().width / 2.f;
 	l_text.setPosition(l_position);
+	l_position.x += l_text.getGlobalBounds().width / 2.f;
+	l_position.y = l_text.getGlobalBounds().top + (l_text.getGlobalBounds().height * 1.2f);
 
-	l_text.setFillColor(sf::Color::Blue);
-	m_playerName = l_text.getGlobalBounds();
+	m_window.draw(l_text);
 
+	l_rectangle.setFillColor(sf::Color::Transparent);
+	l_rectangle.setOutlineThickness(2);
+	l_rectangle.setOutlineColor(sf::Color::Black);
 
-	//On affiche les caractéristiques du monstre séléctionné
-	l_position.x = (m_window.getSize().x / 4.f) * 3.f;
-	l_text.setString((*p_monster)->infoToString());
-	l_position.x -= l_text.getGlobalBounds().width / 2.f;
-	l_text.setPosition(l_position);
-	l_text.setFillColor(sf::Color::Black);
-
-	l_rectangle.setSize(sf::Vector2f(l_text.getGlobalBounds().width, l_text.getGlobalBounds().height));
-	l_rectangle.setPosition(sf::Vector2f(l_text.getGlobalBounds().left, l_text.getGlobalBounds().top));
+	l_rectangle.setSize(sf::Vector2f(m_window.getSize().x / 5.f, m_window.getSize().y / 40.f));
+	l_rectangle.setPosition(sf::Vector2f(l_position.x - (l_rectangle.getGlobalBounds().width / 2.f), l_position.y));
 
 	m_window.draw(l_rectangle);
-	m_window.draw(l_text);
-	l_position = sf::Vector2f(m_window.getSize().x / 4.f, (m_monsters.top + m_monsters.height) * 1.5f);
+
+	l_rectangle.setFillColor(sf::Color::Green);
+	l_rectangle.setOutlineThickness(0);
+	l_rectangle.setOutlineColor(sf::Color::Black);
+
+	l_rectangle.setSize(sf::Vector2f((m_window.getSize().x / 5.f) * p_playerMonster.getLifePercentage(), m_window.getSize().y / 40.f));
+
+	m_window.draw(l_rectangle);
+
+	l_position = sf::Vector2f((m_window.getSize().x / 4.f) * 3.f, (m_playerName.height + m_playerName.top) * 1.5f);
+
+	l_text.setFillColor(sf::Color::Red);
+	l_text.setString(p_enemyMonster.getName());
+	l_position.x -= l_text.getGlobalBounds().width / 2.f;
+	l_text.setPosition(l_position);
+	l_position.x += l_text.getGlobalBounds().width / 2.f;
+	l_position.y = l_text.getGlobalBounds().top + (l_text.getGlobalBounds().height * 1.2f);
 
 	m_window.draw(l_text);
+
+	l_rectangle.setFillColor(sf::Color::Transparent);
+	l_rectangle.setOutlineThickness(2);
+	l_rectangle.setOutlineColor(sf::Color::Black);
+
+	l_rectangle.setSize(sf::Vector2f(m_window.getSize().x / 5.f, m_window.getSize().y / 40.f));
+	l_rectangle.setPosition(sf::Vector2f(l_position.x - (l_rectangle.getGlobalBounds().width / 2.f), l_position.y));
+
+	m_window.draw(l_rectangle);
+
+	l_rectangle.setFillColor(sf::Color::Green);
+	l_rectangle.setOutlineThickness(0);
+	l_rectangle.setOutlineColor(sf::Color::Black);
+
+	l_rectangle.setSize(sf::Vector2f((m_window.getSize().x / 5.f) * p_enemyMonster.getLifePercentage(), m_window.getSize().y / 40.f));
+
+	m_window.draw(l_rectangle);
+
+	m_monsters.height = (l_rectangle.getGlobalBounds().top + l_rectangle.getGlobalBounds().height) - m_monsters.top;
 }
 
 bool CGraphic::displayMenuAction(std::map<std::string, Menu::TYPE>& p_actions, std::map<std::string, Menu::TYPE>::iterator& p_action){
@@ -188,10 +225,6 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 	l_text.setPosition(l_position);
 	l_text.setFillColor(sf::Color::Black);
 
-	l_rectangle.setSize(sf::Vector2f(l_text.getGlobalBounds().width, l_text.getGlobalBounds().height));
-	l_rectangle.setPosition(sf::Vector2f(l_text.getGlobalBounds().left, l_text.getGlobalBounds().top));
-
-	m_window.draw(l_rectangle);
 	m_window.draw(l_text);
 	l_position = sf::Vector2f(m_window.getSize().x / 4.f, (m_monsters.top + m_monsters.height) * 1.5f);
 

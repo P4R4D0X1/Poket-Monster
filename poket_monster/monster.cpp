@@ -158,6 +158,9 @@ void CMonster::info(){
 	std::cout << "State : [" << m_stateLongevity << "] " << m_state << std::endl;
 }
 
+float CMonster::getLifePercentage(){
+	return (float)m_hp / (float)m_hpMax;
+}
 
 //GETTER / SETTER
 

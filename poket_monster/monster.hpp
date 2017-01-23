@@ -37,6 +37,7 @@ class CMonster{
 		//INFO
 		virtual std::string infoToString();
 		virtual void info();
+		float getLifePercentage();
 
 		//GETTER / SETTER
 		std::string getName();
@@ -53,6 +54,7 @@ class CMonster{
 		virtual void useDrug(CDrug &p_drug);
 		std::string monsterTypeToString();
 
+		//MEMBER
 		std::string m_name;
 		int m_hp;
 		int m_hpMax;

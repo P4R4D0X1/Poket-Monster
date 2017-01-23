@@ -24,6 +24,7 @@ bool CPlayer::showMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 	bool l_tourDone(false);
 
 	p_ui.displayPlayerName(m_name);
+	p_ui.displayMonsters(**m_monster, **p_enemy.m_monster);
 
 	switch (m_menu){
 		case Menu::action:

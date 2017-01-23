@@ -19,7 +19,7 @@ class CGraphic{
 		
 		void update();
 		void displayPlayerName(std::string p_name);
-		void displayMonsters(CMonster* p_playerMonster, CMonster* p_enemyMonster);
+		void displayMonsters(CMonster& p_playerMonster, CMonster& p_enemyMonster);
 		bool displayMenuAction(std::map<std::string, Menu::TYPE>& p_actions, std::map<std::string, Menu::TYPE>::iterator& p_action);
 		bool displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vector<CMonster*>::iterator& p_monster);
 		bool displayMenuAttack(std::vector<CAttack*>& p_attacks, std::vector<CAttack*>::iterator& p_attack);
