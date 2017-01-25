@@ -1,8 +1,9 @@
 #include "graphic.hpp"
 #include "monster.hpp"
 #include "attack.hpp"
+#include "object.hpp"
 
-CGraphic::CGraphic(){
+CGraphic::CGraphic() : m_particleSystem(1000){
 	if (m_font.loadFromFile("DIMIS.ttf")){
 		std::cout << "FONT LOADED \n\n";
 	}
@@ -12,14 +13,57 @@ CGraphic::CGraphic(){
 
 	m_window.create(sf::VideoMode(800, 400), "POKET MONSTER", sf::Style::Default || ~sf::Style::Resize, l_settings);
 	m_window.setVerticalSyncEnabled(true);
+	m_particleSystem.setEmitter(sf::Vector2f(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f));
 }
 
 CGraphic::~CGraphic(){
 }
 
 void CGraphic::update(){
+	m_elapsedTime = m_clock.restart();
 	m_window.display();
 	m_window.clear(sf::Color(122, 122, 122, 255));
+}
+
+void CGraphic::updateParticle(){
+	m_particleSystem.update(m_elapsedTime);
+	m_window.draw(m_particleSystem);
+}
+
+bool CGraphic::displayLooser(std::string p_name){
+	sf::Event l_event;
+	sf::Text l_text;
+	sf::Vector2f l_position(m_window.getSize().x / 2.f, m_window.getSize().y / 2.f);
+
+	l_text.setFont(m_font);
+
+	while (m_window.pollEvent(l_event)){
+		switch (l_event.type){
+		case sf::Event::Closed:
+			m_window.close();
+			return true;
+			break;
+
+		case sf::Event::KeyPressed:
+			m_window.close();
+			return true;
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	//On affiche les caractéristiques du monstre séléctionné
+	l_text.setString(p_name + " IS DEAD");
+	l_position.x -= l_text.getGlobalBounds().width / 2.f;
+	l_position.y -= l_text.getGlobalBounds().height / 2.f;
+	l_text.setPosition(l_position);
+	l_text.setFillColor(sf::Color::White);
+
+	m_window.draw(l_text);
+
+	return false;
 }
 
 void CGraphic::displayPlayerName(std::string p_name){
@@ -158,7 +202,7 @@ bool CGraphic::displayMenuAction(std::map<std::string, Menu::TYPE>& p_actions, s
 		l_position.x += l_text.getGlobalBounds().width / 2.f;
 
 		if (*l_iterator == *p_action)
-			l_text.setFillColor(sf::Color::Red);
+			l_text.setFillColor(sf::Color::White);
 		else
 			l_text.setFillColor(sf::Color::Black);
 
@@ -237,7 +281,7 @@ bool CGraphic::displayMenuMonster(std::vector<CMonster*>& p_monsters, std::vecto
 		l_position.x += l_text.getGlobalBounds().width / 2.f;
 
 		if (l_iterator == p_monster)
-			l_text.setFillColor(sf::Color::Red);
+			l_text.setFillColor(sf::Color::White);
 		else
 			l_text.setFillColor(sf::Color::Black);
 
@@ -311,11 +355,74 @@ bool CGraphic::displayMenuAttack(std::vector<CAttack*>& p_attacks, std::vector<C
 		l_position.x += l_text.getGlobalBounds().width / 2.f;
 
 		if (l_iterator == p_attack)
-			l_text.setFillColor(sf::Color::Red);
+			l_text.setFillColor(sf::Color::White);
 		else
 			l_text.setFillColor(sf::Color::Black);
 
 		l_position.y += (l_text.getGlobalBounds().height * 1.5f);
+		m_window.draw(l_text);
+	}
+
+	return false;
+}
+
+bool CGraphic::displayMenuObject(std::vector<CObject*>& p_objects, std::vector<CObject*>::iterator& p_object){
+	std::vector<CObject*>::iterator l_iterator;
+
+	sf::Event l_event;
+	sf::Text l_text;
+	sf::Vector2f l_position(m_window.getSize().x / 2.f, (m_monsters.top + m_monsters.height) * 1.5f);
+
+	l_text.setFont(m_font);
+
+	while (m_window.pollEvent(l_event)){
+		switch (l_event.type){
+		case sf::Event::Closed:
+			m_window.close();
+			break;
+
+		case sf::Event::KeyPressed:
+			switch (l_event.key.code){
+			case sf::Keyboard::Up:
+				if (p_object == p_objects.begin())
+					p_object = --p_objects.end();
+				else
+					p_object--;
+
+				break;
+
+			case sf::Keyboard::Down:
+				if (p_object == --p_objects.end())
+					p_object = p_objects.begin();
+				else
+					p_object++;
+
+				break;
+
+			case sf::Keyboard::Return:
+				return true;
+				break;
+			}
+			break;
+
+		default:
+			break;
+		}
+	}
+
+	//FAIRE L'AFFICHAGE DU TEXTE LA
+	for (l_iterator = p_objects.begin(); l_iterator != p_objects.end(); ++l_iterator){
+		l_text.setString((*l_iterator)->getName());
+		l_position.x -= l_text.getGlobalBounds().width / 2.f;
+		l_text.setPosition(l_position);
+		l_position.x += l_text.getGlobalBounds().width / 2.f;
+
+		if (*l_iterator == *p_object)
+			l_text.setFillColor(sf::Color::White);
+		else
+			l_text.setFillColor(sf::Color::Black);
+
+		l_position.y += l_text.getGlobalBounds().height * 1.5f;
 		m_window.draw(l_text);
 	}
 

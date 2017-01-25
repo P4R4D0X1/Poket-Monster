@@ -97,6 +97,7 @@
     <ClCompile Include="monster.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="parse.cpp" />
+    <ClCompile Include="particle.cpp" />
     <ClCompile Include="plant.cpp" />
     <ClCompile Include="player.cpp" />
     <ClCompile Include="potion.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="namespace.hpp" />
     <ClInclude Include="object.hpp" />
     <ClInclude Include="parse.hpp" />
+    <ClInclude Include="particle.hpp" />
     <ClInclude Include="plant.hpp" />
     <ClInclude Include="player.hpp" />
     <ClInclude Include="potion.hpp" />

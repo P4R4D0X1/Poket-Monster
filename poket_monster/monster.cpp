@@ -59,6 +59,7 @@ Attack::STATE CMonster::attack(CMonster& p_enemy, CArena& p_arena){
 	if ((*m_attackSel)->getNbUse() <= 0){
 		delete(*m_attackSel);
 		m_attacks.erase(m_attackSel);
+		m_attackSel = m_attacks.begin();
 	}
 	
 	return l_state;

@@ -16,6 +16,18 @@ CRock::CRock(std::string p_name, int p_hp, int p_hpMax, int p_speed, int p_attac
 CRock::~CRock(){
 }
 
+void CRock::updateState(CArena& p_arena){
+	CMonster::updateState(p_arena);
+
+	if (m_hiddenRound > 0)
+		m_hiddenRound--;
+
+	if (m_hiddenRound == 0){
+		m_defense /= 2;
+		m_hiddenRound = -1;
+	}
+}
+
 void CRock::specialAttack(CMonster& p_enemy, CArena& p_arena){
 	hide();
 }

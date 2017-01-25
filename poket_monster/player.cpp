@@ -102,8 +102,15 @@ bool CPlayer::showAttackMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
 }
 
 bool CPlayer::showObjectMenu(CPlayer& p_enemy, CArena& p_arena, CGraphic& p_ui){
-	if (p_ui.displayMenuObject(m_objects, m_object));
-	return true;
+	if (p_ui.displayMenuObject(m_objects, m_object)){
+		(*m_monster)->useObject(**m_object);
+		delete(*m_object);
+		m_objects.erase(m_object);
+		m_object = m_objects.begin();
+		return true;
+	}else{
+		return false;
+	}
 }
 
 //FUNCTION

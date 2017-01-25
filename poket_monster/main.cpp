@@ -47,6 +47,7 @@
 using namespace std;
 
 int main(int argc, char **argv){
+	bool l_loop(true);
 
 	CParse l_parse;
 	CPlayer *l_playerOne, *l_playerTwo, *l_actualPlayer;
@@ -57,27 +58,26 @@ int main(int argc, char **argv){
 	l_parse.parseAttack("attacks.pkmn");
 	l_parse.parseObjects("objects.pkmn");
 
-	l_playerOne = new CPlayer("PARADOX", l_parse.createMonsterVector(1), l_parse.createObjectVector(4));
-	l_playerTwo = new CPlayer("KERA", l_parse.createMonsterVector(1), l_parse.createObjectVector(4));
+	l_playerOne = new CPlayer("PARADOX", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
+	l_playerTwo = new CPlayer("KERA", l_parse.createMonsterVector(4), l_parse.createObjectVector(4));
 
 	l_actualPlayer = l_playerOne;
 
-	while (1)
+	while (l_loop)
 	{
-		if (l_actualPlayer == l_playerOne && l_playerOne->showMenu(*l_playerTwo, l_arena, l_graphic))
-			l_actualPlayer = l_playerTwo;
-		else if (l_actualPlayer == l_playerTwo && l_playerTwo->showMenu(*l_playerOne, l_arena, l_graphic))
-			l_actualPlayer = l_playerOne;
-
-		if (!l_actualPlayer->isOperational()){
-			std::cout << l_actualPlayer->getName() << " IS DEAD ! \n";
-			break;
+		l_graphic.updateParticle();
+		if (l_actualPlayer->isOperational()){
+			if (l_actualPlayer == l_playerOne && l_playerOne->showMenu(*l_playerTwo, l_arena, l_graphic))
+				l_actualPlayer = l_playerTwo;
+			else if (l_actualPlayer == l_playerTwo && l_playerTwo->showMenu(*l_playerOne, l_arena, l_graphic))
+				l_actualPlayer = l_playerOne;
+		}else{
+			if (l_graphic.displayLooser(l_actualPlayer->getName()))
+				l_loop = false;
 		}
 		l_graphic.update();
 	}
 
-
-	system("pause");
 	_CrtDumpMemoryLeaks();
 	return EXIT_SUCCESS;
 }

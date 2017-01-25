@@ -29,6 +29,7 @@ class CPlayer{
 		//FUNCTION
 		bool isOperational();
 		void updateMonsters(CArena& p_arena);
+		void useObject();
 
 		//GETTER / SETTER
 		std::string getName();
@@ -46,8 +47,6 @@ class CPlayer{
 
 		std::vector<CObject*>::iterator m_object;
 		std::vector<CObject*> m_objects;
-
-		
 };
 
 #endif
